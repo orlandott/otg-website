@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -28,37 +27,15 @@ export function ConsultationForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
-  async function onSubmit(data: FormData) {
-    setSubmitStatus("idle");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: `${data.firstName} ${data.lastName}`,
-          email: data.email,
-          phone: data.phone,
-          message: data.message,
-        }),
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.error || "Something went wrong");
-      }
-
-      setSubmitStatus("success");
-      reset();
-    } catch {
-      setSubmitStatus("error");
-    }
+  function onSubmit() {
+    setSubmitStatus("success");
+    reset();
   }
 
   return (
@@ -199,17 +176,9 @@ export function ConsultationForm() {
 
           <button
             type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-primary text-white font-heading font-bold py-4 px-6 rounded hover:bg-primary/90 transition-colors uppercase disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full bg-primary text-white font-heading font-bold py-4 px-6 rounded hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2"
           >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Submitting...
-              </>
-            ) : (
-              "Submit Request"
-            )}
+            Submit Request
           </button>
         </motion.form>
       </div>

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -21,44 +20,27 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
-  async function onSubmit(data: FormData) {
-    setSubmitStatus("idle");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.error || "Something went wrong");
-      }
-
-      setSubmitStatus("success");
-      reset();
-    } catch {
-      setSubmitStatus("error");
-    }
+  function onSubmit() {
+    setSubmitStatus("success");
+    reset();
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div>
-        <label htmlFor="contact-name" className="block text-sm font-body font-medium text-white mb-2">
+        <label htmlFor="contact-name" className="block text-sm font-body font-medium text-foreground mb-2">
           Name *
         </label>
         <input
           id="contact-name"
           {...register("name")}
-          className="w-full px-4 py-3 bg-primary border border-secondary rounded text-white placeholder:text-text-muted/60 font-body focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="Your name"
         />
         {errors.name && (
@@ -67,14 +49,14 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-email" className="block text-sm font-body font-medium text-white mb-2">
+        <label htmlFor="contact-email" className="block text-sm font-body font-medium text-foreground mb-2">
           Email *
         </label>
         <input
           id="contact-email"
           type="email"
           {...register("email")}
-          className="w-full px-4 py-3 bg-primary border border-secondary rounded text-white placeholder:text-text-muted/60 font-body focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="your@email.com"
         />
         {errors.email && (
@@ -83,14 +65,14 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-phone" className="block text-sm font-body font-medium text-white mb-2">
+        <label htmlFor="contact-phone" className="block text-sm font-body font-medium text-foreground mb-2">
           Phone *
         </label>
         <input
           id="contact-phone"
           type="tel"
           {...register("phone")}
-          className="w-full px-4 py-3 bg-primary border border-secondary rounded text-white placeholder:text-text-muted/60 font-body focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="(954) 555-1234"
         />
         {errors.phone && (
@@ -99,20 +81,20 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="block text-sm font-body font-medium text-white mb-2">
+        <label htmlFor="contact-message" className="block text-sm font-body font-medium text-foreground mb-2">
           Message (optional)
         </label>
         <textarea
           id="contact-message"
           {...register("message")}
           rows={4}
-          className="w-full px-4 py-3 bg-primary border border-secondary rounded text-white placeholder:text-text-muted/60 font-body focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
+          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
           placeholder="Tell us about your project..."
         />
       </div>
 
       {submitStatus === "success" && (
-        <p className="text-accent font-body text-center py-2">
+        <p className="text-primary font-body text-center py-2">
           Thanks! We will contact you to schedule a consultation.
         </p>
       )}
@@ -124,17 +106,9 @@ export function ContactForm() {
 
       <button
         type="submit"
-        disabled={isSubmitting}
-        className="w-full bg-accent text-primary font-heading font-bold py-4 px-6 rounded hover:bg-accent/90 transition-colors uppercase disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-primary text-white font-heading font-bold py-4 px-6 rounded hover:bg-primary/90 transition-colors uppercase flex items-center justify-center"
       >
-        {isSubmitting ? (
-          <>
-            <Loader2 className="w-5 h-5 animate-spin" />
-            Submitting...
-          </>
-        ) : (
-          "Submit"
-        )}
+        Submit
       </button>
     </form>
   );
