@@ -1,4 +1,8 @@
 # Cloudflare Pages static deployment
 # This site uses Next.js static export (output: "export") - no Workers/OpenNext
+#
+# Do NOT use `wrangler deploy` (Workers). After `npm run build`, upload with:
+#   npm run deploy
+# or: npx wrangler pages deploy out --project-name=otg-website
 name = "otg-website"
 pages_build_output_dir = "./out"
