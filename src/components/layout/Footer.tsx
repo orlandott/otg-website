@@ -14,7 +14,7 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-white dark:bg-dark-bg border-t border-gray-200 dark:border-dark-section">
+    <footer className="bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           <div>
@@ -97,7 +97,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-dark-section flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 dark:text-gray-400 text-xs font-body">
             © {new Date().getFullYear()} Orlando T Group Inc. All rights reserved.
           </p>

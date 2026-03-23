@@ -18,7 +18,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
     >
       <Link
         href={product.href}
-        className="block bg-white dark:bg-dark-section rounded-lg overflow-hidden border border-gray-200 dark:border-dark-section hover:shadow-lg transition-all duration-300 h-full"
+        className="block bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300 h-full"
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <ProductImage
@@ -51,7 +51,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
 export function ProductsGrid() {
   return (
-    <section className="py-20 md:py-28 bg-white dark:bg-background">
+    <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"

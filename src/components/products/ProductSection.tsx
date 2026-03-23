@@ -17,7 +17,7 @@ export function ProductSection({ product, index }: ProductSectionProps) {
   return (
     <motion.section
       id={product.slug}
-      className="scroll-mt-24 py-16 md:py-24 border-b border-gray-200 dark:border-dark-section last:border-0"
+      className="scroll-mt-24 py-16 md:py-24 border-b border-gray-200 last:border-0"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -30,7 +30,7 @@ export function ProductSection({ product, index }: ProductSectionProps) {
           }`}
         >
           <div className={isReversed ? "lg:order-2" : ""}>
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-200 dark:bg-dark-section">
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-200">
               <ProductImage
                 src={product.imagePath}
                 alt={product.name}

@@ -36,7 +36,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-section-alt dark:bg-dark-section py-16 md:py-24">
+      <section className="bg-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             <motion.div
@@ -115,7 +115,7 @@ export default function ContactPage() {
             </motion.div>
 
             <motion.div
-              className="bg-white dark:bg-dark-bg rounded-xl p-6 md:p-8 shadow-lg"
+              className="bg-white rounded-xl p-6 md:p-8 shadow-lg border border-gray-100"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}

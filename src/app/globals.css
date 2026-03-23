@@ -10,21 +10,23 @@
   --section-alt: #f8f9fa;
 }
 
+/* Page canvas stays white in all themes (brand-colored bands are explicit per section). */
 .dark {
   --primary: #377abe;
-  --background: #0f0f1a;
-  --foreground: #ffffff;
-  --muted: #9ca3af;
-  --section-alt: #1a1a2e;
+  --background: #ffffff;
+  --foreground: #1a1a2e;
+  --muted: #6b7280;
+  --section-alt: #ffffff;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: #ffffff;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-color: #ffffff;
   font-family: var(--font-dm-sans), sans-serif;
 }
 

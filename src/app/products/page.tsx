@@ -37,7 +37,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="bg-white dark:bg-background">
+      <section className="bg-white">
         {products.map((product, index) => (
           <ProductSection key={product.id} product={product} index={index} />
         ))}

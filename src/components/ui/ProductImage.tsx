@@ -25,7 +25,7 @@ export function ProductImage({
     return (
       <div
         className={cn(
-          "bg-gray-200 dark:bg-dark-section flex items-center justify-center",
+          "bg-gray-200 flex items-center justify-center",
           fill ? "absolute inset-0" : "aspect-[4/3]",
           className
         )}

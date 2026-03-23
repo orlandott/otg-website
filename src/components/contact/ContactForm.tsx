@@ -40,7 +40,7 @@ export function ContactForm() {
         <input
           id="contact-name"
           {...register("name")}
-          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="Your name"
         />
         {errors.name && (
@@ -56,7 +56,7 @@ export function ContactForm() {
           id="contact-email"
           type="email"
           {...register("email")}
-          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="your@email.com"
         />
         {errors.email && (
@@ -72,7 +72,7 @@ export function ContactForm() {
           id="contact-phone"
           type="tel"
           {...register("phone")}
-          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="(954) 555-1234"
         />
         {errors.phone && (
@@ -88,7 +88,7 @@ export function ContactForm() {
           id="contact-message"
           {...register("message")}
           rows={4}
-          className="w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
           placeholder="Tell us about your project..."
         />
       </div>

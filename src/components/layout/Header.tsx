@@ -24,7 +24,7 @@ export function Header() {
   }, []);
 
   const headerBg = isScrolled
-    ? "bg-white dark:bg-dark-bg shadow-md"
+    ? "bg-white shadow-md"
     : "bg-transparent";
 
   const overHero = !isScrolled;
@@ -88,7 +88,7 @@ export function Header() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-section transition-colors"
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
@@ -109,7 +109,7 @@ export function Header() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-section"
+              className="p-2 rounded-full hover:bg-gray-100"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
@@ -131,7 +131,7 @@ export function Header() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-dark-bg border-t border-gray-200 dark:border-dark-section">
+        <div className="lg:hidden bg-white border-t border-gray-200">
           <nav className="flex flex-col p-4 gap-2">
             <a
               href="tel:+19546255318"
@@ -145,7 +145,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-4 text-foreground hover:bg-section-alt dark:hover:bg-dark-section rounded font-body uppercase tracking-wider"
+                className="py-3 px-4 text-foreground hover:bg-gray-100 rounded font-body uppercase tracking-wider"
               >
                 {link.label}
               </Link>

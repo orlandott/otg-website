@@ -46,12 +46,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${barlowCondensed.variable} ${dmSans.variable} font-body antialiased`}
+        className={`${barlowCondensed.variable} ${dmSans.variable} font-body antialiased bg-white text-foreground`}
       >
         <ThemeScript />
         <ThemeProvider>
           <Header />
-          <main>{children}</main>
+          <main className="min-h-screen bg-white">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

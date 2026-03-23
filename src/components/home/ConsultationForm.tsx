@@ -17,7 +17,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const inputClass =
-  "w-full px-4 py-3 bg-white dark:bg-dark-section border border-gray-200 dark:border-dark-section rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent";
+  "w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent";
 
 export function ConsultationForm() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">(
@@ -40,7 +40,7 @@ export function ConsultationForm() {
 
   return (
     <section
-      className="py-20 md:py-28 bg-white dark:bg-dark-section"
+      className="py-20 md:py-28 bg-white"
       id="consultation"
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,7 +57,7 @@ export function ConsultationForm() {
 
         <motion.form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-6 bg-white dark:bg-dark-bg rounded-xl p-6 md:p-8 shadow-lg"
+          className="space-y-6 bg-white rounded-xl p-6 md:p-8 shadow-lg border border-gray-100"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
