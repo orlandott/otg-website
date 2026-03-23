@@ -1,4 +1,5 @@
-# Cloudflare Pages static deployment
+# Cloudflare PAGES only — do not create this repo as a Cloudflare Worker.
+# Workers (wrangler deploy) are a different product; use Dashboard → Pages → Create → Pages.
 # This site uses Next.js static export (output: "export") - no Workers/OpenNext
 #
 # Do NOT use `wrangler deploy` (Workers). After `npm run build`, upload with:
