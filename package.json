@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "wrangler pages deploy out --project-name=otg-website",
+    "deploy:ci": "node -e \"process.exit(0)\"",
     "deploy:cloudflare": "npm run build && npm run deploy"
   },
   "dependencies": {
