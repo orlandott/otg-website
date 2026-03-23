@@ -1,0 +1,4 @@
+# Cloudflare Pages static deployment
+# This site uses Next.js static export (output: "export") - no Workers/OpenNext
+name = "otg-website"
+pages_build_output_dir = "./out"
