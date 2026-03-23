@@ -12,7 +12,7 @@ const instagramImages = [
 
 export function InstagramFeed() {
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-background">
+    <section className="py-16 md:py-24 bg-accent dark:bg-dark-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
@@ -20,7 +20,7 @@ export function InstagramFeed() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading font-bold text-2xl text-foreground">
+          <h2 className="font-heading font-bold text-2xl text-primary dark:text-foreground">
             Follow us on Instagram
           </h2>
           <a

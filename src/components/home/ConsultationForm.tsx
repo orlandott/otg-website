@@ -40,7 +40,7 @@ export function ConsultationForm() {
 
   return (
     <section
-      className="py-20 md:py-28 bg-section-alt dark:bg-dark-section"
+      className="py-20 md:py-28 bg-white dark:bg-dark-section"
       id="consultation"
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
