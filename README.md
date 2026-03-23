@@ -150,10 +150,10 @@ Requires Wrangler login or `CLOUDFLARE_API_TOKEN` with **Account → Cloudflare 
 
 | Token   | Hex       | Usage              |
 |---------|-----------|--------------------|
-| primary | `#0a0f1e` | Dark navy (main bg)|
-| secondary | `#1a2744` | Steel blue         |
-| accent  | `#e8ff00` | Electric yellow    |
-| text-primary | `#ffffff` | Main text     |
+| primary | `#377abe` | Brand blue (CTAs, links) |
+| secondary | `#1e3d5c` | Dark blue (section backgrounds) |
+| accent  | `#82c55a` | Brand green (highlights) |
+| text-primary | `#ffffff` | Main text on dark UI |
 | text-muted | `#8a9bbf` | Secondary text  |
 
 ## License

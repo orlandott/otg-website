@@ -24,7 +24,7 @@ export function TrustBar() {
               <p className="font-heading font-bold text-3xl md:text-4xl text-accent">
                 {stat.value}
               </p>
-              <p className="text-text-muted font-body text-sm uppercase tracking-wider">
+              <p className="text-white/80 font-body text-sm uppercase tracking-wider">
                 {stat.label}
               </p>
             </div>
