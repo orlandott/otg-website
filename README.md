@@ -117,8 +117,12 @@ The repository cannot convert an existing Worker project into Pages. Add a **new
 
 ### Create a Pages project (not Workers)
 
-1. [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** (do not choose Workers).
-2. **Connect to Git** → select this repository.
+Cloudflare’s dashboard often shows **Workers** and **Pages** in the same place, and both can connect to Git. If you pick the repository *before* choosing **Pages**, the flow can create a **Worker** (or “Workers Builds”) instead of **Pages**. The order matters.
+
+Per [Cloudflare’s Pages Git docs](https://developers.cloudflare.com/pages/get-started/git-integration/):
+
+1. [Workers & Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages) → **Create application** → **Pages** → **Connect to Git** (not “Create Worker” / not a repo-first Worker flow).
+2. Authorize GitHub and **then** select this repository.
 3. Build settings:
    - **Root directory:** `/` (unless the app lives in a subfolder).
    - **Build command:** `npm run build`
