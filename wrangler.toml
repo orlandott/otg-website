@@ -4,5 +4,9 @@
 # Do NOT use `wrangler deploy` (Workers). After `npm run build`, upload with:
 #   npm run deploy
 # or: npx wrangler pages deploy out --project-name=otg-website
+#
+# CI: If `wrangler pages deploy` fails with auth error 10000, either (1) clear the
+# custom deploy command and rely on Pages “Build output directory” = ./out, or
+# (2) set CLOUDFLARE_API_TOKEN to a token with Account → Cloudflare Pages → Edit.
 name = "otg-website"
 pages_build_output_dir = "./out"
