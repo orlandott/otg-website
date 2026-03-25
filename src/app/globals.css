@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --primary: #377abe;
+  --primary: #1b4f72;
   --background: #ffffff;
-  --foreground: #1a1a2e;
-  --muted: #6b7280;
-  --section-alt: #f8f9fa;
+  --foreground: #0d1b2a;
+  --muted: #566573;
+  --section-alt: #f4f6f7;
 }
 
 /* Page canvas stays white in all themes (brand-colored bands are explicit per section). */
 .dark {
-  --primary: #377abe;
+  --primary: #1b4f72;
   --background: #ffffff;
-  --foreground: #1a1a2e;
-  --muted: #6b7280;
+  --foreground: #0d1b2a;
+  --muted: #566573;
   --section-alt: #ffffff;
 }
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const heroImage =
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075";
+  "/images/hero.png";
 
 export function Hero() {
   return (
@@ -17,7 +17,7 @@ export function Hero() {
         priority
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/70 to-secondary/85" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
         <motion.h1
@@ -26,9 +26,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Protecting Florida
-          <br />
-          Homes & Families
+          Hurricane and Solar Protection
         </motion.h1>
       </div>
     </section>

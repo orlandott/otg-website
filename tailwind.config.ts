@@ -11,12 +11,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#377abe",
-        secondary: "#1e3d5c",
-        accent: "#82c55a",
-        "section-alt": "#f8f9fa",
-        "dark-bg": "#0f0f1a",
-        "dark-section": "#1a1a2e",
+        brand: {
+          navy: "#0D1B2A",
+          steel: "#1B4F72",
+          sky: "#5DADE2",
+          amber: "#F39C12",
+          offwhite: "#F4F6F7",
+          slate: "#566573",
+        },
+        primary: "#1B4F72",
+        secondary: "#0D1B2A",
+        accent: "#F39C12",
+        "section-alt": "#F4F6F7",
+        "dark-bg": "#0D1B2A",
+        "dark-section": "#10253A",
         foreground: "var(--foreground)",
         background: "var(--background)",
       },

@@ -24,13 +24,13 @@ export function Header() {
   }, []);
 
   const headerBg = isScrolled
-    ? "bg-white shadow-md"
+    ? "bg-brand-offwhite/95 backdrop-blur shadow-md border-b border-brand-sky/20"
     : "bg-transparent";
 
   const overHero = !isScrolled;
   const mutedClass = overHero
     ? "text-white/90"
-    : "text-gray-600 dark:text-gray-400";
+    : "text-brand-slate";
   const logoTextClass = overHero ? "text-white" : "text-foreground";
 
   return (
@@ -80,7 +80,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={cn("font-body text-sm font-medium uppercase tracking-wider hover:text-primary transition-colors", mutedClass)}
+                className={cn("font-body text-sm font-medium uppercase tracking-wider hover:text-brand-steel transition-colors", mutedClass)}
               >
                 {link.label}
               </Link>
@@ -99,7 +99,7 @@ export function Header() {
             </button>
             <Link
               href="/contact"
-              className="bg-primary text-white font-heading font-bold px-6 py-2.5 rounded hover:bg-primary/90 transition-colors uppercase text-sm"
+              className="bg-accent text-secondary font-heading font-bold px-6 py-2.5 rounded hover:bg-accent/90 transition-colors uppercase text-sm"
             >
               Free Estimate Online
             </Link>
@@ -113,9 +113,9 @@ export function Header() {
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <Moon className="w-5 h-5 text-foreground" />
+                <Moon className="w-5 h-5 text-secondary" />
               ) : (
-                <Sun className="w-5 h-5 text-foreground" />
+                <Sun className="w-5 h-5 text-secondary" />
               )}
             </button>
             <button
@@ -131,7 +131,7 @@ export function Header() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200">
+        <div className="lg:hidden bg-brand-offwhite border-t border-brand-sky/20">
           <nav className="flex flex-col p-4 gap-2">
             <a
               href="tel:+19546255318"
@@ -145,7 +145,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-4 text-foreground hover:bg-gray-100 rounded font-body uppercase tracking-wider"
+                className="py-3 px-4 text-secondary hover:bg-white rounded font-body uppercase tracking-wider"
               >
                 {link.label}
               </Link>
@@ -153,7 +153,7 @@ export function Header() {
             <Link
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-2 py-3 px-4 bg-primary text-white font-heading font-bold text-center rounded hover:bg-primary/90 uppercase"
+              className="mt-2 py-3 px-4 bg-accent text-secondary font-heading font-bold text-center rounded hover:bg-accent/90 uppercase"
             >
               Free Estimate Online
             </Link>

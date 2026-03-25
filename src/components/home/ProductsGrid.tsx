@@ -18,7 +18,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
     >
       <Link
         href={product.href}
-        className="block bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300 h-full"
+        className="block bg-white rounded-lg overflow-hidden border border-brand-sky/25 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full"
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <ProductImage
@@ -29,7 +29,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           />
         </div>
         <div className="p-6">
-          <h3 className="font-heading font-bold text-lg text-primary uppercase mb-4">
+          <h3 className="font-heading font-bold text-lg text-secondary uppercase mb-4">
             {product.name}
           </h3>
           <ul className="space-y-2">
@@ -38,7 +38,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 key={feature}
                 className="flex items-center gap-2 text-foreground/90 text-sm font-body"
               >
-                <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                <Check className="w-5 h-5 text-brand-steel flex-shrink-0" />
                 {feature}
               </li>
             ))}
@@ -51,7 +51,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
 export function ProductsGrid() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 md:py-28 bg-brand-offwhite">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -59,7 +59,7 @@ export function ProductsGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-secondary">
             PRODUCTS
           </h2>
         </motion.div>
@@ -78,7 +78,7 @@ export function ProductsGrid() {
         >
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-8 py-3 border-2 border-primary text-primary font-heading font-bold rounded hover:bg-primary hover:text-white transition-colors uppercase"
+            className="inline-flex items-center justify-center px-8 py-3 border-2 border-brand-steel text-brand-steel font-heading font-bold rounded hover:bg-brand-steel hover:text-white transition-colors uppercase"
           >
             Learn More
           </Link>

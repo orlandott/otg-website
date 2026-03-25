@@ -17,7 +17,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const inputClass =
-  "w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent";
+  "w-full px-4 py-3 bg-white border border-brand-sky/30 rounded text-foreground placeholder:text-brand-slate/70 font-body focus:outline-none focus:ring-2 focus:ring-brand-steel/40 focus:border-brand-steel";
 
 export function ConsultationForm() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">(
@@ -39,10 +39,7 @@ export function ConsultationForm() {
   }
 
   return (
-    <section
-      className="py-20 md:py-28 bg-white"
-      id="consultation"
-    >
+    <section className="py-20 md:py-28 bg-white" id="consultation">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-12"
@@ -50,14 +47,14 @@ export function ConsultationForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-secondary">
             FREE CONSULTATION
           </h2>
         </motion.div>
 
         <motion.form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-6 bg-white rounded-xl p-6 md:p-8 shadow-lg border border-gray-100"
+          className="space-y-6 bg-brand-offwhite rounded-xl p-6 md:p-8 shadow-lg border border-brand-sky/20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -164,7 +161,7 @@ export function ConsultationForm() {
           </div>
 
           {submitStatus === "success" && (
-            <p className="text-primary font-body text-center py-2">
+            <p className="text-brand-steel font-body text-center py-2">
               Thanks! We will contact you to schedule a consultation.
             </p>
           )}
@@ -176,7 +173,7 @@ export function ConsultationForm() {
 
           <button
             type="submit"
-            className="w-full bg-primary text-white font-heading font-bold py-4 px-6 rounded hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2"
+            className="w-full bg-accent text-secondary font-heading font-bold py-4 px-6 rounded hover:bg-accent/90 transition-colors uppercase flex items-center justify-center gap-2"
           >
             Submit Request
           </button>
