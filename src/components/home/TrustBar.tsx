@@ -10,7 +10,7 @@ const stats = [
 
 export function TrustBar() {
   return (
-    <section className="bg-blue py-14 md:py-18">
+    <section className="bg-navy py-14 md:py-18">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 text-center"
@@ -28,7 +28,7 @@ export function TrustBar() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <p className="font-heading font-bold text-accent leading-none"
+              <p className="font-heading font-bold text-white leading-none"
                 style={{ fontSize: "clamp(36px, 4vw, 52px)" }}>
                 {stat.value}
               </p>
