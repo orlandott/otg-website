@@ -87,7 +87,7 @@ export function Header() {
             <Link
               href="/contact"
               className="bg-accent text-white font-heading font-bold px-6 py-2.5 rounded text-sm uppercase tracking-wide hover:bg-accent-hover transition-colors"
-              style={{ boxShadow: "0 2px 10px rgba(245,158,11,0.3)" }}
+              style={{ boxShadow: "0 2px 10px rgba(17,109,255,0.3)" }}
             >
               Free Estimate
             </Link>

@@ -63,7 +63,7 @@ export function Hero() {
           <Link
             href="#consultation"
             className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-heading font-bold uppercase tracking-[0.06em] rounded text-sm hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.35)" }}
+            style={{ boxShadow: "0 4px 16px rgba(17,109,255,0.35)" }}
           >
             Get a Free Consultation
           </Link>
