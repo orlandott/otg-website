@@ -3,30 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --color-navy: #002855;
-  --color-blue: #1565c0;
-  --color-sky: #1e88e5;
-  --color-accent: #f59e0b;
-  --color-accent-hover: #d97706;
-  --color-white: #ffffff;
+  /* OTG brand palette — scraped from orlandotgroupinc.com */
+  --color-dark:    #080808;
+  --color-dark-2:  #202020;
+  --color-blue:    #116dff;
+  --color-blue-hover: #0055e0;
+  --color-white:   #ffffff;
   --color-surface: #f5f5f5;
-  --color-charcoal: #333333;
-  --color-gray: #757575;
-  --color-border: #e0e0e0;
+  --color-charcoal: #202020;
+  --color-gray:    #757575;
+  --color-border:  #e0e0e0;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-cta: 0 4px 16px rgba(245, 158, 11, 0.3);
+  /* Legacy semantic aliases kept for Tailwind token compatibility */
+  --color-navy:        #080808;
+  --color-accent:      #116dff;
+  --color-accent-hover: #0055e0;
+  --color-sky:         #3385ff;
+
+  --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md:  0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.18);
+  --shadow-cta: 0 4px 16px rgba(17, 109, 255, 0.35);
 
   --background: #ffffff;
-  --foreground: #333333;
+  --foreground: #202020;
 }
 
 /* Lock to light mode — white canvas at all times */
 .dark {
   --background: #ffffff;
-  --foreground: #333333;
+  --foreground: #202020;
 }
 
 html {

@@ -11,31 +11,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Design system tokens
-        navy: "#002855",
-        blue: "#1565C0",
-        sky: "#1E88E5",
-        accent: "#F59E0B",
-        "accent-hover": "#D97706",
-        surface: "#F5F5F5",
-        charcoal: "#333333",
-        muted: "#757575",
-        border: "#E0E0E0",
+        // OTG brand palette — orlandotgroupinc.com
+        navy:          "#080808",   // near-black (was deep navy)
+        blue:          "#116dff",   // OTG brand blue
+        sky:           "#3385ff",   // lighter blue variant
+        accent:        "#116dff",   // CTA / action (same brand blue)
+        "accent-hover": "#0055e0",  // darker blue on hover
+        surface:       "#f5f5f5",   // light gray background
+        charcoal:      "#202020",   // primary dark text
+        muted:         "#757575",   // secondary text
+        border:        "#e0e0e0",   // borders / dividers
         // Semantic aliases
-        primary: "#1565C0",
-        secondary: "#002855",
-        foreground: "var(--foreground)",
-        background: "var(--background)",
+        primary:       "#116dff",
+        secondary:     "#080808",
+        foreground:    "var(--foreground)",
+        background:    "var(--background)",
       },
       fontFamily: {
         heading: ["var(--font-barlow-condensed)", "sans-serif"],
-        body: ["var(--font-barlow)", "sans-serif"],
+        body:    ["var(--font-barlow)", "sans-serif"],
       },
       boxShadow: {
-        sm: "0 1px 3px rgba(0,0,0,0.08)",
-        md: "0 4px 12px rgba(0,0,0,0.10)",
-        lg: "0 8px 24px rgba(0,0,0,0.12)",
-        cta: "0 4px 16px rgba(245,158,11,0.30)",
+        sm:  "0 1px 3px rgba(0,0,0,0.08)",
+        md:  "0 4px 12px rgba(0,0,0,0.15)",
+        lg:  "0 8px 24px rgba(0,0,0,0.18)",
+        cta: "0 4px 16px rgba(17,109,255,0.35)",
       },
     },
   },
