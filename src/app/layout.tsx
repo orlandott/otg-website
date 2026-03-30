@@ -51,7 +51,7 @@ export default function RootLayout({
         <ThemeScript />
         <ThemeProvider>
           <Header />
-          <main className="min-h-screen bg-white">{children}</main>
+          <main className="min-h-screen bg-background">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

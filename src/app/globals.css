@@ -29,20 +29,19 @@
   --foreground: #202020;
 }
 
-/* Lock to light mode — white canvas at all times */
 .dark {
-  --background: #ffffff;
-  --foreground: #202020;
+  --background: #111111;
+  --foreground: #f0f0f0;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #ffffff;
+  background-color: var(--background);
 }
 
 body {
   color: var(--foreground);
-  background-color: #ffffff;
+  background-color: var(--background);
   font-family: var(--font-barlow), sans-serif;
 }
 
