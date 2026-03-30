@@ -14,6 +14,11 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+const inputClass =
+  "w-full px-4 py-3 bg-white border border-[#E0E0E0] rounded text-charcoal placeholder:text-muted font-body text-sm focus:outline-none focus:ring-2 focus:ring-blue/30 focus:border-blue transition-colors";
+
+const labelClass = "block text-sm font-body font-medium text-charcoal mb-2";
+
 export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -34,81 +39,74 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div>
-        <label htmlFor="contact-name" className="block text-sm font-body font-medium text-foreground mb-2">
-          Name *
-        </label>
+        <label htmlFor="contact-name" className={labelClass}>Name *</label>
         <input
           id="contact-name"
           {...register("name")}
-          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className={inputClass}
           placeholder="Your name"
         />
         {errors.name && (
-          <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
+          <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
         )}
       </div>
 
       <div>
-        <label htmlFor="contact-email" className="block text-sm font-body font-medium text-foreground mb-2">
-          Email *
-        </label>
+        <label htmlFor="contact-email" className={labelClass}>Email *</label>
         <input
           id="contact-email"
           type="email"
           {...register("email")}
-          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className={inputClass}
           placeholder="your@email.com"
         />
         {errors.email && (
-          <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
+          <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
         )}
       </div>
 
       <div>
-        <label htmlFor="contact-phone" className="block text-sm font-body font-medium text-foreground mb-2">
-          Phone *
-        </label>
+        <label htmlFor="contact-phone" className={labelClass}>Phone *</label>
         <input
           id="contact-phone"
           type="tel"
           {...register("phone")}
-          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className={inputClass}
           placeholder="(954) 555-1234"
         />
         {errors.phone && (
-          <p className="mt-1 text-sm text-red-400">{errors.phone.message}</p>
+          <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>
         )}
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="block text-sm font-body font-medium text-foreground mb-2">
-          Message (optional)
-        </label>
+        <label htmlFor="contact-message" className={labelClass}>Message (optional)</label>
         <textarea
           id="contact-message"
           {...register("message")}
           rows={4}
-          className="w-full px-4 py-3 bg-white border border-gray-200 rounded text-foreground placeholder:text-gray-500 font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+          className={`${inputClass} resize-none`}
           placeholder="Tell us about your project..."
         />
       </div>
 
       {submitStatus === "success" && (
-        <p className="text-primary font-body text-center py-2">
+        <p className="text-blue font-body text-sm text-center py-2">
           Thanks! We will contact you to schedule a consultation.
         </p>
       )}
       {submitStatus === "error" && (
-        <p className="text-red-400 font-body text-center py-2">
+        <p className="text-red-500 font-body text-sm text-center py-2">
           Something went wrong. Please try again or call us directly.
         </p>
       )}
 
       <button
         type="submit"
-        className="w-full bg-primary text-white font-heading font-bold py-4 px-6 rounded hover:bg-primary/90 transition-colors uppercase flex items-center justify-center"
+        className="w-full bg-accent text-white font-heading font-bold py-4 px-6 rounded uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
+        style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.25)" }}
       >
-        Submit
+        Submit Request
       </button>
     </form>
   );

@@ -9,51 +9,59 @@ import { ProductSection } from "@/components/products/ProductSection";
 export default function ProductsPage() {
   return (
     <>
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-primary">
+      {/* Page header */}
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/80 text-sm font-body mb-6">
+          <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
-            <ChevronRight size={16} />
-            <span className="text-white">Products</span>
+            <ChevronRight size={14} />
+            <span className="text-white/90">Products</span>
           </nav>
           <motion.h1
-            className="font-heading font-bold text-4xl md:text-5xl text-white"
+            className="font-heading font-bold text-white uppercase leading-[1.05]"
+            style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            OUR PRODUCTS
+            Our Products
           </motion.h1>
           <motion.p
-            className="mt-4 text-white/90 font-body text-lg max-w-2xl"
+            className="mt-4 text-white/70 font-body text-base max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            From impact windows to retractable awnings—comprehensive protection solutions for your South Florida home.
+            From impact windows to retractable awnings — comprehensive protection solutions for your South Florida home.
           </motion.p>
         </div>
       </section>
 
+      {/* Product sections */}
       <section className="bg-white">
         {products.map((product, index) => (
           <ProductSection key={product.id} product={product} index={index} />
         ))}
       </section>
 
-      <section className="bg-primary py-20 md:py-28">
+      {/* CTA footer band */}
+      <section className="bg-navy py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-heading font-bold text-2xl md:text-3xl text-white mb-4">
-            READY TO PROTECT YOUR HOME?
+          <h2
+            className="font-heading font-bold text-white uppercase leading-[1.1] mb-4"
+            style={{ fontSize: "clamp(28px, 3vw, 40px)" }}
+          >
+            Ready to Protect Your Home?
           </h2>
-          <p className="text-white/90 font-body mb-8">
+          <p className="text-white/65 font-body text-sm mb-8">
             Get a free in-home consultation and estimate. No obligation.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-primary font-heading font-bold px-8 py-4 rounded hover:bg-white/90 transition-colors uppercase"
+            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-sm uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
+            style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
           >
             Get Free Quote
           </Link>

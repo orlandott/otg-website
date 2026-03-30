@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, DM_Sans } from "next/font/google";
+import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -12,10 +12,10 @@ const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
 });
 
-const dmSans = DM_Sans({
+const barlow = Barlow({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-dm-sans",
+  weight: ["400", "500", "600"],
+  variable: "--font-barlow",
 });
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${barlowCondensed.variable} ${dmSans.variable} font-body antialiased bg-white text-foreground`}
+        className={`${barlowCondensed.variable} ${barlow.variable} font-body antialiased bg-white text-charcoal`}
       >
         <ThemeScript />
         <ThemeProvider>

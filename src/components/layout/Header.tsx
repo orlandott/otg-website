@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, Facebook, Instagram, Moon, Sun, Shield } from "lucide-react";
+import { Menu, X, Phone, Facebook, Instagram, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTheme } from "@/components/providers/ThemeProvider";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,7 +14,6 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -23,119 +21,97 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const headerBg = isScrolled
-    ? "bg-brand-offwhite/95 backdrop-blur shadow-md border-b border-brand-sky/20"
-    : "bg-transparent";
-
   const overHero = !isScrolled;
-  const mutedClass = overHero
-    ? "text-white/90"
-    : "text-brand-slate";
-  const logoTextClass = overHero ? "text-white" : "text-foreground";
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        headerBg
+        isScrolled
+          ? "bg-navy/97 backdrop-blur shadow-lg"
+          : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-heading font-bold text-xl md:text-2xl tracking-tight hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2.5 font-heading font-bold text-xl md:text-2xl tracking-tight hover:opacity-90 transition-opacity"
           >
-            <Shield className={cn("w-7 h-7", overHero ? "text-white" : "text-primary")} />
-            <span className={logoTextClass}>ORLANDO T GROUP</span>
+            <Shield
+              className={cn(
+                "w-7 h-7",
+                overHero ? "text-accent" : "text-accent"
+              )}
+            />
+            <span className="text-white">ORLANDO T GROUP</span>
           </Link>
 
+          {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-6">
             <a
               href="tel:+19546255318"
-              className={cn("flex items-center gap-2 text-sm font-body", mutedClass)}
+              className="flex items-center gap-1.5 text-sm font-body text-white/80 hover:text-white transition-colors"
             >
-              <Phone size={16} />
+              <Phone size={15} />
               (954) 625-5318
             </a>
             <a
               href="https://facebook.com/orlandotgroup"
               target="_blank"
               rel="noopener noreferrer"
-              className={mutedClass}
+              className="text-white/70 hover:text-white transition-colors"
               aria-label="Facebook"
             >
-              <Facebook size={20} />
+              <Facebook size={18} />
             </a>
             <a
               href="https://instagram.com/orlandotgroup"
               target="_blank"
               rel="noopener noreferrer"
-              className={mutedClass}
+              className="text-white/70 hover:text-white transition-colors"
               aria-label="Instagram"
             >
-              <Instagram size={20} />
+              <Instagram size={18} />
             </a>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={cn("font-body text-sm font-medium uppercase tracking-wider hover:text-brand-steel transition-colors", mutedClass)}
+                className="font-body text-sm font-medium text-white/80 hover:text-white uppercase tracking-wider transition-colors"
               >
                 {link.label}
               </Link>
             ))}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className={cn("w-5 h-5", overHero ? "text-white" : "text-foreground")} />
-              ) : (
-                <Sun className={cn("w-5 h-5", overHero ? "text-white" : "text-foreground")} />
-              )}
-            </button>
             <Link
               href="/contact"
-              className="bg-accent text-secondary font-heading font-bold px-6 py-2.5 rounded hover:bg-accent/90 transition-colors uppercase text-sm"
+              className="bg-accent text-white font-heading font-bold px-6 py-2.5 rounded text-sm uppercase tracking-wide hover:bg-accent-hover transition-colors"
+              style={{ boxShadow: "0 2px 10px rgba(245,158,11,0.3)" }}
             >
-              Free Estimate Online
+              Free Estimate
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2 lg:hidden">
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className="w-5 h-5 text-secondary" />
-              ) : (
-                <Sun className="w-5 h-5 text-secondary" />
-              )}
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={cn("p-2", overHero ? "text-white" : "text-foreground")}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-white"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
+      {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-brand-offwhite border-t border-brand-sky/20">
-          <nav className="flex flex-col p-4 gap-2">
+        <div className="lg:hidden bg-navy border-t border-white/10">
+          <nav className="flex flex-col p-4 gap-1">
             <a
               href="tel:+19546255318"
-              className="flex items-center gap-2 py-3 px-4 text-foreground font-body"
+              className="flex items-center gap-2 py-3 px-4 text-white/80 font-body hover:text-white transition-colors"
             >
               <Phone size={16} />
               (954) 625-5318
@@ -145,7 +121,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-4 text-secondary hover:bg-white rounded font-body uppercase tracking-wider"
+                className="py-3 px-4 text-white/80 hover:text-white font-body uppercase tracking-wider transition-colors"
               >
                 {link.label}
               </Link>
@@ -153,9 +129,9 @@ export function Header() {
             <Link
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-2 py-3 px-4 bg-accent text-secondary font-heading font-bold text-center rounded hover:bg-accent/90 uppercase"
+              className="mt-2 py-3 px-4 bg-accent text-white font-heading font-bold text-center rounded hover:bg-accent-hover uppercase tracking-wide transition-colors"
             >
-              Free Estimate Online
+              Free Estimate
             </Link>
           </nav>
         </div>

@@ -17,12 +17,12 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const inputClass =
-  "w-full px-4 py-3 bg-white border border-brand-sky/30 rounded text-foreground placeholder:text-brand-slate/70 font-body focus:outline-none focus:ring-2 focus:ring-brand-steel/40 focus:border-brand-steel";
+  "w-full px-4 py-3 bg-white border border-[#E0E0E0] rounded text-charcoal placeholder:text-muted font-body text-sm focus:outline-none focus:ring-2 focus:ring-blue/30 focus:border-blue transition-colors";
+
+const labelClass = "block text-sm font-body font-medium text-charcoal mb-2";
 
 export function ConsultationForm() {
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">(
-    "idle"
-  );
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const {
     register,
@@ -47,27 +47,29 @@ export function ConsultationForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-secondary">
-            FREE CONSULTATION
+          <h2
+            className="font-heading font-bold text-navy uppercase tracking-[0.01em] leading-[1.1]"
+            style={{ fontSize: "clamp(32px, 4vw, 48px)" }}
+          >
+            Free Consultation
           </h2>
+          <p className="mt-3 font-body text-muted text-sm">
+            Schedule a free in-home estimate. No obligation.
+          </p>
         </motion.div>
 
         <motion.form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-6 bg-brand-offwhite rounded-xl p-6 md:p-8 shadow-lg border border-brand-sky/20"
+          className="space-y-5 bg-surface rounded-xl p-7 md:p-10 border border-[#E0E0E0]"
+          style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-body font-medium text-foreground mb-2"
-              >
-                First Name *
-              </label>
+              <label htmlFor="firstName" className={labelClass}>First Name *</label>
               <input
                 id="firstName"
                 {...register("firstName")}
@@ -75,18 +77,11 @@ export function ConsultationForm() {
                 placeholder="First name"
               />
               {errors.firstName && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.firstName.message}
-                </p>
+                <p className="mt-1 text-xs text-red-500">{errors.firstName.message}</p>
               )}
             </div>
             <div>
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-body font-medium text-foreground mb-2"
-              >
-                Last Name *
-              </label>
+              <label htmlFor="lastName" className={labelClass}>Last Name *</label>
               <input
                 id="lastName"
                 {...register("lastName")}
@@ -94,21 +89,14 @@ export function ConsultationForm() {
                 placeholder="Last name"
               />
               {errors.lastName && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.lastName.message}
-                </p>
+                <p className="mt-1 text-xs text-red-500">{errors.lastName.message}</p>
               )}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-body font-medium text-foreground mb-2"
-              >
-                Email Address *
-              </label>
+              <label htmlFor="email" className={labelClass}>Email Address *</label>
               <input
                 id="email"
                 type="email"
@@ -117,18 +105,11 @@ export function ConsultationForm() {
                 placeholder="your@email.com"
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.email.message}
-                </p>
+                <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
               )}
             </div>
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-body font-medium text-foreground mb-2"
-              >
-                Phone Number *
-              </label>
+              <label htmlFor="phone" className={labelClass}>Phone Number *</label>
               <input
                 id="phone"
                 type="tel"
@@ -137,20 +118,13 @@ export function ConsultationForm() {
                 placeholder="(954) 555-1234"
               />
               {errors.phone && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.phone.message}
-                </p>
+                <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>
               )}
             </div>
           </div>
 
           <div>
-            <label
-              htmlFor="message"
-              className="block text-sm font-body font-medium text-foreground mb-2"
-            >
-              How can we help you?
-            </label>
+            <label htmlFor="message" className={labelClass}>How can we help you?</label>
             <textarea
               id="message"
               {...register("message")}
@@ -161,21 +135,22 @@ export function ConsultationForm() {
           </div>
 
           {submitStatus === "success" && (
-            <p className="text-brand-steel font-body text-center py-2">
+            <p className="text-blue font-body text-sm text-center py-2">
               Thanks! We will contact you to schedule a consultation.
             </p>
           )}
           {submitStatus === "error" && (
-            <p className="text-red-500 font-body text-center py-2">
+            <p className="text-red-500 font-body text-sm text-center py-2">
               Something went wrong. Please try again or call us at (954) 625-5318.
             </p>
           )}
 
           <button
             type="submit"
-            className="w-full bg-accent text-secondary font-heading font-bold py-4 px-6 rounded hover:bg-accent/90 transition-colors uppercase flex items-center justify-center gap-2"
+            className="w-full bg-accent text-white font-heading font-bold py-4 px-6 rounded uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
+            style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
           >
-            Submit Request
+            Get My Free Consultation
           </button>
         </motion.form>
       </div>

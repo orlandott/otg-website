@@ -10,17 +10,16 @@ import type { Product } from "@/types";
 function ProductCard({ product, index }: { product: Product; index: number }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
+      transition={{ duration: 0.45, delay: index * 0.07 }}
     >
       <Link
         href={product.href}
-        className="block bg-white rounded-lg overflow-hidden border border-brand-sky/25 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full"
+        className="group flex flex-col bg-white rounded-lg overflow-hidden border border-[#E0E0E0] hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full"
       >
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden bg-surface">
           <ProductImage
             src={product.imagePath}
             alt={product.name}
@@ -28,17 +27,17 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
-        <div className="p-6">
-          <h3 className="font-heading font-bold text-lg text-secondary uppercase mb-4">
+        <div className="p-6 flex flex-col flex-1">
+          <h3 className="font-heading font-semibold text-[20px] text-navy mb-4 leading-snug">
             {product.name}
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-2 flex-1">
             {product.features.map((feature) => (
               <li
                 key={feature}
-                className="flex items-center gap-2 text-foreground/90 text-sm font-body"
+                className="flex items-center gap-2.5 text-charcoal text-sm font-body"
               >
-                <Check className="w-5 h-5 text-brand-steel flex-shrink-0" />
+                <Check className="w-4 h-4 text-blue flex-shrink-0" />
                 {feature}
               </li>
             ))}
@@ -51,7 +50,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
 export function ProductsGrid() {
   return (
-    <section className="py-20 md:py-28 bg-brand-offwhite">
+    <section className="py-20 md:py-28 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -59,12 +58,18 @@ export function ProductsGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-secondary">
-            PRODUCTS
+          <h2
+            className="font-heading font-bold text-navy uppercase tracking-[0.01em] leading-[1.1]"
+            style={{ fontSize: "clamp(32px, 4vw, 48px)" }}
+          >
+            Products
           </h2>
+          <p className="mt-3 font-body text-muted text-sm max-w-lg mx-auto">
+            Comprehensive hurricane and solar protection solutions for South Florida homes.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}
@@ -78,9 +83,9 @@ export function ProductsGrid() {
         >
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-8 py-3 border-2 border-brand-steel text-brand-steel font-heading font-bold rounded hover:bg-brand-steel hover:text-white transition-colors uppercase"
+            className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-sm uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
           >
-            Learn More
+            View All Products
           </Link>
         </motion.div>
       </div>
