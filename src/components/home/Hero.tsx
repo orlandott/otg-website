@@ -7,7 +7,7 @@ import { Phone, ChevronDown } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[92vh] flex items-end overflow-hidden">
+    <section className="relative h-screen flex items-end overflow-hidden">
       {/* Background image */}
       <Image
         src="/images/hero.png"
