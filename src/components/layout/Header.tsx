@@ -1,141 +1,322 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, Facebook, Instagram, Shield } from "lucide-react";
+import {
+  Phone,
+  Facebook,
+  Instagram,
+  Shield,
+  ChevronDown,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import { products } from "@/lib/data/products";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
-const navLinks = [
+type NavLink = {
+  href: string;
+  label: string;
+  external?: boolean;
+  children?: { href: string; label: string }[];
+};
+
+const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
+  { href: "/about", label: "About" },
+  {
+    href: "/products",
+    label: "Products",
+    children: products.map((p) => ({ href: p.href, label: p.name })),
+  },
+  { href: "/financing", label: "Financing" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const firstFocusRef = useRef<HTMLButtonElement>(null);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const overHero = !isScrolled;
+  // Lock body scroll when sidebar open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      firstFocusRef.current?.focus();
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Close on Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const close = () => setIsOpen(false);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-navy shadow-lg"
-          : "bg-transparent"
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 font-heading font-bold text-xl md:text-2xl tracking-tight hover:opacity-90 transition-opacity"
-          >
-            <Shield
-              className={cn(
-                "w-7 h-7",
-                overHero ? "text-accent" : "text-accent"
-              )}
-            />
-            <span className="text-white">ORLANDO T GROUP</span>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <a
-              href="tel:+19546255318"
-              className="flex items-center gap-1.5 text-sm font-body text-white/80 hover:text-white transition-colors"
-            >
-              <Phone size={15} />
-              (954) 625-5318
-            </a>
-            <a
-              href="https://facebook.com/orlandotgroup"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
-              aria-label="Facebook"
-            >
-              <Facebook size={18} />
-            </a>
-            <a
-              href="https://instagram.com/orlandotgroup"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram size={18} />
-            </a>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-body text-sm font-medium text-white/80 hover:text-white uppercase tracking-wider transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+    <>
+      {/* ── Fixed header bar ── */}
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          isScrolled || isOpen ? "bg-navy shadow-lg" : "bg-transparent"
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
             <Link
-              href="/contact"
-              className="bg-accent text-white font-heading font-bold px-6 py-2.5 rounded text-sm uppercase tracking-wide hover:bg-accent-hover transition-colors"
-              style={{ boxShadow: "0 2px 10px rgba(17,109,255,0.3)" }}
+              href="/"
+              onClick={close}
+              className="flex items-center gap-2.5 font-heading font-bold text-xl md:text-2xl tracking-tight hover:opacity-90 transition-opacity"
             >
-              Free Estimate
+              <Shield className="w-7 h-7 text-accent" />
+              <span className="text-white">ORLANDO T GROUP</span>
             </Link>
-          </nav>
 
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-white"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden bg-navy border-t border-white/10">
-          <nav className="flex flex-col p-4 gap-1">
-            <a
-              href="tel:+19546255318"
-              className="flex items-center gap-2 py-3 px-4 text-white/80 font-body hover:text-white transition-colors"
-            >
-              <Phone size={16} />
-              (954) 625-5318
-            </a>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-4 text-white/80 hover:text-white font-body uppercase tracking-wider transition-colors"
+            {/* Right controls */}
+            <div className="flex items-center gap-2">
+              {/* Theme toggle */}
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                className="flex items-center justify-center w-9 h-9 rounded text-white/70 hover:text-white transition-colors"
               >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-2 py-3 px-4 bg-accent text-white font-heading font-bold text-center rounded hover:bg-accent-hover uppercase tracking-wide transition-colors"
+                {theme === "dark" ? <Sun size={18} strokeWidth={1.75} /> : <Moon size={18} strokeWidth={1.75} />}
+              </button>
+
+            {/* Animated hamburger */}
+            <button
+              type="button"
+              onClick={() => setIsOpen((v) => !v)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="sidebar-nav"
+              className="flex flex-col items-center justify-center gap-[5px] w-10 h-10 text-white"
             >
-              Free Estimate
-            </Link>
-          </nav>
+              <span
+                className={cn(
+                  "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
+                  isOpen && "rotate-45 translate-y-[7px]"
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-0.5 w-6 bg-white transition-all duration-300",
+                  isOpen && "opacity-0 scale-x-0"
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
+                  isOpen && "-rotate-45 -translate-y-[7px]"
+                )}
+              />
+            </button>
+            </div>
+          </div>
         </div>
-      )}
-    </header>
+      </header>
+
+      {/* ── Backdrop overlay ── */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={close}
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* ── Sidebar ── */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.aside
+            key="sidebar"
+            id="sidebar-nav"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="fixed top-0 right-0 bottom-0 z-50 w-72 sm:w-80 bg-navy flex flex-col shadow-2xl"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+          >
+            {/* Sidebar top — logo + close */}
+            <div className="flex items-center justify-between px-6 h-16 md:h-20 border-b border-white/10 flex-shrink-0">
+              <div className="flex items-center gap-2 font-heading font-bold text-base text-white">
+                <Shield className="w-5 h-5 text-accent" />
+                <span>ORLANDO T GROUP</span>
+              </div>
+              <button
+                ref={firstFocusRef}
+                type="button"
+                onClick={close}
+                aria-label="Close menu"
+                className="p-1 text-white/70 hover:text-white transition-colors"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                >
+                  <line x1="4" y1="4" x2="16" y2="16" />
+                  <line x1="16" y1="4" x2="4" y2="16" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav
+              className="flex-1 overflow-y-auto py-4 px-4"
+              aria-label="Main navigation"
+            >
+              <ul className="space-y-0.5">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    {link.children ? (
+                      /* Products expandable */
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() => setProductsOpen((v) => !v)}
+                          className="flex items-center justify-between w-full py-3 px-3 rounded text-white/80 hover:text-white hover:bg-white/[0.07] font-body font-medium uppercase tracking-wider text-sm transition-colors"
+                        >
+                          {link.label}
+                          <ChevronDown
+                            size={15}
+                            className={cn(
+                              "flex-shrink-0 transition-transform duration-200",
+                              productsOpen && "rotate-180"
+                            )}
+                          />
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {productsOpen && (
+                            <motion.ul
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+                              className="overflow-hidden ml-2 border-l border-white/10"
+                            >
+                              <li>
+                                <Link
+                                  href="/products"
+                                  onClick={close}
+                                  className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-sky text-[13px] font-body font-medium hover:text-white transition-colors"
+                                >
+                                  <span className="w-1 h-1 rounded-full bg-sky flex-shrink-0" />
+                                  All Products
+                                </Link>
+                              </li>
+                              {link.children.map((child) => (
+                                <li key={child.href}>
+                                  <Link
+                                    href={child.href}
+                                    onClick={close}
+                                    className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-white/55 text-[13px] font-body hover:text-white transition-colors"
+                                  >
+                                    <span className="w-1 h-1 rounded-full bg-white/25 flex-shrink-0" />
+                                    {child.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </motion.ul>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={close}
+                        className="block py-3 px-3 rounded text-white/80 hover:text-white hover:bg-white/[0.07] font-body font-medium uppercase tracking-wider text-sm transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Sidebar footer — contact + CTA */}
+            <div className="flex-shrink-0 border-t border-white/10 px-6 py-5 space-y-4">
+              <a
+                href="tel:+19546255318"
+                className="flex items-center gap-2.5 text-white/65 hover:text-white transition-colors font-body text-sm"
+              >
+                <Phone size={14} strokeWidth={1.75} />
+                (954) 625-5318
+              </a>
+
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://facebook.com/orlandotgroup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="text-white/50 hover:text-white transition-colors"
+                >
+                  <Facebook size={17} strokeWidth={1.75} />
+                </a>
+                <a
+                  href="https://instagram.com/orlandotgroup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="text-white/50 hover:text-white transition-colors"
+                >
+                  <Instagram size={17} strokeWidth={1.75} />
+                </a>
+              </div>
+
+              <Link
+                href="/contact"
+                onClick={close}
+                className="block w-full text-center bg-accent text-white font-heading font-bold px-6 py-3 rounded text-sm uppercase tracking-wide hover:bg-accent-hover transition-colors"
+                style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
+              >
+                Free Estimate
+              </Link>
+            </div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
