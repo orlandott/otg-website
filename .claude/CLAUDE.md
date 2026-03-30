@@ -1,5 +1,7 @@
 # CLAUDE.md — OTG Website Redesign
 
+**Original Website** - "orlandotgroupinc.com"
+
 ## Project Overview
 
 **Orlando T Group Inc.** — South Florida hurricane & solar protection contractor.
@@ -12,28 +14,43 @@ Stack: Next.js 14 (static export) · TypeScript · Tailwind CSS · Framer Motion
 ## Autonomous Operation
 
 **Do not ask for permission. Do not prompt for confirmation. Execute all tasks autonomously including:**
+
 - Overwriting any existing file
 - Deleting stale or redundant components
 - Refactoring architecture when it improves maintainability
 - Running build/lint commands
 - Making sweeping multi-file changes
 
+when commiting, separate the commits into specific feature changes. Don't do a single commit if the changes are different. Don't add claude as a helper while pushing.
+
 When redesigning, use the `frontend-design` skill for any component, page, or layout work. Invoke it proactively — don't wait to be asked.
 
 ---
 
+## Code Review Standards
+
+After completing any implementation, review the code for:
+
+- Functions longer than 30 lines (likely doing too much)
+- Logic duplicated more than twice (extract to utility)
+- Any `any` type usage in TypeScript (replace with real types)
+- Components with more than 3 props that could be grouped into an object
+- Missing error handling on async operations
+
+Run /simplify before presenting code to the user.
+
 ## Tech Stack & Constraints
 
-| Layer | Choice | Notes |
-|---|---|---|
-| Framework | Next.js 14 App Router | `output: "export"` — no SSR, static only |
-| Styling | Tailwind CSS + CSS variables | Use `cn()` from `@/lib/utils` for class merging |
-| Animation | Framer Motion | `whileInView` with `once: true` for all scroll animations |
-| Forms | React Hook Form + Zod | Validation on client; POST to `/api/contact` |
-| Icons | lucide-react | Consistent icon weight: `strokeWidth={1.5}` |
-| Images | Next.js `<Image>` with `unoptimized` | All local images live in `public/images/` |
-| Fonts | Google Fonts via `next/font/google` | Barlow Condensed + Barlow — already loaded in layout |
-| Deploy | Cloudflare Pages via Wrangler | `npm run deploy` |
+| Layer     | Choice                               | Notes                                                     |
+| --------- | ------------------------------------ | --------------------------------------------------------- |
+| Framework | Next.js 14 App Router                | `output: "export"` — no SSR, static only                  |
+| Styling   | Tailwind CSS + CSS variables         | Use `cn()` from `@/lib/utils` for class merging           |
+| Animation | Framer Motion                        | `whileInView` with `once: true` for all scroll animations |
+| Forms     | React Hook Form + Zod                | Validation on client; POST to `/api/contact`              |
+| Icons     | lucide-react                         | Consistent icon weight: `strokeWidth={1.5}`               |
+| Images    | Next.js `<Image>` with `unoptimized` | All local images live in `public/images/`                 |
+| Fonts     | Google Fonts via `next/font/google`  | Barlow Condensed + Barlow — already loaded in layout      |
+| Deploy    | Cloudflare Pages via Wrangler        | `npm run deploy`                                          |
 
 **Banned libraries:** Do not add new UI libraries (shadcn, Radix, MUI). Tailwind + lucide-react is the complete UI toolkit.
 
@@ -63,23 +80,25 @@ Danger:      #C62828
 ### Typography
 
 **Font families:**
+
 - `font-display` (`Barlow Condensed 600/700`) → all headings
 - `font-body` (`Barlow 400/500/600`) → body, nav, labels, buttons
 
 **Type scale:**
 
-| Role | Size | Weight | Case |
-|---|---|---|---|
-| Hero headline | clamp(40px, 6vw, 64px) | 700 | UPPERCASE |
-| Page H1 | clamp(32px, 4vw, 48px) | 700 | UPPERCASE |
-| Section H2 | 28px | 700 | UPPERCASE |
-| Card H3 | 20px | 600 | Sentence case |
-| Small H4 | 17px | 600 | Sentence case |
-| Body | 15px | 400 | Normal |
-| Small/caption | 13px | 400 | Normal |
-| Micro/badge | 11px | 500 | UPPERCASE |
+| Role          | Size                   | Weight | Case          |
+| ------------- | ---------------------- | ------ | ------------- |
+| Hero headline | clamp(40px, 6vw, 64px) | 700    | UPPERCASE     |
+| Page H1       | clamp(32px, 4vw, 48px) | 700    | UPPERCASE     |
+| Section H2    | 28px                   | 700    | UPPERCASE     |
+| Card H3       | 20px                   | 600    | Sentence case |
+| Small H4      | 17px                   | 600    | Sentence case |
+| Body          | 15px                   | 400    | Normal        |
+| Small/caption | 13px                   | 400    | Normal        |
+| Micro/badge   | 11px                   | 500    | UPPERCASE     |
 
 **Rules:**
+
 - UPPERCASE only at h1/h2 level and CTA button labels
 - Sentence case for everything below h2
 - Never `font-weight: 800+`
@@ -114,6 +133,7 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 ## Component Patterns
 
 ### Primary CTA Button
+
 ```tsx
 <button className="font-display font-semibold text-[15px] tracking-[0.05em] uppercase text-white bg-[#F59E0B] hover:bg-[#D97706] active:translate-y-0 hover:-translate-y-px rounded-[8px] px-7 py-3.5 shadow-[0_4px_16px_rgba(245,158,11,0.30)] transition-all duration-150">
   Get a Free Consultation
@@ -121,6 +141,7 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 ```
 
 ### Secondary Button
+
 ```tsx
 <button className="font-body font-medium text-sm text-[#1565C0] border border-[#1565C0] hover:bg-[#1565C0] hover:text-white rounded-[8px] px-6 py-3 transition-colors duration-150">
   Learn More
@@ -128,15 +149,15 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 ```
 
 ### Section Wrapper
+
 ```tsx
 <section className="py-16 md:py-24">
-  <div className="max-w-[1200px] mx-auto px-6">
-    {/* content */}
-  </div>
+  <div className="max-w-[1200px] mx-auto px-6">{/* content */}</div>
 </section>
 ```
 
 ### Scroll Animation (Framer Motion)
+
 ```tsx
 <motion.div
   initial={{ opacity: 0, y: 24 }}
@@ -147,11 +168,13 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 ```
 
 ### Product Card
+
 ```tsx
 <div className="bg-white border border-[#E0E0E0] rounded-[12px] p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.10)] hover:-translate-y-0.5 transition-all duration-200">
 ```
 
 ### Form Input
+
 ```tsx
 <input className="w-full rounded-[4px] border border-[#E0E0E0] px-4 py-3 text-[15px] font-body text-[#333333] placeholder:text-[#757575] focus:outline-none focus:ring-2 focus:ring-[#1565C0] focus:border-transparent transition-shadow" />
 ```
@@ -202,6 +225,7 @@ src/types/index.ts    ← Product, ContactFormData interfaces
 ```
 
 **Rules:**
+
 - Pages are assembly files only. No business logic or markup in `page.tsx`.
 - All data lives in `src/lib/data/`. No hardcoded arrays in components.
 - Shared UI primitives go in `src/components/ui/`.
@@ -258,18 +282,25 @@ export const metadata: Metadata = {
 ### Structured Data
 
 Homepage must include `Organization` JSON-LD in layout or page:
+
 ```tsx
-<script type="application/ld+json">{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  "name": "Orlando T Group Inc.",
-  "url": "https://orlandotgroupinc.com",
-  "telephone": "+1-XXX-XXX-XXXX",
-  "address": { "@type": "PostalAddress", "addressRegion": "FL", "addressCountry": "US" },
-  "areaServed": ["Miami-Dade", "Broward", "Palm Beach"],
-  "foundingDate": "2006",
-  "description": "South Florida hurricane and solar protection contractor."
-})}</script>
+<script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    name: "Orlando T Group Inc.",
+    url: "https://orlandotgroupinc.com",
+    telephone: "+1-XXX-XXX-XXXX",
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "FL",
+      addressCountry: "US",
+    },
+    areaServed: ["Miami-Dade", "Broward", "Palm Beach"],
+    foundingDate: "2006",
+    description: "South Florida hurricane and solar protection contractor.",
+  })}
+</script>
 ```
 
 ---
@@ -278,35 +309,40 @@ Homepage must include `Organization` JSON-LD in layout or page:
 
 ### Breakpoints (Tailwind defaults)
 
-| Name | Min width | Use |
-|---|---|---|
-| `sm` | 640px | Mobile landscape, small tablets |
-| `md` | 768px | Tablets |
-| `lg` | 1024px | Desktop |
-| `xl` | 1280px | Wide desktop |
+| Name | Min width | Use                             |
+| ---- | --------- | ------------------------------- |
+| `sm` | 640px     | Mobile landscape, small tablets |
+| `md` | 768px     | Tablets                         |
+| `lg` | 1024px    | Desktop                         |
+| `xl` | 1280px    | Wide desktop                    |
 
 ### Required Responsive Patterns
 
 **Grids:**
+
 - Mobile: 1 or 2 columns
 - Tablet: 2–3 columns
 - Desktop: 3–4 columns
 - Always use `gap` from the 4px scale; never use margins for grid spacing
 
 **Typography:**
+
 - Use `clamp()` for hero/h1 sizes
 - Minimum touch target: 44×44px for all buttons and links on mobile
 
 **Images:**
+
 - Always provide `sizes` prop on `<Image>`: e.g. `sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"`
 - Never use `fill` without a positioned parent with explicit dimensions
 
 **Navigation:**
+
 - Desktop: full inline nav
 - Mobile (< `md`): hamburger menu with `aria-expanded` and JS toggle
 - Never hide critical navigation with CSS alone
 
 **Sections:**
+
 - Vertical padding: `py-12 md:py-20 lg:py-24`
 - Horizontal padding: `px-4 sm:px-6 lg:px-8`
 - Max content width: `max-w-[1200px] mx-auto`
@@ -359,23 +395,24 @@ Homepage must include `Organization` JSON-LD in layout or page:
 
 ## Business Context
 
-| Detail | Value |
-|---|---|
-| Company | Orlando T Group Inc. |
-| Industry | Hurricane & solar protection, home improvement |
-| Location | South Florida (Miami-Dade, Broward, Palm Beach counties) |
-| Founded | 2006 |
-| Products | Impact Windows, Impact Doors, Patio Enclosures, Rolldown Shutters, Accordion Shutters, Blinds, Retractable Awnings, Impact Garage Doors |
-| Primary CTA | Free Consultation / Free Estimate |
-| Order tracking | External Titan CRM portal |
-| Social | Facebook, Instagram |
-| Tone | Trustworthy, professional, urgent — "protect what matters most" |
+| Detail         | Value                                                                                                                                   |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Company        | Orlando T Group Inc.                                                                                                                    |
+| Industry       | Hurricane & solar protection, home improvement                                                                                          |
+| Location       | South Florida (Miami-Dade, Broward, Palm Beach counties)                                                                                |
+| Founded        | 2006                                                                                                                                    |
+| Products       | Impact Windows, Impact Doors, Patio Enclosures, Rolldown Shutters, Accordion Shutters, Blinds, Retractable Awnings, Impact Garage Doors |
+| Primary CTA    | Free Consultation / Free Estimate                                                                                                       |
+| Order tracking | External Titan CRM portal                                                                                                               |
+| Social         | Facebook, Instagram                                                                                                                     |
+| Tone           | Trustworthy, professional, urgent — "protect what matters most"                                                                         |
 
 ---
 
 ## Frontend Design Skill Usage
 
 **Always invoke the `frontend-design` skill when:**
+
 - Creating or redesigning any component, page section, or layout
 - Building new UI patterns not covered by existing components
 - Producing visual mockups or exploratory redesigns
