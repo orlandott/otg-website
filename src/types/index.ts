@@ -1,9 +1,12 @@
 export interface Product {
   id: string;
   name: string;
+  nameEs?: string;
   slug: string;
   shortDescription: string;
+  shortDescriptionEs?: string;
   features: string[];
+  featuresEs?: string[];
   icon: string;
   imagePath: string;
   href: string;

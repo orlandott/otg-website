@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeScript } from "@/components/providers/ThemeScript";
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -49,11 +50,13 @@ export default function RootLayout({
         className={`${barlowCondensed.variable} ${barlow.variable} font-body antialiased bg-white text-charcoal`}
       >
         <ThemeScript />
-        <ThemeProvider>
-          <Header />
-          <main className="min-h-screen bg-background">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <Header />
+            <main className="min-h-screen bg-background">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

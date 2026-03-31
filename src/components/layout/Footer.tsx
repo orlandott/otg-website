@@ -1,18 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import { Facebook, Instagram, MessageCircle, Phone, Shield } from "lucide-react";
-
-const footerLinks = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
-  { href: "/contact", label: "Contact" },
-  {
-    href: "https://titan.orlandotgroupinc.com/status-tracking",
-    label: "Track Order",
-    external: true,
-  },
-];
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Footer() {
+  const { t } = useLanguage();
+
+  const footerLinks = [
+    { href: "/", label: t.footer.links.home },
+    { href: "/products", label: t.footer.links.products },
+    { href: "/contact", label: t.footer.links.contact },
+    {
+      href: "https://titan.orlandotgroupinc.com/status-tracking",
+      label: t.footer.links.trackOrder,
+      external: true,
+    },
+  ];
+
   return (
     <footer className="bg-navy text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-18">
@@ -27,15 +32,14 @@ export function Footer() {
               ORLANDO T GROUP
             </Link>
             <p className="text-white/70 text-sm font-body max-w-xs leading-relaxed">
-              Hurricane and solar protection for South Florida homeowners.
-              Licensed, insured, and trusted since 2006.
+              {t.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="font-heading font-bold text-white uppercase tracking-wider text-sm mb-5">
-              Quick Links
+              {t.footer.quickLinks}
             </h3>
             <ul className="space-y-2.5">
               {footerLinks.map((link) => (
@@ -58,7 +62,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="font-heading font-bold text-white uppercase tracking-wider text-sm mb-5">
-              Contact
+              {t.footer.contact}
             </h3>
             <div className="space-y-3">
               <a
@@ -103,11 +107,9 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-xs font-body">
-            &copy; {new Date().getFullYear()} Orlando T Group Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Orlando T Group Inc. {t.footer.rights}
           </p>
-          <p className="text-white/40 text-xs font-body">
-            Licensed &amp; Insured · South Florida
-          </p>
+          <p className="text-white/40 text-xs font-body">{t.footer.badge}</p>
         </div>
       </div>
     </footer>

@@ -2,19 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import {
-  Phone,
-  Facebook,
-  Instagram,
-  Shield,
-  ChevronDown,
-  Sun,
-  Moon,
-} from "lucide-react";
+import { Phone, Facebook, Instagram, Shield, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { products } from "@/lib/data/products";
-import { useTheme } from "@/components/providers/ThemeProvider";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import type { Language } from "@/lib/i18n/translations";
 
 type NavLink = {
   href: string;
@@ -23,26 +16,62 @@ type NavLink = {
   children?: { href: string; label: string }[];
 };
 
-const navLinks: NavLink[] = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  {
-    href: "/products",
-    label: "Products",
-    children: products.map((p) => ({ href: p.href, label: p.name })),
-  },
-  { href: "/financing", label: "Financing" },
-  { href: "/testimonials", label: "Testimonials" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+function LanguageToggle() {
+  const { language, setLanguage } = useLanguage();
+
+  const labels: Record<Language, string> = { en: "English", es: "Español" };
+
+  return (
+    <div
+      className="flex items-center rounded overflow-hidden border border-white/20"
+      role="group"
+      aria-label="Language selector"
+    >
+      {(["en", "es"] as Language[]).map((lang, i) => (
+        <button
+          key={lang}
+          type="button"
+          onClick={() => setLanguage(lang)}
+          aria-pressed={language === lang}
+          aria-label={lang === "en" ? "Switch to English" : "Cambiar a Español"}
+          className={cn(
+            "flex-1 text-center px-3 py-1 text-[11px] font-heading font-bold tracking-[0.05em] uppercase transition-colors duration-150",
+            i === 0 ? "border-r border-white/20" : "",
+            language === lang
+              ? "bg-white/15 text-white"
+              : "text-white/45 hover:text-white/80"
+          )}
+        >
+          {labels[lang]}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const firstFocusRef = useRef<HTMLButtonElement>(null);
-  const { theme, toggleTheme } = useTheme();
+  const { t, language } = useLanguage();
+
+  const navLinks: NavLink[] = [
+    { href: "/", label: t.nav.home },
+    { href: "/about", label: t.nav.about },
+    {
+      href: "/products",
+      label: t.nav.products,
+      children: products.map((p) => ({
+        href: p.href,
+        label: language === "es" && p.nameEs ? p.nameEs : p.name,
+      })),
+    },
+    { href: "/financing", label: t.nav.financing },
+    { href: "/testimonials", label: t.nav.testimonials },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -50,7 +79,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when sidebar open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -63,7 +91,6 @@ export function Header() {
     };
   }, [isOpen]);
 
-  // Close on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -80,11 +107,11 @@ export function Header() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled || isOpen ? "bg-navy shadow-lg" : "bg-transparent"
+          isScrolled || isOpen ? "bg-navy shadow-lg" : "bg-navy"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="relative flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link
               href="/"
@@ -95,46 +122,68 @@ export function Header() {
               <span className="text-white">ORLANDO T GROUP</span>
             </Link>
 
+            {/* Center — language selector */}
+            <div className="absolute left-1/2 -translate-x-1/2">
+              <LanguageToggle />
+            </div>
+
             {/* Right controls */}
-            <div className="flex items-center gap-2">
-              {/* Theme toggle */}
+            <div className="flex items-center gap-3">
+              {/* Contact links */}
+              <a
+                href="tel:+19546255318"
+                className="hidden sm:flex items-center gap-1.5 text-white/75 hover:text-white transition-colors font-body text-sm"
+              >
+                <Phone size={14} strokeWidth={1.75} />
+                (954) 625-5318
+              </a>
+              <a
+                href="https://facebook.com/orlandotgroup"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="hidden sm:flex text-white/55 hover:text-white transition-colors"
+              >
+                <Facebook size={17} strokeWidth={1.75} />
+              </a>
+              <a
+                href="https://instagram.com/orlandotgroup"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="hidden sm:flex text-white/55 hover:text-white transition-colors"
+              >
+                <Instagram size={17} strokeWidth={1.75} />
+              </a>
+              <div className="hidden sm:block w-px h-5 bg-white/15 mx-1" />
+              {/* Animated hamburger */}
               <button
                 type="button"
-                onClick={toggleTheme}
-                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-                className="flex items-center justify-center w-9 h-9 rounded text-white/70 hover:text-white transition-colors"
+                onClick={() => setIsOpen((v) => !v)}
+                aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
+                aria-expanded={isOpen}
+                aria-controls="sidebar-nav"
+                className="flex flex-col items-center justify-center gap-[5px] w-10 h-10 text-white"
               >
-                {theme === "dark" ? <Sun size={18} strokeWidth={1.75} /> : <Moon size={18} strokeWidth={1.75} />}
+                <span
+                  className={cn(
+                    "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
+                    isOpen && "rotate-45 translate-y-[7px]"
+                  )}
+                />
+                <span
+                  className={cn(
+                    "block h-0.5 w-6 bg-white transition-all duration-300",
+                    isOpen && "opacity-0 scale-x-0"
+                  )}
+                />
+                <span
+                  className={cn(
+                    "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
+                    isOpen && "-rotate-45 -translate-y-[7px]"
+                  )}
+                />
               </button>
-
-            {/* Animated hamburger */}
-            <button
-              type="button"
-              onClick={() => setIsOpen((v) => !v)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="sidebar-nav"
-              className="flex flex-col items-center justify-center gap-[5px] w-10 h-10 text-white"
-            >
-              <span
-                className={cn(
-                  "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
-                  isOpen && "rotate-45 translate-y-[7px]"
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-0.5 w-6 bg-white transition-all duration-300",
-                  isOpen && "opacity-0 scale-x-0"
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
-                  isOpen && "-rotate-45 -translate-y-[7px]"
-                )}
-              />
-            </button>
             </div>
           </div>
         </div>
@@ -181,7 +230,7 @@ export function Header() {
                 ref={firstFocusRef}
                 type="button"
                 onClick={close}
-                aria-label="Close menu"
+                aria-label={t.nav.closeMenu}
                 className="p-1 text-white/70 hover:text-white transition-colors"
               >
                 <svg
@@ -208,7 +257,6 @@ export function Header() {
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     {link.children ? (
-                      /* Products expandable */
                       <div>
                         <button
                           type="button"
@@ -241,7 +289,7 @@ export function Header() {
                                   className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-sky text-[13px] font-body font-medium hover:text-white transition-colors"
                                 >
                                   <span className="w-1 h-1 rounded-full bg-sky flex-shrink-0" />
-                                  All Products
+                                  {t.nav.allProducts}
                                 </Link>
                               </li>
                               {link.children.map((child) => (
@@ -272,6 +320,14 @@ export function Header() {
                   </li>
                 ))}
               </ul>
+
+              {/* Language toggle in sidebar */}
+              <div className="mt-6 px-3">
+                <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2 font-body">
+                  {language === "en" ? "Language" : "Idioma"}
+                </p>
+                <LanguageToggle />
+              </div>
             </nav>
 
             {/* Sidebar footer — contact + CTA */}
@@ -311,7 +367,7 @@ export function Header() {
                 className="block w-full text-center bg-accent text-white font-heading font-bold px-6 py-3 rounded text-sm uppercase tracking-wide hover:bg-accent-hover transition-colors"
                 style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
               >
-                Free Estimate
+                {t.nav.freeEstimate}
               </Link>
             </div>
           </motion.aside>

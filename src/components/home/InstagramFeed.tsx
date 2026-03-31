@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const instagramImages = [
   "/images/instagram/instagram-1.webp",
@@ -12,6 +13,8 @@ const instagramImages = [
 ];
 
 export function InstagramFeed() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 md:py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +25,7 @@ export function InstagramFeed() {
           viewport={{ once: true }}
         >
           <h2 className="font-heading font-bold text-navy uppercase tracking-[0.01em] text-2xl">
-            Follow Us on Instagram
+            {t.instagram.heading}
           </h2>
           <a
             href="https://instagram.com/orlandotgroup"
@@ -52,7 +55,7 @@ export function InstagramFeed() {
             >
               <Image
                 src={src}
-                alt={`Instagram project thumbnail ${index + 1}`}
+                alt={`${t.instagram.imageAlt} ${index + 1}`}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-400"
                 sizes="(max-width: 768px) 50vw, 25vw"

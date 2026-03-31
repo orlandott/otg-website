@@ -5,9 +5,22 @@ import { ProductImage } from "@/components/ui/ProductImage";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { products } from "@/lib/data/products";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { Product } from "@/types";
 
-function ProductCard({ product, index }: { product: Product; index: number }) {
+function ProductCard({
+  product,
+  index,
+  language,
+}: {
+  product: Product;
+  index: number;
+  language: string;
+}) {
+  const name = language === "es" && product.nameEs ? product.nameEs : product.name;
+  const features =
+    language === "es" && product.featuresEs ? product.featuresEs : product.features;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 28 }}
@@ -22,17 +35,17 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         <div className="relative aspect-[4/3] overflow-hidden bg-surface">
           <ProductImage
             src={product.imagePath}
-            alt={product.name}
+            alt={name}
             className="object-cover group-hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
         <div className="p-6 flex flex-col flex-1">
           <h3 className="font-heading font-semibold text-[20px] text-navy mb-4 leading-snug">
-            {product.name}
+            {name}
           </h3>
           <ul className="space-y-2 flex-1">
-            {product.features.map((feature) => (
+            {features.map((feature) => (
               <li
                 key={feature}
                 className="flex items-center gap-2.5 text-charcoal text-sm font-body"
@@ -49,6 +62,8 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 }
 
 export function ProductsGrid() {
+  const { t, language } = useLanguage();
+
   return (
     <section className="py-20 md:py-28 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,16 +77,21 @@ export function ProductsGrid() {
             className="font-heading font-bold text-navy uppercase tracking-[0.01em] leading-[1.1]"
             style={{ fontSize: "clamp(32px, 4vw, 48px)" }}
           >
-            Products
+            {t.products.heading}
           </h2>
           <p className="mt-3 font-body text-muted text-sm max-w-lg mx-auto">
-            Comprehensive hurricane and solar protection solutions for South Florida homes.
+            {t.products.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product, index) => (
-            <ProductCard key={product.id} product={product} index={index} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={index}
+              language={language}
+            />
           ))}
         </div>
 
@@ -85,7 +105,7 @@ export function ProductsGrid() {
             href="/products"
             className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-sm uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
           >
-            View All Products
+            {t.products.viewAll}
           </Link>
         </motion.div>
       </div>
