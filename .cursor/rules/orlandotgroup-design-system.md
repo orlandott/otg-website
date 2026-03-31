@@ -1,7 +1,7 @@
 # OrlandoTGroup — Design System
 
-> Design tokens, typography rules, and component guidelines extracted and refined from `orlandotgroupinc.com`.  
-> Drop this file into your Cursor project root and reference it in any AI prompt.
+> Design tokens, typography rules, and component guidelines for Orlando T Group Inc.
+> Platform: Next.js 14 (static export) · Tailwind CSS · Framer Motion
 
 ---
 
@@ -12,55 +12,36 @@
 | Company | Orlando T Group Inc. |
 | Industry | Hurricane Protection · Home Improvement |
 | Tone | Trustworthy · Professional · Urgent · South Florida |
-| Platform | Wix (migrating) |
+| Platform | Next.js 14 (Cloudflare Pages) |
 
 ---
 
 ## 2. Color Palette
 
-### Primary Colors
+> **All colors come from the theme-selector skill.**
+> Source: `.claude/skills/theme-selector/SKILL.md`
+> The Tailwind config (`tailwind.config.ts`) and CSS variables (`src/app/globals.css`) are kept in sync with that skill.
 
-```css
-:root {
-  --color-navy:       #002855; /* Brand anchor — logo, headers, footers */
-  --color-blue:       #1565C0; /* Primary interactive — links, borders */
-  --color-sky:        #1E88E5; /* Secondary interactive — hover states, icons */
-}
-```
+### Tailwind Token Reference
 
-### Neutral Colors
+| Token | Role |
+|---|---|
+| `navy` | Header, footer, dark section backgrounds |
+| `blue` | Primary interactive — links, borders, focus rings |
+| `sky` | Secondary accents, hover states, icons |
+| `accent` | Urgent CTAs only — "Get a Free Consultation" |
+| `accent-hover` | CTA hover state |
+| `surface` | Section backgrounds, form backgrounds |
+| `charcoal` | Primary body text |
+| `muted` | Secondary / caption text |
+| `border` | Dividers, card borders, input borders |
+| `green` | Trust indicators — checkmarks, benefit lists |
 
-```css
-:root {
-  --color-white:      #FFFFFF;
-  --color-surface:    #F5F5F5; /* Page background, card surfaces */
-  --color-charcoal:   #333333; /* Primary body text */
-  --color-gray:       #757575; /* Secondary / muted text */
-  --color-border:     #E0E0E0; /* Dividers, card borders */
-}
-```
-
-### Accent (CTA) — NEW ✦
-
-```css
-:root {
-  --color-accent:     #F59E0B; /* ONLY used on primary CTAs — "Get a Free Consultation" */
-  --color-accent-hover: #D97706;
-}
-```
-
-> **Rule:** `--color-accent` must never be used for decorative purposes.  
-> It is reserved exclusively for the primary call-to-action button.
-
-### Semantic Colors
-
-```css
-:root {
-  --color-success:    #2E7D32;
-  --color-warning:    #F59E0B;
-  --color-danger:     #C62828;
-}
-```
+**Rules:**
+- Never hardcode hex values in components — always use Tailwind tokens above
+- `accent` is reserved for the single highest-priority CTA per page
+- `green` is only for trust/benefit indicators, never for buttons or headings
+- Load the theme-selector skill before making any new color decisions
 
 ---
 
@@ -69,7 +50,6 @@
 ### Font Stack
 
 ```css
-/* Display / Headings */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap');
 
 :root {
@@ -78,93 +58,34 @@
 }
 ```
 
-> **Why Barlow?** It's a South Florida–adjacent workhorse — condensed for impact, wide enough for readability. Bold compressed headings echo the "strength" of hurricane protection without being cliché. It's a significant upgrade over Wix's default sans.
-
 ### Type Scale
 
 ```css
 :root {
-  --text-hero:    clamp(40px, 6vw, 64px); /* Hero headline */
-  --text-h1:      clamp(32px, 4vw, 48px); /* Page-level section title */
-  --text-h2:      28px;                   /* Section heading */
-  --text-h3:      20px;                   /* Card / subsection heading */
-  --text-h4:      17px;                   /* Small headings, product names */
-  --text-body:    15px;                   /* Default body copy */
-  --text-small:   13px;                   /* Captions, labels, meta */
-  --text-micro:   11px;                   /* Tags, badges, footnotes */
+  --text-hero:    clamp(40px, 6vw, 64px);
+  --text-h1:      clamp(32px, 4vw, 48px);
+  --text-h2:      28px;
+  --text-h3:      20px;
+  --text-h4:      17px;
+  --text-body:    15px;
+  --text-small:   13px;
+  --text-micro:   11px;
 }
 ```
 
 ### Type Rules
 
-```css
-/* Section headings */
-h1, h2 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;  /* ONLY at h1/h2 level */
-  color: var(--color-navy);
-  line-height: 1.1;
-}
-
-/* Card headings */
-h3, h4 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  text-transform: none;        /* Sentence case below h2 */
-  color: var(--color-navy);
-  line-height: 1.2;
-}
-
-/* Body */
-p, li, td {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: var(--text-body);
-  color: var(--color-charcoal);
-  line-height: 1.65;
-}
-
-/* Muted / secondary */
-.text-muted {
-  color: var(--color-gray);
-  font-size: var(--text-small);
-}
-
-/* BANNED: Never use all-caps below h2 level */
-/* BANNED: Never use font-weight: 800+ (too heavy) */
-/* BANNED: Never use letter-spacing > 0.08em on body text */
-```
-
-### Typography — Before vs After
-
-| Element | Before (Wix default) | After (this system) |
-|---|---|---|
-| Section title | ALL CAPS + bold + same size as card title | `Barlow Condensed 700` uppercase, 32–48px, navy |
-| Product name | ALL CAPS small, same weight as section | `Barlow Condensed 600` 20px, sentence case |
-| Body copy | Generic sans, 14px | `Barlow 400` 15px, charcoal, 1.65 line height |
-| CTA button | Blue, same style as nav links | Amber bg, white text, Barlow 600, uppercase |
-| Nav links | Helvetica fallback | `Barlow 500` 14px, sky blue on hover |
+- Uppercase only on `h1` / `h2` and CTA button labels
+- Sentence case for everything below `h2`
+- Never `font-weight: 800+`
+- Never `letter-spacing > 0.08em` on body text
+- Never add drop shadows to text
 
 ---
 
 ## 4. Spacing System
 
-```css
-:root {
-  --space-1:   4px;
-  --space-2:   8px;
-  --space-3:   12px;
-  --space-4:   16px;
-  --space-5:   24px;
-  --space-6:   32px;
-  --space-7:   48px;
-  --space-8:   64px;
-  --space-9:   96px;
-  --space-10: 128px;
-}
-```
+Base unit: 4px. Always use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 
 ---
 
@@ -184,14 +105,8 @@ p, li, td {
 
 ## 6. Shadows
 
-```css
-:root {
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.10);
-  --shadow-lg:  0 8px 24px rgba(0,0,0,0.12);
-  --shadow-cta: 0 4px 16px rgba(245,158,11,0.30); /* Amber glow for CTA */
-}
-```
+Shadow values live in `src/app/globals.css` as `--shadow-sm/md/lg/card/cta`.
+The `--shadow-cta` glow color matches the `accent` token from the theme-selector skill.
 
 ---
 
@@ -199,99 +114,38 @@ p, li, td {
 
 ### Primary CTA Button
 
-```css
-.btn-primary {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  background-color: var(--color-accent);
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 14px 28px;
-  cursor: pointer;
-  box-shadow: var(--shadow-cta);
-  transition: background-color 0.15s ease, transform 0.1s ease;
-}
-.btn-primary:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-1px);
-}
-.btn-primary:active {
-  transform: translateY(0);
-}
+```tsx
+<button className="bg-accent hover:bg-accent-hover text-white font-heading font-bold text-sm uppercase tracking-[0.05em] rounded-[8px] px-7 py-3.5 shadow-cta hover:-translate-y-px active:translate-y-0 transition-all duration-150">
+  Get a Free Consultation
+</button>
 ```
 
 ### Secondary Button
 
-```css
-.btn-secondary {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--color-blue);
-  background: transparent;
-  border: 1.5px solid var(--color-blue);
-  border-radius: var(--radius-md);
-  padding: 12px 24px;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-.btn-secondary:hover {
-  background-color: var(--color-blue);
-  color: var(--color-white);
-}
+```tsx
+<button className="text-blue border border-blue hover:bg-blue hover:text-white font-body font-medium text-sm rounded-[8px] px-6 py-3 transition-colors duration-150">
+  Learn More
+</button>
 ```
 
 ### Product Card
 
-```css
-.product-card {
-  background: var(--color-white);
-  border: 0.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-.product-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-.product-card h3 {
-  font-family: var(--font-display);
-  font-size: var(--text-h4);
-  font-weight: 600;
-  color: var(--color-navy);
-  margin-bottom: var(--space-2);
-}
-.product-card p {
-  font-size: var(--text-small);
-  color: var(--color-gray);
-  line-height: 1.55;
-}
+```tsx
+<div className="bg-white border border-border rounded-[12px] p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
 ```
 
-### Trust Bar
+### Form Input
 
-```css
-/* Recommended: sticky above hero */
-.trust-bar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-  background: var(--color-navy);
-  color: rgba(255,255,255,0.85);
-  font-family: var(--font-body);
-  font-size: var(--text-small);
-  padding: var(--space-2) var(--space-6);
-}
-.trust-bar strong {
-  color: var(--color-white);
-  font-weight: 600;
-}
+```tsx
+<input className="w-full rounded-[4px] border border-border px-4 py-3 text-[15px] font-body text-charcoal placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-shadow" />
+```
+
+### Section Wrapper
+
+```tsx
+<section className="py-12 md:py-20 lg:py-24">
+  <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">{/* content */}</div>
+</section>
 ```
 
 ---
@@ -299,25 +153,13 @@ p, li, td {
 ## 8. Layout Grid
 
 ```css
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-5);
-}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 /* Product grid */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-5);
-}
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
 
-/* Mobile */
 @media (max-width: 640px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-4);
-  }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 }
 ```
 
@@ -326,31 +168,28 @@ p, li, td {
 ## 9. Do / Don't Rules
 
 ### ✅ Do
-- Use `--color-navy` for all primary headings and the header bar
-- Use `--color-accent` (amber) **only** for the single most important CTA per page
-- Use `Barlow Condensed` for all headings, `Barlow` for all body copy
-- Use sentence case for all text below `h2` level
-- Keep button labels short: "Get a Free Quote", "Learn More", "Call Now"
-- Include year founded ("Since 2006") and BBB badge in the header trust bar
+- Use `navy` token for all header/footer backgrounds
+- Use `accent` **only** for the single most important CTA per page
+- Use `green` for benefit checkmarks and trust indicators
+- Use `Barlow Condensed` for headings, `Barlow` for body copy
+- Load the theme-selector skill before making any new color decisions
 
 ### ❌ Don't
-- Don't mix more than 2 blue shades on any one section
+- Don't hardcode hex colors in components — use Tailwind tokens
 - Don't use ALL-CAPS on product names, card titles, or body text
-- Don't use `font-weight: 800` or heavier — it looks amateur on web
-- Don't use the accent color on borders, backgrounds, or decorative elements
-- Don't use more than 3 type sizes in a single card component
-- Don't add drop shadows to text
+- Don't use `font-weight: 800` or heavier
+- Don't use `accent` on borders, backgrounds, or decorative elements
+- Don't mix more than 2 color shades in any single section
 
 ---
 
 ## 10. Cursor AI Prompt Template
 
-When asking Cursor to build a component using this system, use this prefix:
-
 ```
 Use the OrlandoTGroup design system (orlandotgroup-design-system.md).
+For colors, load the theme-selector skill at .claude/skills/theme-selector/SKILL.md.
 Fonts: Barlow Condensed (headings) + Barlow (body) from Google Fonts.
-Colors: Navy #002855, Blue #1565C0, Sky #1E88E5, Accent #F59E0B, White #FFFFFF.
+Tailwind color tokens: navy, blue, sky, accent, surface, charcoal, muted, border, green.
 Typography rules: Uppercase only on h1/h2. Sentence case everywhere else.
 Spacing: 4px base unit, multiples of 4.
 Build: [YOUR COMPONENT HERE]
@@ -358,4 +197,4 @@ Build: [YOUR COMPONENT HERE]
 
 ---
 
-*Last updated: March 2026 — based on orlandotgroupinc.com audit*
+*Last updated: March 2026 — colors delegated to `.claude/skills/theme-selector/SKILL.md`*

@@ -58,24 +58,13 @@ Run /simplify before presenting code to the user.
 
 ## Design System
 
-### Brand Colors
+### Brand Colors & Theme
 
-```
-Navy:        #002855   → headings, header, footer backgrounds
-Blue:        #1565C0   → primary interactive (links, borders, hover rings)
-Sky:         #1E88E5   → secondary interactive, icon accents
-Accent:      #F59E0B   → PRIMARY CTAs ONLY — "Get a Free Consultation", "Free Estimate"
-Accent hover:#D97706
-White:       #FFFFFF
-Surface:     #F5F5F5   → page/card backgrounds
-Charcoal:    #333333   → primary body text
-Muted:       #757575   → secondary/caption text
-Border:      #E0E0E0   → dividers, card borders
-Success:     #2E7D32
-Danger:      #C62828
-```
+> **All color and branding decisions must come from the theme-selector skill.**
+> Load `.claude/skills/theme-selector/SKILL.md` before any design work.
+> The skill is the single source of truth for colors, gradients, shadows, and visual style rules.
 
-**Rule:** Accent (#F59E0B) is reserved exclusively for the single highest-priority CTA per page. Never use it decoratively.
+When color tokens are needed in code, use the Tailwind aliases (`navy`, `blue`, `sky`, `accent`, `surface`, `charcoal`, `muted`, `border`, `green`) which are kept in sync with the skill in `tailwind.config.ts` and `src/app/globals.css`.
 
 ### Typography
 
@@ -111,12 +100,7 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 
 ### Shadows
 
-```
---shadow-sm:  0 1px 3px rgba(0,0,0,0.08)
---shadow-md:  0 4px 12px rgba(0,0,0,0.10)
---shadow-lg:  0 8px 24px rgba(0,0,0,0.12)
---shadow-cta: 0 4px 16px rgba(245,158,11,0.30)   ← amber glow on CTA buttons
-```
+See `src/app/globals.css` for shadow values (`--shadow-sm/md/lg/card/cta`). CTA shadow color matches the accent token from the theme-selector skill.
 
 ### Border Radius
 
@@ -135,7 +119,7 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 ### Primary CTA Button
 
 ```tsx
-<button className="font-display font-semibold text-[15px] tracking-[0.05em] uppercase text-white bg-[#F59E0B] hover:bg-[#D97706] active:translate-y-0 hover:-translate-y-px rounded-[8px] px-7 py-3.5 shadow-[0_4px_16px_rgba(245,158,11,0.30)] transition-all duration-150">
+<button className="font-display font-semibold text-[15px] tracking-[0.05em] uppercase text-white bg-accent hover:bg-accent-hover active:translate-y-0 hover:-translate-y-px rounded-[8px] px-7 py-3.5 shadow-cta transition-all duration-150">
   Get a Free Consultation
 </button>
 ```
@@ -143,7 +127,7 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 ### Secondary Button
 
 ```tsx
-<button className="font-body font-medium text-sm text-[#1565C0] border border-[#1565C0] hover:bg-[#1565C0] hover:text-white rounded-[8px] px-6 py-3 transition-colors duration-150">
+<button className="font-body font-medium text-sm text-blue border border-blue hover:bg-blue hover:text-white rounded-[8px] px-6 py-3 transition-colors duration-150">
   Learn More
 </button>
 ```
@@ -176,7 +160,7 @@ Base unit: 4px. Use multiples: `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
 ### Form Input
 
 ```tsx
-<input className="w-full rounded-[4px] border border-[#E0E0E0] px-4 py-3 text-[15px] font-body text-[#333333] placeholder:text-[#757575] focus:outline-none focus:ring-2 focus:ring-[#1565C0] focus:border-transparent transition-shadow" />
+<input className="w-full rounded-[4px] border border-border px-4 py-3 text-[15px] font-body text-charcoal placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent transition-shadow" />
 ```
 
 ---
@@ -194,7 +178,7 @@ src/app/
 src/components/
   layout/
     Header.tsx        ← Fixed, transparent→navy on scroll, mobile hamburger
-    Footer.tsx        ← Dark navy, 3-col grid
+    Footer.tsx        ← Deep navy bg, 3-col grid
     AnnouncementBar.tsx
   home/
     Hero.tsx
@@ -409,7 +393,17 @@ Homepage must include `Organization` JSON-LD in layout or page:
 
 ---
 
-## Frontend Design Skill Usage
+## Skill Usage
+
+### Theme & Brand Colors
+
+**Always load the theme-selector skill before any color or visual design work:**
+
+- File: `.claude/skills/theme-selector/SKILL.md`
+- Triggers: any color decision, new component styling, CTA buttons, section backgrounds, gradients, shadows
+- It is the single source of truth — never hardcode hex values; always derive from the skill's palette
+
+### Frontend Design
 
 **Always invoke the `frontend-design` skill when:**
 
@@ -418,4 +412,4 @@ Homepage must include `Organization` JSON-LD in layout or page:
 - Producing visual mockups or exploratory redesigns
 - Ensuring design quality meets production standards
 
-The `frontend-design` skill must be used proactively — do not wait to be asked.
+Both skills must be used proactively — do not wait to be asked.

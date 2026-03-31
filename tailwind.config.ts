@@ -11,19 +11,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // OTG brand palette — orlandotgroupinc.com
-        navy:          "#080808",   // near-black (was deep navy)
-        blue:          "#116dff",   // OTG brand blue
-        sky:           "#3385ff",   // lighter blue variant
-        accent:        "#116dff",   // CTA / action (same brand blue)
-        "accent-hover": "#0055e0",  // darker blue on hover
-        surface:       "#f5f5f5",   // light gray background
-        charcoal:      "#202020",   // primary dark text
-        muted:         "#757575",   // secondary text
-        border:        "#e0e0e0",   // borders / dividers
+        // OTG brand palette — from .claude/skills/theme-selector/SKILL.md
+        navy:          "#1a202c",   // neutral dark — header, footer, dark sections
+        blue:          "#003087",   // brand navy blue — primary interactive, links
+        sky:           "#1E5EBF",   // sky blue — secondary accents, hover states
+        accent:        "#E07B39",   // storm orange — urgent CTAs only
+        "accent-hover": "#C46420",  // darker orange on hover
+        surface:       "#F5F7FA",   // light gray — section backgrounds, forms
+        charcoal:      "#2D3748",   // dark gray — body text
+        muted:         "#718096",   // medium gray — captions, secondary info
+        border:        "#D9E2EC",   // soft gray — dividers, input borders
+        green:         "#2E7D52",   // trust green — checkmarks, benefits
         // Semantic aliases
-        primary:       "#116dff",
-        secondary:     "#080808",
+        primary:       "#003087",
+        secondary:     "#1a202c",
         foreground:    "var(--foreground)",
         background:    "var(--background)",
       },
@@ -33,9 +34,9 @@ const config: Config = {
       },
       boxShadow: {
         sm:  "0 1px 3px rgba(0,0,0,0.08)",
-        md:  "0 4px 12px rgba(0,0,0,0.15)",
-        lg:  "0 8px 24px rgba(0,0,0,0.18)",
-        cta: "0 4px 16px rgba(17,109,255,0.35)",
+        md:  "0 4px 12px rgba(0,0,0,0.10)",
+        lg:  "0 8px 24px rgba(0,0,0,0.12)",
+        cta: "0 4px 16px rgba(224,123,57,0.35)",
       },
     },
   },
