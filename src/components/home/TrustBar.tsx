@@ -2,14 +2,15 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { CountUp } from "@/components/ui/CountUp";
 
 export function TrustBar() {
   const { t } = useLanguage();
 
   const stats = [
-    { id: "established", value: "2006", label: t.trustBar.stat1Label },
-    { id: "projects", value: "1,000+", label: t.trustBar.stat2Label },
-    { id: "counties", value: "3", label: t.trustBar.stat3Label },
+    { id: "established", value: "2006", label: t.trustBar.stat1Label, countTo: null, suffix: "" },
+    { id: "projects", value: "1,000+", label: t.trustBar.stat2Label, countTo: 1000, suffix: "+" },
+    { id: "counties", value: "3", label: t.trustBar.stat3Label, countTo: 3, suffix: "" },
   ];
 
   return (
@@ -35,7 +36,11 @@ export function TrustBar() {
                 className="font-heading font-bold text-white leading-none"
                 style={{ fontSize: "clamp(36px, 4vw, 52px)" }}
               >
-                {stat.value}
+                {stat.countTo ? (
+                  <CountUp to={stat.countTo} suffix={stat.suffix} />
+                ) : (
+                  stat.value
+                )}
               </p>
               <p className="text-white/75 font-body text-xs uppercase tracking-[0.15em]">
                 {stat.label}

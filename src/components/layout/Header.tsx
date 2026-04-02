@@ -181,19 +181,19 @@ export function Header() {
               >
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-blue origin-center transition-all duration-300",
+                    "block h-0.5 w-6 bg-navy origin-center transition-all duration-300",
                     isOpen && "rotate-45 translate-y-[7px]"
                   )}
                 />
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-blue transition-all duration-300",
+                    "block h-0.5 w-6 bg-navy transition-all duration-300",
                     isOpen && "opacity-0 scale-x-0"
                   )}
                 />
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-blue origin-center transition-all duration-300",
+                    "block h-0.5 w-6 bg-navy origin-center transition-all duration-300",
                     isOpen && "-rotate-45 -translate-y-[7px]"
                   )}
                 />
@@ -229,14 +229,15 @@ export function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed top-0 right-0 z-50 w-72 sm:w-80 h-[100dvh] bg-blue flex flex-col shadow-2xl overflow-hidden"
+            className="fixed top-0 right-0 z-50 w-72 sm:w-80 h-[100dvh] bg-white flex flex-col overflow-hidden"
+            style={{ boxShadow: "-8px 0 40px rgba(0,0,0,0.18)" }}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
           >
             {/* Sidebar top — logo + close */}
-            <div className="flex items-center justify-between px-6 h-16 md:h-20 border-b border-white/10 flex-shrink-0">
-              <div className="flex items-center gap-2 font-heading font-bold text-base text-white">
+            <div className="flex items-center justify-between px-6 h-16 md:h-20 border-b border-gray-200 flex-shrink-0">
+              <div className="flex items-center gap-2 font-heading font-bold text-base text-navy">
                 <Shield className="w-5 h-5 text-accent" />
                 <span>ORLANDO T GROUP</span>
               </div>
@@ -245,7 +246,7 @@ export function Header() {
                 type="button"
                 onClick={close}
                 aria-label={t.nav.closeMenu}
-                className="p-1 text-white/70 hover:text-white transition-colors"
+                className="p-1 text-navy/50 hover:text-navy transition-colors"
               >
                 <svg
                   width="20"
@@ -275,7 +276,7 @@ export function Header() {
                         <button
                           type="button"
                           onClick={() => setProductsOpen((v) => !v)}
-                          className="flex items-center justify-between w-full py-3 px-3 rounded text-white/80 hover:text-white hover:bg-white/[0.07] font-body font-medium uppercase tracking-wider text-sm transition-colors"
+                          className="flex items-center justify-between w-full py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-sm transition-colors"
                         >
                           {link.label}
                           <ChevronDown
@@ -294,15 +295,15 @@ export function Header() {
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
                               transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
-                              className="overflow-hidden ml-2 border-l border-white/10"
+                              className="overflow-hidden ml-2 border-l border-gray-200"
                             >
                               <li>
                                 <Link
                                   href="/products"
                                   onClick={close}
-                                  className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-sky text-[13px] font-body font-medium hover:text-white transition-colors"
+                                  className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-blue text-[13px] font-body font-medium hover:text-navy transition-colors"
                                 >
-                                  <span className="w-1 h-1 rounded-full bg-sky flex-shrink-0" />
+                                  <span className="w-1 h-1 rounded-full bg-blue flex-shrink-0" />
                                   {t.nav.allProducts}
                                 </Link>
                               </li>
@@ -311,9 +312,9 @@ export function Header() {
                                   <Link
                                     href={child.href}
                                     onClick={close}
-                                    className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-white/55 text-[13px] font-body hover:text-white transition-colors"
+                                    className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-navy/50 text-[13px] font-body hover:text-navy transition-colors"
                                   >
-                                    <span className="w-1 h-1 rounded-full bg-white/25 flex-shrink-0" />
+                                    <span className="w-1 h-1 rounded-full bg-navy/20 flex-shrink-0" />
                                     {child.label}
                                   </Link>
                                 </li>
@@ -326,7 +327,7 @@ export function Header() {
                       <Link
                         href={link.href}
                         onClick={close}
-                        className="block py-3 px-3 rounded text-white/80 hover:text-white hover:bg-white/[0.07] font-body font-medium uppercase tracking-wider text-sm transition-colors"
+                        className="block py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-sm transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -337,19 +338,19 @@ export function Header() {
 
               {/* Language toggle in sidebar (below desktop only) */}
               <div className="lg:hidden mt-6 px-3">
-                <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2 font-body">
+                <p className="text-navy/35 text-[10px] uppercase tracking-widest mb-2 font-body">
                   {language === "en" ? "Language" : "Idioma"}
                 </p>
-                <LanguageToggle variant="dark" />
+                <LanguageToggle variant="light" />
               </div>
             </nav>
 
             {/* Sidebar footer — contact + CTA */}
-            <div className="flex-shrink-0 border-t border-white/10 px-6 py-3 sm:py-5 space-y-3 sm:space-y-4">
+            <div className="flex-shrink-0 border-t border-gray-200 px-6 py-3 sm:py-5 space-y-3 sm:space-y-4">
               <div className="flex items-center justify-between">
                 <a
                   href="tel:+19546255318"
-                  className="flex items-center gap-2.5 text-white/65 hover:text-white transition-colors font-body text-sm"
+                  className="flex items-center gap-2.5 text-navy/60 hover:text-navy transition-colors font-body text-sm"
                 >
                   <Phone size={14} strokeWidth={1.75} />
                   (954) 625-5318
@@ -360,7 +361,7 @@ export function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
-                    className="text-white/50 hover:text-white transition-colors"
+                    className="text-navy/45 hover:text-navy transition-colors"
                   >
                     <Facebook size={17} strokeWidth={1.75} />
                   </a>
@@ -369,7 +370,7 @@ export function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
-                    className="text-white/50 hover:text-white transition-colors"
+                    className="text-navy/45 hover:text-navy transition-colors"
                   >
                     <Instagram size={17} strokeWidth={1.75} />
                   </a>

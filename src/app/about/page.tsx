@@ -3,12 +3,13 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, Shield, Award, Users, MapPin, CheckCircle } from "lucide-react";
+import { CountUp } from "@/components/ui/CountUp";
 
 const stats = [
-  { value: "2006", label: "Year Founded" },
-  { value: "1,000+", label: "Projects Completed" },
-  { value: "3", label: "Counties Served" },
-  { value: "18+", label: "Years Experience" },
+  { value: "2006", label: "Year Founded", countTo: null, suffix: "" },
+  { value: "1,000+", label: "Projects Completed", countTo: 1000, suffix: "+" },
+  { value: "3", label: "Counties Served", countTo: 3, suffix: "" },
+  { value: "18+", label: "Years Experience", countTo: 18, suffix: "+" },
 ];
 
 const values = [
@@ -126,7 +127,11 @@ export default function AboutPage() {
                     className="font-heading font-bold text-navy mb-1"
                     style={{ fontSize: "clamp(28px, 3.5vw, 42px)" }}
                   >
-                    {stat.value}
+                    {stat.countTo ? (
+                      <CountUp to={stat.countTo} suffix={stat.suffix} />
+                    ) : (
+                      stat.value
+                    )}
                   </div>
                   <div className="font-body text-muted text-xs uppercase tracking-wider">
                     {stat.label}

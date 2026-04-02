@@ -47,7 +47,7 @@ export function WhyUs() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.1 }}
               >
-                <div className="w-11 h-11 rounded-lg bg-accent/15 flex items-center justify-center text-accent mb-5">
+                <div className="w-11 h-11 rounded-lg bg-white/20 flex items-center justify-center text-white mb-5">
                   <Icon className="w-5 h-5" />
                 </div>
                 <h3 className="font-heading font-semibold text-[20px] text-white mb-3 leading-snug">
@@ -60,7 +60,7 @@ export function WhyUs() {
                   href={cardHrefs[index]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body text-xs text-sky hover:text-white uppercase tracking-wider transition-colors"
+                  className="font-body text-xs text-white/70 hover:text-white uppercase tracking-wider transition-colors"
                 >
                   {t.whyUs.learnMore} &rarr;
                 </Link>
