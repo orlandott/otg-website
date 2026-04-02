@@ -3,70 +3,74 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, Star } from "lucide-react";
+import { CountUp } from "@/components/ui/CountUp";
 
 const testimonials = [
   {
-    name: "Maria G.",
-    location: "Pembroke Pines, FL",
-    product: "Impact Windows & Doors",
+    name: "Gigi",
+    source: "Google Reviews",
     rating: 5,
-    text: "Orlando T Group did an amazing job on our home. From the first consultation to the final installation, everything was professional and on time. Our windows look beautiful and we already feel safer knowing we're protected. Highly recommend them to anyone in South Florida.",
+    text: "Excellent job. Professional and with affordable prices.",
   },
   {
-    name: "Robert M.",
-    location: "Boca Raton, FL",
-    product: "Accordion Shutters",
+    name: "Janet B.",
+    source: "Google Reviews",
     rating: 5,
-    text: "We've been customers for years and they never disappoint. Had accordion shutters installed on the whole house and the crew was clean, fast, and respectful. The price was fair and the quality is outstanding. This is the team to call.",
+    text: "I'm very pleased by work done by Orlando T Group. Very professional and work was done quickly and staff was courteous and careful with my living space. Everything was left impecable, I strongly recommend this company.",
   },
   {
-    name: "Sandra T.",
-    location: "Doral, FL",
-    product: "Rolldown Shutters",
+    name: "Javier M.",
+    source: "Google Reviews",
     rating: 5,
-    text: "I was nervous about a big installation like this but Orlando T Group made the whole process easy. They explained everything, got the permits handled, and finished ahead of schedule. I have total peace of mind going into hurricane season now.",
+    text: "Excellent service, good communication, great prices, friendly and professional staff, highly recommended.",
   },
   {
-    name: "James L.",
-    location: "Coral Springs, FL",
-    product: "Impact Garage Door",
+    name: "Adriana V.",
+    source: "Google Reviews",
     rating: 5,
-    text: "Had my old garage door replaced with an impact-rated door. The difference is night and day — it's quieter, stronger, and looks great. The installers were professional and finished in a single day. Very happy with the result.",
+    text: "The Orlando T Group did an outstanding job replacing our old windows. Since we live in another location most of the time our neighbor let them in to do the job. Not only did they put the new windows they cleaned up the mess! Kudos to the Orlando T Group!!",
   },
   {
-    name: "Ana R.",
-    location: "Hialeah, FL",
-    product: "Patio Enclosure",
+    name: "Shalina J.",
+    source: "Yelp Reviews",
     rating: 5,
-    text: "We got a patio enclosure and we absolutely love it. It's completely transformed how we use our backyard. The team was knowledgeable and took the time to answer every question we had. Very professional company.",
+    text: "Jaffer Realty has been working with Orlando T Group for many years now on a range of projects all over South Florida. They are reliable, work well with the city inspectors and get the job done. We have been very happy with the quality of work and overall experience.",
   },
   {
-    name: "Kevin B.",
-    location: "Plantation, FL",
-    product: "Impact Windows",
+    name: "Anthony S.",
+    source: "Google Reviews",
     rating: 5,
-    text: "After the last hurricane season we finally decided to upgrade our old windows. Orlando T Group came out, gave us a fair quote, and got the job done cleanly and efficiently. Our energy bill has also gone down noticeably. Great investment.",
+    text: "I'm very satisfied with the results. My experience with Orlando T Group was great — Sebastian Alvarez in sales and Monica Gutierrez was very helpful. I highly recommend them.",
   },
   {
-    name: "Claudia F.",
-    location: "Davie, FL",
-    product: "Retractable Awning",
+    name: "Tom M.",
+    source: "Google Reviews",
     rating: 5,
-    text: "The retractable awning they installed is perfect. Quality product, great install, and excellent customer service throughout. They followed up after the job to make sure we were happy. That kind of care is rare these days.",
+    text: "Great service, fast, efficient and clean. All done in a timely fashion.",
   },
   {
-    name: "Tony S.",
-    location: "Fort Lauderdale, FL",
-    product: "Impact Windows & Shutters",
+    name: "Egliana G.",
+    source: "Google Reviews",
     rating: 5,
-    text: "Got impact windows on the main floor and rolldown shutters on the second. Both crews were fantastic — punctual, professional, and left the place spotless. I've already referred three neighbors. Truly excellent work.",
+    text: "Orlando T Group was very professional at all stages of the process. I recommend them — excellent customer service and also recommend their super prices. It was a waste of time quoting with other providers that almost doubled Orlando T Group's quote. Their salesperson and Monica Gutierrez offered an amazing service.",
   },
   {
-    name: "Patricia N.",
-    location: "Miramar, FL",
-    product: "Impact Doors",
+    name: "Lord J.",
+    source: "Google Reviews",
     rating: 5,
-    text: "Our new front and back impact doors are gorgeous. They gave us several style options to choose from and helped us pick what looked best with our home. The installation was quick and we couldn't be happier.",
+    text: "The job was completed in one day (balcony enclosure with impact glass). It came out amazing — the 3 installers were very competent and professional. I recommend Orlando T Group very highly and I will use them again when I am ready to do my other windows. The owner Mr. Orlando Torres, the salesman, and the job supervisor Aldo are very fair and knowledgeable.",
+  },
+  {
+    name: "Adriana V.",
+    source: "Google Reviews",
+    rating: 5,
+    text: "Excellent job, service and price!!! They were diligent, helpful and delivered as promised. Highly recommended!",
+  },
+  {
+    name: "Harry D.",
+    source: "Google Reviews",
+    rating: 5,
+    text: "I would like to say that everything was done excellently. I am very happy with the results. I would recommend them to anyone that wants to do any home improvements.",
   },
 ];
 
@@ -108,7 +112,7 @@ export default function TestimonialsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Over 1,000 projects completed across South Florida. Here&apos;s what homeowners are saying.
+            Real reviews from real South Florida homeowners. No scripts, no incentives — just honest feedback.
           </motion.p>
         </div>
       </section>
@@ -124,12 +128,12 @@ export default function TestimonialsPage() {
             </div>
             <div className="hidden sm:block w-px h-12 bg-[#E0E0E0]" />
             <div>
-              <div className="font-heading font-bold text-navy text-4xl mb-1">1,000+</div>
+              <div className="font-heading font-bold text-navy text-4xl mb-1"><CountUp to={1000} suffix="+" /></div>
               <div className="font-body text-muted text-xs uppercase tracking-wider">Projects Completed</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-[#E0E0E0]" />
             <div>
-              <div className="font-heading font-bold text-navy text-4xl mb-1">18+</div>
+              <div className="font-heading font-bold text-navy text-4xl mb-1"><CountUp to={18} suffix="+" /></div>
               <div className="font-body text-muted text-xs uppercase tracking-wider">Years in Business</div>
             </div>
           </div>
@@ -157,8 +161,7 @@ export default function TestimonialsPage() {
                   <div className="font-heading font-bold text-navy text-sm uppercase tracking-[0.03em]">
                     {t.name}
                   </div>
-                  <div className="font-body text-muted text-xs mt-0.5">{t.location}</div>
-                  <div className="font-body text-blue text-xs mt-1 uppercase tracking-wider">{t.product}</div>
+                  <div className="font-body text-blue text-xs mt-1 uppercase tracking-wider">{t.source}</div>
                 </div>
               </motion.div>
             ))}

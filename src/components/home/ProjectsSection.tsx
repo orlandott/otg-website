@@ -74,9 +74,7 @@ export function ProjectsSection() {
             {t.projects.learnMore}
           </Link>
           <Link
-            href="https://www.orlandotgroupinc.com/testimonials"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/testimonials"
             className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-sm uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
           >
             {t.projects.testimonials}
