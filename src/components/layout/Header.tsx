@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Phone, Facebook, Instagram, Shield, ChevronDown } from "lucide-react";
+import { Phone, Facebook, Instagram, Shield, ChevronDown, PackageSearch, CalendarCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { products } from "@/lib/data/products";
@@ -16,14 +16,17 @@ type NavLink = {
   children?: { href: string; label: string }[];
 };
 
-function LanguageToggle() {
+function LanguageToggle({ variant = "light" }: { variant?: "light" | "dark" }) {
   const { language, setLanguage } = useLanguage();
 
   const labels: Record<Language, string> = { en: "English", es: "Español" };
 
   return (
     <div
-      className="flex items-center rounded overflow-hidden border border-white/20"
+      className={cn(
+        "flex items-center rounded overflow-hidden border",
+        variant === "dark" ? "border-white/20" : "border-navy/20"
+      )}
       role="group"
       aria-label="Language selector"
     >
@@ -36,10 +39,12 @@ function LanguageToggle() {
           aria-label={lang === "en" ? "Switch to English" : "Cambiar a Español"}
           className={cn(
             "flex-1 text-center px-3 py-1 text-[11px] font-heading font-bold tracking-[0.05em] uppercase transition-colors duration-150",
-            i === 0 ? "border-r border-white/20" : "",
-            language === lang
-              ? "bg-white/15 text-white"
-              : "text-white/45 hover:text-white/80"
+            variant === "dark"
+              ? i === 0 ? "border-r border-white/20" : ""
+              : i === 0 ? "border-r border-navy/20" : "",
+            variant === "dark"
+              ? language === lang ? "bg-white/15 text-white" : "text-white/45 hover:text-white/80"
+              : language === lang ? "bg-navy/10 text-navy" : "text-navy/40 hover:text-navy/70"
           )}
         >
           {labels[lang]}
@@ -106,8 +111,8 @@ export function Header() {
       {/* ── Fixed header bar ── */}
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled || isOpen ? "bg-navy shadow-lg" : "bg-navy"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-200",
+          isScrolled || isOpen ? "shadow-md" : "shadow-sm"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,11 +124,11 @@ export function Header() {
               className="flex items-center gap-2.5 font-heading font-bold text-xl md:text-2xl tracking-tight hover:opacity-90 transition-opacity"
             >
               <Shield className="w-7 h-7 text-accent" />
-              <span className="text-white">ORLANDO T GROUP</span>
+              <span className="text-navy">ORLANDO T GROUP</span>
             </Link>
 
-            {/* Center — language selector */}
-            <div className="absolute left-1/2 -translate-x-1/2">
+            {/* Center — language selector (desktop only) */}
+            <div className="hidden lg:block absolute left-1/2 -translate-x-1/2">
               <LanguageToggle />
             </div>
 
@@ -132,7 +137,7 @@ export function Header() {
               {/* Contact links */}
               <a
                 href="tel:+19546255318"
-                className="hidden sm:flex items-center gap-1.5 text-white/75 hover:text-white transition-colors font-body text-sm"
+                className="hidden sm:flex items-center gap-1.5 text-navy/65 hover:text-navy transition-colors font-body text-sm"
               >
                 <Phone size={14} strokeWidth={1.75} />
                 (954) 625-5318
@@ -142,7 +147,7 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="hidden sm:flex text-white/55 hover:text-white transition-colors"
+                className="hidden sm:flex text-navy/50 hover:text-navy transition-colors"
               >
                 <Facebook size={17} strokeWidth={1.75} />
               </a>
@@ -151,11 +156,20 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="hidden sm:flex text-white/55 hover:text-white transition-colors"
+                className="hidden sm:flex text-navy/50 hover:text-navy transition-colors"
               >
                 <Instagram size={17} strokeWidth={1.75} />
               </a>
-              <div className="hidden sm:block w-px h-5 bg-white/15 mx-1" />
+              <a
+                href="https://titan.orlandotgroupinc.com/status-tracking"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-heading font-bold text-[12px] uppercase tracking-[0.06em] rounded-[8px] px-4 py-2 shadow-cta hover:-translate-y-px transition-all duration-150"
+              >
+                <PackageSearch size={14} strokeWidth={2} />
+                Track My Order
+              </a>
+              <div className="hidden sm:block w-px h-5 bg-navy/15 mx-1" />
               {/* Animated hamburger */}
               <button
                 type="button"
@@ -163,23 +177,23 @@ export function Header() {
                 aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
                 aria-expanded={isOpen}
                 aria-controls="sidebar-nav"
-                className="flex flex-col items-center justify-center gap-[5px] w-10 h-10 text-white"
+                className="flex flex-col items-center justify-center gap-[5px] w-10 h-10 text-navy"
               >
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
+                    "block h-0.5 w-6 bg-navy origin-center transition-all duration-300",
                     isOpen && "rotate-45 translate-y-[7px]"
                   )}
                 />
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-white transition-all duration-300",
+                    "block h-0.5 w-6 bg-navy transition-all duration-300",
                     isOpen && "opacity-0 scale-x-0"
                   )}
                 />
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-white origin-center transition-all duration-300",
+                    "block h-0.5 w-6 bg-navy origin-center transition-all duration-300",
                     isOpen && "-rotate-45 -translate-y-[7px]"
                   )}
                 />
@@ -215,7 +229,7 @@ export function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed top-0 right-0 bottom-0 z-50 w-72 sm:w-80 bg-navy flex flex-col shadow-2xl"
+            className="fixed top-0 right-0 z-50 w-72 sm:w-80 h-[100dvh] bg-navy flex flex-col shadow-2xl overflow-hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
@@ -321,52 +335,63 @@ export function Header() {
                 ))}
               </ul>
 
-              {/* Language toggle in sidebar */}
-              <div className="mt-6 px-3">
+              {/* Language toggle in sidebar (below desktop only) */}
+              <div className="lg:hidden mt-6 px-3">
                 <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2 font-body">
                   {language === "en" ? "Language" : "Idioma"}
                 </p>
-                <LanguageToggle />
+                <LanguageToggle variant="dark" />
               </div>
             </nav>
 
             {/* Sidebar footer — contact + CTA */}
-            <div className="flex-shrink-0 border-t border-white/10 px-6 py-5 space-y-4">
-              <a
-                href="tel:+19546255318"
-                className="flex items-center gap-2.5 text-white/65 hover:text-white transition-colors font-body text-sm"
-              >
-                <Phone size={14} strokeWidth={1.75} />
-                (954) 625-5318
-              </a>
-
-              <div className="flex items-center gap-4">
+            <div className="flex-shrink-0 border-t border-white/10 px-6 py-3 sm:py-5 space-y-3 sm:space-y-4">
+              <div className="flex items-center justify-between">
                 <a
-                  href="https://facebook.com/orlandotgroup"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="text-white/50 hover:text-white transition-colors"
+                  href="tel:+19546255318"
+                  className="flex items-center gap-2.5 text-white/65 hover:text-white transition-colors font-body text-sm"
                 >
-                  <Facebook size={17} strokeWidth={1.75} />
+                  <Phone size={14} strokeWidth={1.75} />
+                  (954) 625-5318
                 </a>
-                <a
-                  href="https://instagram.com/orlandotgroup"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="text-white/50 hover:text-white transition-colors"
-                >
-                  <Instagram size={17} strokeWidth={1.75} />
-                </a>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://facebook.com/orlandotgroup"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="text-white/50 hover:text-white transition-colors"
+                  >
+                    <Facebook size={17} strokeWidth={1.75} />
+                  </a>
+                  <a
+                    href="https://instagram.com/orlandotgroup"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="text-white/50 hover:text-white transition-colors"
+                  >
+                    <Instagram size={17} strokeWidth={1.75} />
+                  </a>
+                </div>
               </div>
+
+              <a
+                href="https://titan.orlandotgroupinc.com/status-tracking"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full bg-blue hover:bg-blue/90 text-white font-heading font-bold px-6 py-3 rounded-[8px] text-sm uppercase tracking-wide transition-colors"
+              >
+                <PackageSearch size={15} strokeWidth={2} />
+                Track My Order
+              </a>
 
               <Link
                 href="/contact"
                 onClick={close}
-                className="block w-full text-center bg-accent text-white font-heading font-bold px-6 py-3 rounded text-sm uppercase tracking-wide hover:bg-accent-hover transition-colors"
-                style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
+                className="flex items-center justify-center gap-2 w-full bg-accent hover:bg-accent-hover text-white font-heading font-bold px-6 py-3 rounded-[8px] text-sm uppercase tracking-wide transition-colors shadow-cta"
               >
+                <CalendarCheck size={15} strokeWidth={2} />
                 {t.nav.freeEstimate}
               </Link>
             </div>
