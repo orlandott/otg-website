@@ -5,7 +5,7 @@
 :root {
   /* OTG brand palette — see .claude/skills/theme-selector/SKILL.md */
   --color-navy:         #1a202c; /* neutral dark — header, footer, dark sections */
-  --color-blue:         #003087; /* brand blue — primary interactive */
+  --color-blue:         #317ACC; /* brand blue — primary interactive */
   --color-sky:          #1E5EBF; /* sky blue — secondary accents */
   --color-accent:       #E07B39; /* storm orange — urgent CTAs */
   --color-accent-hover: #C46420;

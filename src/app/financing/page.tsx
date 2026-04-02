@@ -54,7 +54,7 @@ export default function FinancingPage() {
   return (
     <>
       {/* Page header */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-navy">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">
@@ -143,7 +143,7 @@ export default function FinancingPage() {
               { step: "03", title: "Get Installed", body: "Once approved, we schedule your installation. Our certified crew handles everything from permits to final inspection." },
             ].map((step) => (
               <div key={step.step} className="text-center">
-                <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-blue flex items-center justify-center mx-auto mb-4">
                   <span className="font-heading font-bold text-accent text-sm">{step.step}</span>
                 </div>
                 <h3 className="font-heading font-bold text-navy uppercase text-sm tracking-[0.04em] mb-3">
@@ -190,7 +190,7 @@ export default function FinancingPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20 md:py-28">
+      <section className="bg-blue py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2
             className="font-heading font-bold text-white uppercase leading-[1.1] mb-4"

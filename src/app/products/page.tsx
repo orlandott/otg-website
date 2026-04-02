@@ -10,7 +10,7 @@ export default function ProductsPage() {
   return (
     <>
       {/* Page header */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-navy">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">
@@ -47,7 +47,7 @@ export default function ProductsPage() {
       </section>
 
       {/* CTA footer band */}
-      <section className="bg-navy py-20 md:py-28">
+      <section className="bg-blue py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2
             className="font-heading font-bold text-white uppercase leading-[1.1] mb-4"

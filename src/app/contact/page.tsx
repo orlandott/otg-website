@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Page header */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-navy">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">

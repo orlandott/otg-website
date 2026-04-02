@@ -85,7 +85,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Page header */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-navy">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">
@@ -124,7 +124,7 @@ export default function BlogPage() {
                 type="button"
                 className={`flex-shrink-0 px-4 py-1.5 rounded-full font-body text-xs uppercase tracking-wider border transition-colors ${
                   cat === "All"
-                    ? "bg-navy text-white border-navy"
+                    ? "bg-blue text-white border-navy"
                     : "bg-white text-charcoal border-[#E0E0E0] hover:border-navy hover:text-navy"
                 }`}
               >
@@ -219,7 +219,7 @@ export default function BlogPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20 md:py-28">
+      <section className="bg-blue py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2
             className="font-heading font-bold text-white uppercase leading-[1.1] mb-4"

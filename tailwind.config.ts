@@ -13,7 +13,7 @@ const config: Config = {
       colors: {
         // OTG brand palette — from .claude/skills/theme-selector/SKILL.md
         navy:          "#1a202c",   // neutral dark — header, footer, dark sections
-        blue:          "#003087",   // brand navy blue — primary interactive, links
+        blue:          "#317ACC",   // brand blue — primary interactive, links
         sky:           "#1E5EBF",   // sky blue — secondary accents, hover states
         accent:        "#E07B39",   // storm orange — urgent CTAs only
         "accent-hover": "#C46420",  // darker orange on hover

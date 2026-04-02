@@ -7,7 +7,7 @@ export function AnnouncementBar() {
   const { t } = useLanguage();
 
   return (
-    <div className="bg-navy text-white/90 py-2 text-center">
+    <div className="bg-blue text-white/90 py-2 text-center">
       <p className="font-body text-sm font-medium">
         {t.announcement.text} &middot;{" "}
         <a

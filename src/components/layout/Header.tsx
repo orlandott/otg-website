@@ -181,19 +181,19 @@ export function Header() {
               >
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-navy origin-center transition-all duration-300",
+                    "block h-0.5 w-6 bg-blue origin-center transition-all duration-300",
                     isOpen && "rotate-45 translate-y-[7px]"
                   )}
                 />
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-navy transition-all duration-300",
+                    "block h-0.5 w-6 bg-blue transition-all duration-300",
                     isOpen && "opacity-0 scale-x-0"
                   )}
                 />
                 <span
                   className={cn(
-                    "block h-0.5 w-6 bg-navy origin-center transition-all duration-300",
+                    "block h-0.5 w-6 bg-blue origin-center transition-all duration-300",
                     isOpen && "-rotate-45 -translate-y-[7px]"
                   )}
                 />
@@ -229,7 +229,7 @@ export function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed top-0 right-0 z-50 w-72 sm:w-80 h-[100dvh] bg-navy flex flex-col shadow-2xl overflow-hidden"
+            className="fixed top-0 right-0 z-50 w-72 sm:w-80 h-[100dvh] bg-blue flex flex-col shadow-2xl overflow-hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"

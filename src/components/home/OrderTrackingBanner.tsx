@@ -8,7 +8,7 @@ export function OrderTrackingBanner() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 md:py-20 bg-navy">
+    <section className="py-16 md:py-20 bg-blue">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

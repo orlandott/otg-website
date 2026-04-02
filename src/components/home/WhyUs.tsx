@@ -16,7 +16,7 @@ export function WhyUs() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 md:py-28 bg-navy">
+    <section className="py-20 md:py-28 bg-blue">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
