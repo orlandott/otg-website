@@ -8,7 +8,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 const cardIcons = [Shield, Wrench, Leaf];
 const cardHrefs = [
   "https://www.orlandotgroupinc.com/materials",
-  "https://www.orlandotgroupinc.com/free-maintenance",
+  "/free-maintenance",
   "/donations",
 ];
 
@@ -58,7 +58,7 @@ export function WhyUs() {
                 </p>
                 <Link
                   href={cardHrefs[index]}
-                  {...(index !== 2 && { target: "_blank", rel: "noopener noreferrer" })}
+                  {...(index === 0 && { target: "_blank", rel: "noopener noreferrer" })}
                   className="font-body font-bold text-xs text-white hover:text-white/80 uppercase tracking-wider transition-colors"
                 >
                   {t.whyUs.learnMore} &rarr;
