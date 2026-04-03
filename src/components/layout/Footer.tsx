@@ -10,6 +10,7 @@ export function Footer() {
   const footerLinks = [
     { href: "/", label: t.footer.links.home },
     { href: "/products", label: t.footer.links.products },
+    { href: "/donations", label: t.footer.links.donations },
     { href: "/contact", label: t.footer.links.contact },
     {
       href: "https://titan.orlandotgroupinc.com/status-tracking",

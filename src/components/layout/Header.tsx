@@ -74,6 +74,7 @@ export function Header() {
     },
     { href: "/financing", label: t.nav.financing },
     { href: "/testimonials", label: t.nav.testimonials },
+    { href: "/donations", label: t.nav.donations },
     { href: "/blog", label: t.nav.blog },
     { href: "/contact", label: t.nav.contact },
   ];

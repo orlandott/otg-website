@@ -9,7 +9,7 @@ const cardIcons = [Shield, Wrench, Leaf];
 const cardHrefs = [
   "https://www.orlandotgroupinc.com/materials",
   "https://www.orlandotgroupinc.com/free-maintenance",
-  "https://www.orlandotgroupinc.com/donations",
+  "/donations",
 ];
 
 export function WhyUs() {
@@ -58,9 +58,8 @@ export function WhyUs() {
                 </p>
                 <Link
                   href={cardHrefs[index]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-xs text-white/70 hover:text-white uppercase tracking-wider transition-colors"
+                  {...(index !== 2 && { target: "_blank", rel: "noopener noreferrer" })}
+                  className="font-body font-bold text-xs text-white hover:text-white/80 uppercase tracking-wider transition-colors"
                 >
                   {t.whyUs.learnMore} &rarr;
                 </Link>
