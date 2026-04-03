@@ -4,19 +4,21 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, Phone, MessageCircle, Clock, Facebook, Instagram } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+  const p = t.pages.contact;
+  const common = t.pages.common;
+
   return (
     <>
-      {/* Page header */}
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
+            <Link href="/" className="hover:text-white transition-colors">{common.home}</Link>
             <ChevronRight size={14} />
-            <span className="text-white/90">Contact</span>
+            <span className="text-white/90">{p.breadcrumb}</span>
           </nav>
           <motion.h1
             className="font-heading font-bold text-white uppercase leading-[1.05]"
@@ -25,7 +27,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Get Your Free Consultation
+            {p.heading}
           </motion.h1>
           <motion.p
             className="mt-4 text-white/70 font-body text-base max-w-2xl"
@@ -33,16 +35,14 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Request an estimate and home visit from one of our sales associates.
+            {p.subtitle}
           </motion.p>
         </div>
       </section>
 
-      {/* Contact content */}
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left: Contact info */}
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0, x: -20 }}
@@ -51,7 +51,7 @@ export default function ContactPage() {
             >
               <div>
                 <h2 className="font-heading font-bold text-navy uppercase text-xl tracking-[0.01em] mb-6">
-                  Contact Information
+                  {p.contactInfo}
                 </h2>
                 <div className="space-y-4">
                   <a
@@ -72,14 +72,14 @@ export default function ContactPage() {
                   </a>
                   <div className="flex items-center gap-3 text-muted font-body text-sm">
                     <Clock size={18} className="text-blue" />
-                    Serving South Florida
+                    {p.servingArea}
                   </div>
                 </div>
               </div>
 
               <div>
                 <h3 className="font-heading font-bold text-navy uppercase text-base tracking-[0.01em] mb-4">
-                  Follow Us
+                  {p.followUs}
                 </h3>
                 <div className="flex gap-4">
                   <a
@@ -105,7 +105,7 @@ export default function ContactPage() {
 
               <div>
                 <h3 className="font-heading font-bold text-navy uppercase text-base tracking-[0.01em] mb-3">
-                  Track Your Order
+                  {p.trackOrderLabel}
                 </h3>
                 <a
                   href="https://titan.orlandotgroupinc.com/status-tracking"
@@ -113,12 +113,11 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="text-blue font-body text-sm hover:text-sky hover:underline transition-colors"
                 >
-                  Check order status &rarr;
+                  {p.checkOrderStatus} &rarr;
                 </a>
               </div>
             </motion.div>
 
-            {/* Right: Form */}
             <motion.div
               className="bg-surface rounded-xl p-7 md:p-10 border border-[#E0E0E0]"
               style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
@@ -127,7 +126,7 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <h2 className="font-heading font-bold text-navy uppercase text-xl tracking-[0.01em] mb-6">
-                Send Us a Message
+                {p.sendMessage}
               </h2>
               <ContactForm />
             </motion.div>
