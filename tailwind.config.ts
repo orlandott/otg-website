@@ -15,8 +15,8 @@ const config: Config = {
         navy:          "#1a202c",   // neutral dark — header, footer, dark sections
         blue:          "#317ACC",   // brand blue — primary interactive, links
         sky:           "#1E5EBF",   // sky blue — secondary accents, hover states
-        accent:        "#E07B39",   // storm orange — urgent CTAs only
-        "accent-hover": "#C46420",  // darker orange on hover
+        accent:        "#FF6B00",   // bright orange — urgent CTAs only
+        "accent-hover": "#E05A00",  // darker orange on hover
         surface:       "#F5F7FA",   // light gray — section backgrounds, forms
         charcoal:      "#2D3748",   // dark gray — body text
         muted:         "#718096",   // medium gray — captions, secondary info

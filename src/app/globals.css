@@ -7,8 +7,8 @@
   --color-navy:         #1a202c; /* neutral dark — header, footer, dark sections */
   --color-blue:         #317ACC; /* brand blue — primary interactive */
   --color-sky:          #1E5EBF; /* sky blue — secondary accents */
-  --color-accent:       #E07B39; /* storm orange — urgent CTAs */
-  --color-accent-hover: #C46420;
+  --color-accent:       #FF6B00; /* bright orange — urgent CTAs */
+  --color-accent-hover: #E05A00;
   --color-white:        #ffffff;
   --color-surface:      #F5F7FA; /* light gray — section/form backgrounds */
   --color-charcoal:     #2D3748; /* dark gray — body text */
