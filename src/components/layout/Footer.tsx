@@ -51,7 +51,7 @@ export function Footer() {
                       target: "_blank",
                       rel: "noopener noreferrer",
                     })}
-                    className="text-white/70 hover:text-accent text-base font-body transition-colors"
+                    className="text-white/70 hover:text-white text-base font-body transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -68,7 +68,7 @@ export function Footer() {
             <div className="space-y-3">
               <a
                 href="tel:+19546255318"
-                className="flex items-center gap-2.5 text-white/70 hover:text-accent text-base font-body transition-colors"
+                className="flex items-center gap-2.5 text-white/70 hover:text-white text-base font-body transition-colors"
               >
                 <Phone size={15} />
                 (954) 625-5318
@@ -77,7 +77,7 @@ export function Footer() {
                 href="https://wa.me/19546491508"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-white/70 hover:text-accent text-base font-body transition-colors"
+                className="flex items-center gap-2.5 text-white/70 hover:text-white text-base font-body transition-colors"
               >
                 <MessageCircle size={15} />
                 WhatsApp
@@ -87,7 +87,7 @@ export function Footer() {
                   href="https://facebook.com/orlandotgroup"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-accent transition-colors"
+                  className="text-white/60 hover:text-white transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook size={20} />
@@ -96,7 +96,7 @@ export function Footer() {
                   href="https://instagram.com/orlandotgroup"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-accent transition-colors"
+                  className="text-white/60 hover:text-white transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram size={20} />
