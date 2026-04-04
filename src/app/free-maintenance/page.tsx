@@ -129,10 +129,10 @@ export default function FreeMaintenancePage() {
                   className="text-center flex flex-col items-center"
                   {...fadeUp(i * 0.1)}
                 >
-                  <div className="w-14 h-14 rounded-full bg-blue flex items-center justify-center mb-5 shadow-md">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center mb-5 shadow-md" style={{ backgroundColor: "rgb(20, 210, 80)" }}>
                     <Icon className="w-6 h-6 text-white" strokeWidth={1.75} />
                   </div>
-                  <div className="font-heading font-bold text-blue text-sm uppercase tracking-[0.1em] mb-1">{step.step}</div>
+                  <div className="font-heading font-bold text-sm uppercase tracking-[0.1em] mb-1" style={{ color: "rgb(20, 210, 80)" }}>{step.step}</div>
                   <h3 className="font-heading font-semibold text-navy text-[20px] mb-3">{step.title}</h3>
                   <p className="font-body text-charcoal text-base leading-relaxed max-w-xs">{step.body}</p>
                 </motion.div>
