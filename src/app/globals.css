@@ -50,4 +50,7 @@ body {
   .bg-bright-green {
     background-color: var(--color-bright-green);
   }
+  .text-bright-green {
+    color: var(--color-bright-green);
+  }
 }
