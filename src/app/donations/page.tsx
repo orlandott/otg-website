@@ -35,7 +35,7 @@ export default function DonationsPage() {
   return (
     <>
       {/* Page header */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-navy">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6"
@@ -163,7 +163,7 @@ export default function DonationsPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20 md:py-28">
+      <section className="bg-bright-green py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2
             className="font-heading font-bold text-white uppercase leading-[1.1] mb-4"
