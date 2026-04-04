@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronRight, Heart, Leaf, Wind } from "lucide-react";
+import { ChevronRight, Leaf, Wind } from "lucide-react";
 
 const orgs = [
   {
@@ -48,18 +48,13 @@ export default function DonationsPage() {
             <span className="text-white/90">Donations</span>
           </nav>
 
-          <motion.div
-            className="flex items-center gap-3 mb-4"
+          <motion.h1
+            className="font-heading font-bold text-white uppercase leading-[1.05] mb-4"
+            style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
             {...fadeUp}
           >
-            <Heart className="w-8 h-8 text-accent flex-shrink-0" strokeWidth={1.75} />
-            <h1
-              className="font-heading font-bold text-white uppercase leading-[1.05]"
-              style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
-            >
-              Supporting Our Planet
-            </h1>
-          </motion.div>
+            Supporting Our Planet
+          </motion.h1>
 
           <motion.p
             className="mt-2 text-white/70 font-body text-lg max-w-2xl leading-relaxed"

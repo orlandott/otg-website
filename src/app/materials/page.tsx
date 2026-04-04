@@ -52,22 +52,17 @@ export default function MaterialsPage() {
             <span className="text-white/90">{p.breadcrumb}</span>
           </nav>
 
-          <motion.div
-            className="flex items-center gap-3 mb-4"
+          <motion.h1
+            className="font-heading font-bold text-white uppercase leading-[1.05] mb-4"
+            style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Shield className="w-8 h-8 text-white flex-shrink-0" strokeWidth={1.75} />
-            <h1
-              className="font-heading font-bold text-white uppercase leading-[1.05]"
-              style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
-            >
-              {p.heading.split("\n").map((line, i) => (
-                <span key={i}>{line}{i === 0 && <br />}</span>
-              ))}
-            </h1>
-          </motion.div>
+            {p.heading.split("\n").map((line, i) => (
+              <span key={i}>{line}{i === 0 && <br />}</span>
+            ))}
+          </motion.h1>
 
           <motion.p
             className="mt-2 text-white/70 font-body text-lg max-w-2xl leading-relaxed"
