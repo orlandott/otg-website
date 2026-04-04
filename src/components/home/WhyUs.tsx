@@ -7,7 +7,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const cardIcons = [Shield, Wrench, Leaf];
 const cardHrefs = [
-  "https://www.orlandotgroupinc.com/materials",
+  "/materials",
   "/free-maintenance",
   "/donations",
 ];
@@ -30,7 +30,7 @@ export function WhyUs() {
           >
             {t.whyUs.heading}
           </h2>
-          <p className="mt-4 text-white/70 font-body text-sm max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-white/70 font-body text-base max-w-2xl mx-auto leading-relaxed">
             {t.whyUs.subtitle}
           </p>
         </motion.div>
@@ -53,13 +53,12 @@ export function WhyUs() {
                 <h3 className="font-heading font-semibold text-[20px] text-white mb-3 leading-snug">
                   {card.title}
                 </h3>
-                <p className="text-white/65 font-body text-sm leading-relaxed mb-5">
+                <p className="text-white/65 font-body text-base leading-relaxed mb-5">
                   {card.description}
                 </p>
                 <Link
                   href={cardHrefs[index]}
-                  {...(index === 0 && { target: "_blank", rel: "noopener noreferrer" })}
-                  className="font-body font-bold text-xs text-white hover:text-white/80 uppercase tracking-wider transition-colors"
+                  className="font-body font-bold text-sm text-white hover:text-white/80 uppercase tracking-wider transition-colors"
                 >
                   {t.whyUs.learnMore} &rarr;
                 </Link>

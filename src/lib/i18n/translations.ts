@@ -271,6 +271,69 @@ export const translations = {
         ctaHeading: "Ready to Get Started?",
         ctaSubtitle: "Get a free in-home consultation. We'll walk you through every product and explain exactly what our maintenance program covers.",
       },
+      materials: {
+        breadcrumb: "Our Materials",
+        heading: "Premium Materials,\nBuilt to Last",
+        subtitle: "Every product we install comes from the industry's most trusted manufacturers — engineered for South Florida's toughest conditions.",
+        brandsEyebrow: "Our Partners",
+        brandsHeading: "Trusted Manufacturers",
+        brandsBody: "We work exclusively with manufacturers whose products meet or exceed Florida Building Code requirements and carry Miami-Dade County Notice of Acceptance (NOA) approvals — the toughest product certification standard in the country.",
+        brands: [
+          {
+            name: "ES Windows",
+            category: "Impact Windows & Doors",
+            description: "South Florida's own. ES Windows engineers impact-rated windows and doors specifically for the South Florida climate — hurricane tested, energy efficient, and backed by Miami-Dade NOA certifications.",
+          },
+          {
+            name: "PGT Innovations",
+            category: "Impact Windows & Doors",
+            description: "Florida's largest manufacturer of impact-resistant windows and doors. PGT products are designed and tested to withstand Category 5 hurricane conditions, offering superior protection and energy performance.",
+          },
+          {
+            name: "CGI Windows & Doors",
+            category: "Impact Windows & Doors",
+            description: "A South Florida staple for over 25 years. CGI manufactures premium impact windows and doors that combine sleek aesthetics with uncompromising hurricane resistance and thermal performance.",
+          },
+          {
+            name: "Lawson",
+            category: "Hardware & Components",
+            description: "Precision-engineered hardware that ensures every window, door, and shutter operates flawlessly for years. Lawson's architectural hardware is built for durability in coastal, salt-air environments.",
+          },
+          {
+            name: "Bandalux",
+            category: "Solar Shades & Blinds",
+            description: "International leader in solar protection and window coverings. Bandalux solar shades reduce heat gain, block UV radiation, and lower energy costs without sacrificing natural light or views.",
+          },
+          {
+            name: "South Evolution",
+            category: "Shutters & Screen Systems",
+            description: "Innovative hurricane shutter and screen solutions engineered for reliability and ease of use. South Evolution systems deploy in seconds and meet Florida Building Code requirements for wind-borne debris protection.",
+          },
+        ],
+        standardsEyebrow: "Our Standards",
+        standardsHeading: "Why Materials Matter",
+        standardsBody: "The strength of your hurricane protection is only as good as the materials behind it. We source exclusively from manufacturers whose products have proven themselves in real storm conditions — not just lab tests.",
+        standards: [
+          {
+            title: "Miami-Dade NOA Certified",
+            body: "Miami-Dade County's Notice of Acceptance is the toughest product approval standard in the United States. Every product we install carries this certification.",
+          },
+          {
+            title: "Florida Building Code Compliant",
+            body: "All materials meet or exceed Florida Building Code requirements for wind resistance, impact protection, and energy efficiency.",
+          },
+          {
+            title: "Impact-Rated Glass",
+            body: "Laminated safety glass that holds together on impact — protecting your home from hurricane debris and intruders without the need for additional shutters.",
+          },
+          {
+            title: "Coastal Grade Aluminum",
+            body: "Frames and hardware are manufactured from marine-grade aluminum alloys specifically formulated to resist corrosion in South Florida's salt-air environment.",
+          },
+        ],
+        ctaHeading: "Let's Find the Right Solution",
+        ctaSubtitle: "Our team will walk you through every product and material option — matched to your home, your budget, and South Florida's building requirements.",
+      },
     },
   },
 
@@ -545,6 +608,69 @@ export const translations = {
         ],
         ctaHeading: "¿Listo para Comenzar?",
         ctaSubtitle: "Obtenga una consulta gratuita en casa. Le mostraremos cada producto y explicaremos exactamente qué cubre nuestro programa de mantenimiento.",
+      },
+      materials: {
+        breadcrumb: "Nuestros Materiales",
+        heading: "Materiales Premium,\nHechos para Durar",
+        subtitle: "Cada producto que instalamos proviene de los fabricantes más confiables de la industria — diseñados para las condiciones más severas del Sur de Florida.",
+        brandsEyebrow: "Nuestros Socios",
+        brandsHeading: "Fabricantes de Confianza",
+        brandsBody: "Trabajamos exclusivamente con fabricantes cuyos productos cumplen o superan los requisitos del Código de Construcción de Florida y cuentan con aprobaciones de Aviso de Aceptación (NOA) del Condado Miami-Dade — el estándar de certificación de productos más exigente del país.",
+        brands: [
+          {
+            name: "ES Windows",
+            category: "Ventanas y Puertas de Impacto",
+            description: "Del Sur de Florida. ES Windows fabrica ventanas y puertas resistentes a impactos específicamente para el clima del Sur de Florida — probadas contra huracanes, eficientes energéticamente y respaldadas por certificaciones NOA de Miami-Dade.",
+          },
+          {
+            name: "PGT Innovations",
+            category: "Ventanas y Puertas de Impacto",
+            description: "El mayor fabricante de ventanas y puertas resistentes a impactos de Florida. Los productos PGT están diseñados y probados para soportar condiciones de huracán Categoría 5, ofreciendo protección superior y rendimiento energético.",
+          },
+          {
+            name: "CGI Windows & Doors",
+            category: "Ventanas y Puertas de Impacto",
+            description: "Un referente en el Sur de Florida por más de 25 años. CGI fabrica ventanas y puertas de impacto premium que combinan una estética elegante con una resistencia a huracanes y un rendimiento térmico sin compromisos.",
+          },
+          {
+            name: "Lawson",
+            category: "Herrajes y Componentes",
+            description: "Herrajes de ingeniería de precisión que garantizan que cada ventana, puerta y persiana funcione perfectamente durante años. Los herrajes arquitectónicos de Lawson están diseñados para la durabilidad en ambientes costeros con aire salino.",
+          },
+          {
+            name: "Bandalux",
+            category: "Protección Solar y Persianas",
+            description: "Líder internacional en protección solar y cobertura de ventanas. Las persianas solares Bandalux reducen la ganancia de calor, bloquean la radiación UV y reducen los costos de energía sin sacrificar la luz natural ni las vistas.",
+          },
+          {
+            name: "South Evolution",
+            category: "Persianas y Sistemas de Pantallas",
+            description: "Soluciones innovadoras de persianas y pantallas para huracanes diseñadas para confiabilidad y facilidad de uso. Los sistemas South Evolution se despliegan en segundos y cumplen con los requisitos del Código de Construcción de Florida.",
+          },
+        ],
+        standardsEyebrow: "Nuestros Estándares",
+        standardsHeading: "Por Qué Importan los Materiales",
+        standardsBody: "La fortaleza de su protección contra huracanes es tan buena como los materiales que la respaldan. Obtenemos productos exclusivamente de fabricantes cuyos productos han demostrado su valor en condiciones reales de tormenta — no solo en pruebas de laboratorio.",
+        standards: [
+          {
+            title: "Certificación NOA de Miami-Dade",
+            body: "El Aviso de Aceptación del Condado Miami-Dade es el estándar de aprobación de productos más exigente de los Estados Unidos. Cada producto que instalamos lleva esta certificación.",
+          },
+          {
+            title: "Cumple el Código de Construcción de Florida",
+            body: "Todos los materiales cumplen o superan los requisitos del Código de Construcción de Florida para resistencia al viento, protección contra impactos y eficiencia energética.",
+          },
+          {
+            title: "Vidrio Laminado de Impacto",
+            body: "Vidrio de seguridad laminado que permanece unido al impacto — protegiendo su hogar de los escombros de huracanes e intrusos sin necesidad de persianas adicionales.",
+          },
+          {
+            title: "Aluminio de Grado Costero",
+            body: "Los marcos y herrajes están fabricados con aleaciones de aluminio de grado marino formuladas específicamente para resistir la corrosión en el ambiente de aire salino del Sur de Florida.",
+          },
+        ],
+        ctaHeading: "Encontremos la Solución Correcta",
+        ctaSubtitle: "Nuestro equipo le guiará por cada opción de producto y material — adaptada a su hogar, su presupuesto y los requisitos de construcción del Sur de Florida.",
       },
     },
   },
