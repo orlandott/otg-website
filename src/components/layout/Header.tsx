@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Phone, Facebook, Instagram, Shield, ChevronDown, PackageSearch, CalendarCheck } from "lucide-react";
+import { Phone, Facebook, Instagram, Shield, PackageSearch, CalendarCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { products } from "@/lib/data/products";
@@ -57,7 +57,7 @@ function LanguageToggle({ variant = "light" }: { variant?: "light" | "dark" }) {
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
+
   const firstFocusRef = useRef<HTMLButtonElement>(null);
   const { t, language } = useLanguage();
 
@@ -112,7 +112,7 @@ export function Header() {
       {/* ── Fixed header bar ── */}
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-200",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white",
           isScrolled || isOpen ? "shadow-md" : "shadow-sm"
         )}
       >
@@ -273,57 +273,13 @@ export function Header() {
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     {link.children ? (
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setProductsOpen((v) => !v)}
-                          className="flex items-center justify-between w-full py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-base transition-colors"
-                        >
-                          {link.label}
-                          <ChevronDown
-                            size={15}
-                            className={cn(
-                              "flex-shrink-0 transition-transform duration-200",
-                              productsOpen && "rotate-180"
-                            )}
-                          />
-                        </button>
-
-                        <AnimatePresence initial={false}>
-                          {productsOpen && (
-                            <motion.ul
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
-                              className="overflow-hidden ml-2 border-l border-gray-200"
-                            >
-                              <li>
-                                <Link
-                                  href="/products"
-                                  onClick={close}
-                                  className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-blue text-[13px] font-body font-medium hover:text-navy transition-colors"
-                                >
-                                  <span className="w-1 h-1 rounded-full bg-blue flex-shrink-0" />
-                                  {t.nav.allProducts}
-                                </Link>
-                              </li>
-                              {link.children.map((child) => (
-                                <li key={child.href}>
-                                  <Link
-                                    href={child.href}
-                                    onClick={close}
-                                    className="flex items-center gap-2.5 py-2.5 pl-4 pr-3 text-navy/50 text-[13px] font-body hover:text-navy transition-colors"
-                                  >
-                                    <span className="w-1 h-1 rounded-full bg-navy/20 flex-shrink-0" />
-                                    {child.label}
-                                  </Link>
-                                </li>
-                              ))}
-                            </motion.ul>
-                          )}
-                        </AnimatePresence>
-                      </div>
+                      <Link
+                        href={link.href}
+                        onClick={close}
+                        className="block py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-base transition-colors"
+                      >
+                        {link.label}
+                      </Link>
                     ) : (
                       <Link
                         href={link.href}
