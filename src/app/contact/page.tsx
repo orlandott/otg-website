@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
+          <nav className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">{common.home}</Link>
             <ChevronRight size={14} />
             <span className="text-white/90">{p.breadcrumb}</span>
@@ -30,7 +30,7 @@ export default function ContactPage() {
             {p.heading}
           </motion.h1>
           <motion.p
-            className="mt-4 text-white/70 font-body text-base max-w-2xl"
+            className="mt-4 text-white/70 font-body text-lg max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <a
                     href="tel:+19546255318"
-                    className="flex items-center gap-3 text-charcoal hover:text-blue transition-colors font-body text-sm"
+                    className="flex items-center gap-3 text-charcoal hover:text-blue transition-colors font-body text-base"
                   >
                     <Phone size={18} className="text-blue" />
                     (954) 625-5318
@@ -65,12 +65,12 @@ export default function ContactPage() {
                     href="https://wa.me/19546491508"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-charcoal hover:text-blue transition-colors font-body text-sm"
+                    className="flex items-center gap-3 text-charcoal hover:text-blue transition-colors font-body text-base"
                   >
                     <MessageCircle size={18} className="text-blue" />
                     WhatsApp: +1 (954) 649-1508
                   </a>
-                  <div className="flex items-center gap-3 text-muted font-body text-sm">
+                  <div className="flex items-center gap-3 text-muted font-body text-base">
                     <Clock size={18} className="text-blue" />
                     {p.servingArea}
                   </div>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                   href="https://titan.orlandotgroupinc.com/status-tracking"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue font-body text-sm hover:text-sky hover:underline transition-colors"
+                  className="text-blue font-body text-base hover:text-sky hover:underline transition-colors"
                 >
                   {p.checkOrderStatus} &rarr;
                 </a>

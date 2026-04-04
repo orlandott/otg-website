@@ -32,7 +32,7 @@ export function Footer() {
               <Shield className="w-6 h-6 text-accent" />
               ORLANDO T GROUP
             </Link>
-            <p className="text-white/70 text-sm font-body max-w-xs leading-relaxed">
+            <p className="text-white/70 text-base font-body max-w-xs leading-relaxed">
               {t.footer.description}
             </p>
           </div>
@@ -51,7 +51,7 @@ export function Footer() {
                       target: "_blank",
                       rel: "noopener noreferrer",
                     })}
-                    className="text-white/70 hover:text-accent text-sm font-body transition-colors"
+                    className="text-white/70 hover:text-accent text-base font-body transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -68,7 +68,7 @@ export function Footer() {
             <div className="space-y-3">
               <a
                 href="tel:+19546255318"
-                className="flex items-center gap-2.5 text-white/70 hover:text-accent text-sm font-body transition-colors"
+                className="flex items-center gap-2.5 text-white/70 hover:text-accent text-base font-body transition-colors"
               >
                 <Phone size={15} />
                 (954) 625-5318
@@ -77,7 +77,7 @@ export function Footer() {
                 href="https://wa.me/19546491508"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-white/70 hover:text-accent text-sm font-body transition-colors"
+                className="flex items-center gap-2.5 text-white/70 hover:text-accent text-base font-body transition-colors"
               >
                 <MessageCircle size={15} />
                 WhatsApp
@@ -107,10 +107,10 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-white/50 text-xs font-body">
+          <p className="text-white/50 text-sm font-body">
             &copy; {new Date().getFullYear()} Orlando T Group Inc. {t.footer.rights}
           </p>
-          <p className="text-white/40 text-xs font-body">{t.footer.badge}</p>
+          <p className="text-white/40 text-sm font-body">{t.footer.badge}</p>
         </div>
       </div>
     </footer>

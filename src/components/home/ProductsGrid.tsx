@@ -48,7 +48,7 @@ function ProductCard({
             {features.map((feature) => (
               <li
                 key={feature}
-                className="flex items-center gap-2.5 text-charcoal text-sm font-body"
+                className="flex items-center gap-2.5 text-charcoal text-base font-body"
               >
                 <Check className="w-4 h-4 text-blue flex-shrink-0" />
                 {feature}
@@ -79,7 +79,7 @@ export function ProductsGrid() {
           >
             {t.products.heading}
           </h2>
-          <p className="mt-3 font-body text-muted text-sm max-w-lg mx-auto">
+          <p className="mt-3 font-body text-muted text-base max-w-lg mx-auto">
             {t.products.subtitle}
           </p>
         </motion.div>
@@ -103,7 +103,7 @@ export function ProductsGrid() {
         >
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-sm uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
+            className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-base uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
           >
             {t.products.viewAll}
           </Link>

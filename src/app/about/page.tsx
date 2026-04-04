@@ -24,7 +24,7 @@ export default function AboutPage() {
     <>
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
+          <nav className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">{common.home}</Link>
             <ChevronRight size={14} />
             <span className="text-white/90">{p.breadcrumb}</span>
@@ -39,7 +39,7 @@ export default function AboutPage() {
             {p.heading}
           </motion.h1>
           <motion.p
-            className="mt-4 text-white/70 font-body text-base max-w-2xl"
+            className="mt-4 text-white/70 font-body text-lg max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -57,7 +57,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="font-body text-accent uppercase tracking-[0.18em] text-xs font-medium mb-3">
+              <p className="font-body text-accent uppercase tracking-[0.18em] text-sm font-medium mb-3">
                 {p.storyEyebrow}
               </p>
               <h2
@@ -68,7 +68,7 @@ export default function AboutPage() {
                   <span key={i}>{line}{i === 0 && <br />}</span>
                 ))}
               </h2>
-              <div className="space-y-4 font-body text-charcoal text-sm leading-relaxed">
+              <div className="space-y-4 font-body text-charcoal text-base leading-relaxed">
                 <p>{p.storyP1}</p>
                 <p>{p.storyP2}</p>
                 <p>{p.storyP3}</p>
@@ -97,7 +97,7 @@ export default function AboutPage() {
                       "2006"
                     )}
                   </div>
-                  <div className="font-body text-muted text-xs uppercase tracking-wider">{label}</div>
+                  <div className="font-body text-muted text-sm uppercase tracking-wider">{label}</div>
                 </div>
               ))}
             </motion.div>
@@ -108,7 +108,7 @@ export default function AboutPage() {
       <section className="bg-surface py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="font-body text-accent uppercase tracking-[0.18em] text-xs font-medium mb-3">
+            <p className="font-body text-accent uppercase tracking-[0.18em] text-sm font-medium mb-3">
               {p.valuesEyebrow}
             </p>
             <h2
@@ -131,10 +131,10 @@ export default function AboutPage() {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
                   <Icon className="w-7 h-7 text-blue mb-4" strokeWidth={1.75} />
-                  <h3 className="font-heading font-bold text-navy uppercase text-base tracking-[0.02em] mb-3">
+                  <h3 className="font-heading font-bold text-navy uppercase text-[17px] tracking-[0.02em] mb-3">
                     {val.title}
                   </h3>
-                  <p className="font-body text-charcoal text-sm leading-relaxed">{val.body}</p>
+                  <p className="font-body text-charcoal text-base leading-relaxed">{val.body}</p>
                 </motion.div>
               );
             })}
@@ -146,7 +146,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="font-body text-accent uppercase tracking-[0.18em] text-xs font-medium mb-3">
+              <p className="font-body text-accent uppercase tracking-[0.18em] text-sm font-medium mb-3">
                 {p.servicesEyebrow}
               </p>
               <h2
@@ -157,7 +157,7 @@ export default function AboutPage() {
                   <span key={i}>{line}{i === 0 && <br />}</span>
                 ))}
               </h2>
-              <p className="font-body text-charcoal text-sm leading-relaxed mb-8">{p.servicesBody}</p>
+              <p className="font-body text-charcoal text-base leading-relaxed mb-8">{p.servicesBody}</p>
               <Link
                 href="/products"
                 className="inline-flex items-center gap-2 bg-blue text-white font-heading font-bold px-8 py-3.5 rounded text-sm uppercase tracking-[0.06em] hover:bg-blue transition-colors"
@@ -167,7 +167,7 @@ export default function AboutPage() {
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {p.services.map((service) => (
-                <li key={service} className="flex items-center gap-3 font-body text-charcoal text-sm">
+                <li key={service} className="flex items-center gap-3 font-body text-charcoal text-base">
                   <CheckCircle size={16} className="text-blue flex-shrink-0" strokeWidth={1.75} />
                   {service}
                 </li>
@@ -185,10 +185,10 @@ export default function AboutPage() {
           >
             {p.ctaHeading}
           </h2>
-          <p className="text-white/65 font-body text-sm mb-8">{p.ctaSubtitle}</p>
+          <p className="text-white/65 font-body text-base mb-8">{p.ctaSubtitle}</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-sm uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
             style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
           >
             {common.freeEstimate}

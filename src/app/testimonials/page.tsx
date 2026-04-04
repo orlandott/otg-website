@@ -58,7 +58,7 @@ export default function TestimonialsPage() {
     <>
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
+          <nav className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">{common.home}</Link>
             <ChevronRight size={14} />
             <span className="text-white/90">{p.breadcrumb}</span>
@@ -73,7 +73,7 @@ export default function TestimonialsPage() {
             {p.heading}
           </motion.h1>
           <motion.p
-            className="mt-4 text-white/70 font-body text-base max-w-2xl"
+            className="mt-4 text-white/70 font-body text-lg max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -89,17 +89,17 @@ export default function TestimonialsPage() {
             <div>
               <div className="font-heading font-bold text-navy text-4xl mb-1">5.0</div>
               <StarRow count={5} />
-              <div className="font-body text-muted text-xs mt-1 uppercase tracking-wider">{p.averageRating}</div>
+              <div className="font-body text-muted text-sm mt-1 uppercase tracking-wider">{p.averageRating}</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-[#E0E0E0]" />
             <div>
               <div className="font-heading font-bold text-navy text-4xl mb-1"><CountUp to={1000} suffix="+" /></div>
-              <div className="font-body text-muted text-xs uppercase tracking-wider">{p.projectsCompleted}</div>
+              <div className="font-body text-muted text-sm uppercase tracking-wider">{p.projectsCompleted}</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-[#E0E0E0]" />
             <div>
               <div className="font-heading font-bold text-navy text-4xl mb-1"><CountUp to={18} suffix="+" /></div>
-              <div className="font-body text-muted text-xs uppercase tracking-wider">{p.yearsInBusiness}</div>
+              <div className="font-body text-muted text-sm uppercase tracking-wider">{p.yearsInBusiness}</div>
             </div>
           </div>
         </div>
@@ -118,11 +118,11 @@ export default function TestimonialsPage() {
                 transition={{ duration: 0.4, delay: i * 0.06 }}
               >
                 <StarRow count={testimonial.rating} />
-                <p className="font-body text-charcoal text-sm leading-relaxed mt-4 mb-5">
+                <p className="font-body text-charcoal text-base leading-relaxed mt-4 mb-5">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
                 <div className="border-t border-[#F0F0F0] pt-4 flex items-center justify-between">
-                  <div className="font-heading font-bold text-navy text-sm uppercase tracking-[0.03em]">
+                  <div className="font-heading font-bold text-navy text-base uppercase tracking-[0.03em]">
                     {testimonial.name}
                   </div>
                   {testimonial.source === "Google Reviews" ? <GoogleIcon /> : <YelpIcon />}
@@ -141,10 +141,10 @@ export default function TestimonialsPage() {
           >
             {p.ctaHeading}
           </h2>
-          <p className="text-white/65 font-body text-sm mb-8">{p.ctaSubtitle}</p>
+          <p className="text-white/65 font-body text-base mb-8">{p.ctaSubtitle}</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-sm uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
             style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
           >
             {common.freeEstimate}

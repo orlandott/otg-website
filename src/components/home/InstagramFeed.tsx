@@ -31,7 +31,7 @@ export function InstagramFeed() {
             href="https://instagram.com/orlandotgroup"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-blue font-body text-sm font-medium hover:text-sky transition-colors"
+            className="flex items-center gap-2 text-blue font-body text-base font-medium hover:text-sky transition-colors"
           >
             <Instagram size={16} />
             @orlandotgroup

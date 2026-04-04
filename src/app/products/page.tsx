@@ -16,7 +16,7 @@ export default function ProductsPage() {
     <>
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
+          <nav className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">{common.home}</Link>
             <ChevronRight size={14} />
             <span className="text-white/90">{p.breadcrumb}</span>
@@ -31,7 +31,7 @@ export default function ProductsPage() {
             {p.heading}
           </motion.h1>
           <motion.p
-            className="mt-4 text-white/70 font-body text-base max-w-2xl"
+            className="mt-4 text-white/70 font-body text-lg max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -55,10 +55,10 @@ export default function ProductsPage() {
           >
             {p.ctaHeading}
           </h2>
-          <p className="text-white/65 font-body text-sm mb-8">{p.ctaSubtitle}</p>
+          <p className="text-white/65 font-body text-base mb-8">{p.ctaSubtitle}</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-sm uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
             style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
           >
             {p.ctaButton}

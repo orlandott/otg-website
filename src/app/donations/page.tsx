@@ -38,7 +38,7 @@ export default function DonationsPage() {
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
-            className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6"
+            className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="hover:text-white transition-colors">
@@ -62,7 +62,7 @@ export default function DonationsPage() {
           </motion.div>
 
           <motion.p
-            className="mt-2 text-white/70 font-body text-base max-w-2xl leading-relaxed"
+            className="mt-2 text-white/70 font-body text-lg max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -133,7 +133,7 @@ export default function DonationsPage() {
                       <h3 className="font-heading font-bold text-navy text-lg leading-tight">
                         {org.name}
                       </h3>
-                      <p className="font-body text-muted text-xs uppercase tracking-wider mt-0.5">
+                      <p className="font-body text-muted text-sm uppercase tracking-wider mt-0.5">
                         {org.impact}
                       </p>
                     </div>
@@ -143,7 +143,7 @@ export default function DonationsPage() {
                   </span>
                 </div>
 
-                <p className="font-body text-charcoal text-sm leading-relaxed">
+                <p className="font-body text-charcoal text-base leading-relaxed">
                   {org.description}
                 </p>
 
@@ -151,7 +151,7 @@ export default function DonationsPage() {
                   href={org.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-blue font-body font-medium text-sm hover:underline mt-auto"
+                  className="inline-flex items-center gap-1.5 text-blue font-body font-medium text-base hover:underline mt-auto"
                 >
                   Learn more about {org.name}
                   <ChevronRight size={14} />
@@ -176,7 +176,7 @@ export default function DonationsPage() {
             Protect Your Home.<br />Protect the Planet.
           </motion.h2>
           <motion.p
-            className="font-body text-white/70 text-base mb-8 leading-relaxed"
+            className="font-body text-white/70 text-lg mb-8 leading-relaxed"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -193,13 +193,13 @@ export default function DonationsPage() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-heading font-bold px-10 py-4 rounded-[8px] text-sm uppercase tracking-[0.06em] transition-colors shadow-cta"
+              className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-heading font-bold px-10 py-4 rounded-[8px] text-base uppercase tracking-[0.06em] transition-colors shadow-cta"
             >
               Get a Free Consultation
             </Link>
             <Link
               href="/products"
-              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-heading font-bold px-10 py-4 rounded-[8px] text-sm uppercase tracking-[0.06em] hover:bg-white/10 hover:border-white/50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-heading font-bold px-10 py-4 rounded-[8px] text-base uppercase tracking-[0.06em] hover:bg-white/10 hover:border-white/50 transition-colors"
             >
               View Our Products
             </Link>

@@ -25,7 +25,7 @@ export default function FreeMaintenancePage() {
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
-            className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6"
+            className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="hover:text-white transition-colors">{common.home}</Link>
@@ -39,7 +39,7 @@ export default function FreeMaintenancePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Wrench className="w-8 h-8 text-accent flex-shrink-0" strokeWidth={1.75} />
+            <Wrench className="w-8 h-8 text-white flex-shrink-0" strokeWidth={1.75} />
             <h1
               className="font-heading font-bold text-white uppercase leading-[1.05]"
               style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
@@ -51,7 +51,7 @@ export default function FreeMaintenancePage() {
           </motion.div>
 
           <motion.p
-            className="mt-2 text-white/70 font-body text-base max-w-2xl leading-relaxed"
+            className="mt-2 text-white/70 font-body text-lg max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -65,7 +65,7 @@ export default function FreeMaintenancePage() {
       <section className="py-16 md:py-24 bg-white" aria-labelledby="whats-included-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.p
-            className="font-body text-xs text-blue uppercase tracking-[0.1em] font-semibold mb-2 text-center"
+            className="font-body text-sm text-blue uppercase tracking-[0.1em] font-semibold mb-2 text-center"
             {...fadeUp()}
           >
             {p.whatEyebrow}
@@ -79,7 +79,7 @@ export default function FreeMaintenancePage() {
             {p.whatHeading}
           </motion.h2>
           <motion.p
-            className="font-body text-charcoal text-base max-w-2xl mx-auto text-center leading-relaxed mb-14"
+            className="font-body text-charcoal text-lg max-w-2xl mx-auto text-center leading-relaxed mb-14"
             {...fadeUp(0.1)}
           >
             {p.whatBody}
@@ -97,8 +97,8 @@ export default function FreeMaintenancePage() {
                     <Wrench className="w-5 h-5 text-blue" strokeWidth={1.75} />
                   </div>
                   <div>
-                    <h3 className="font-heading font-semibold text-navy text-[18px] mb-2">{item.title}</h3>
-                    <p className="font-body text-charcoal text-sm leading-relaxed">{item.body}</p>
+                    <h3 className="font-heading font-semibold text-navy text-[20px] mb-2">{item.title}</h3>
+                    <p className="font-body text-charcoal text-base leading-relaxed">{item.body}</p>
                   </div>
                 </div>
               </motion.div>
@@ -111,7 +111,7 @@ export default function FreeMaintenancePage() {
       <section className="py-16 md:py-24 bg-surface" aria-labelledby="how-it-works-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.p
-            className="font-body text-xs text-blue uppercase tracking-[0.1em] font-semibold mb-2 text-center"
+            className="font-body text-sm text-blue uppercase tracking-[0.1em] font-semibold mb-2 text-center"
             {...fadeUp()}
           >
             {p.howEyebrow}
@@ -137,9 +137,9 @@ export default function FreeMaintenancePage() {
                   <div className="w-14 h-14 rounded-full bg-blue flex items-center justify-center mb-5 shadow-md">
                     <Icon className="w-6 h-6 text-white" strokeWidth={1.75} />
                   </div>
-                  <div className="font-heading font-bold text-blue text-xs uppercase tracking-[0.1em] mb-1">{step.step}</div>
-                  <h3 className="font-heading font-semibold text-navy text-[18px] mb-3">{step.title}</h3>
-                  <p className="font-body text-charcoal text-sm leading-relaxed max-w-xs">{step.body}</p>
+                  <div className="font-heading font-bold text-blue text-sm uppercase tracking-[0.1em] mb-1">{step.step}</div>
+                  <h3 className="font-heading font-semibold text-navy text-[20px] mb-3">{step.title}</h3>
+                  <p className="font-body text-charcoal text-base leading-relaxed max-w-xs">{step.body}</p>
                 </motion.div>
               );
             })}
@@ -154,19 +154,19 @@ export default function FreeMaintenancePage() {
 
             {/* Products covered */}
             <motion.div {...fadeUp()}>
-              <p className="font-body text-xs text-blue uppercase tracking-[0.1em] font-semibold mb-2">{p.productsEyebrow}</p>
+              <p className="font-body text-sm text-blue uppercase tracking-[0.1em] font-semibold mb-2">{p.productsEyebrow}</p>
               <h2
                 className="font-heading font-bold text-navy uppercase mb-4"
                 style={{ fontSize: "clamp(22px, 2.5vw, 32px)" }}
               >
                 {p.productsHeading}
               </h2>
-              <p className="font-body text-charcoal text-sm leading-relaxed mb-7">{p.productsBody}</p>
+              <p className="font-body text-charcoal text-base leading-relaxed mb-7">{p.productsBody}</p>
               <ul className="space-y-3">
                 {p.products.map((product, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <CheckCircle className="w-4 h-4 text-green flex-shrink-0" strokeWidth={2} />
-                    <span className="font-body text-charcoal text-sm">{product}</span>
+                    <span className="font-body text-charcoal text-base">{product}</span>
                   </li>
                 ))}
               </ul>
@@ -174,19 +174,19 @@ export default function FreeMaintenancePage() {
 
             {/* Why it matters */}
             <motion.div {...fadeUp(0.1)}>
-              <p className="font-body text-xs text-blue uppercase tracking-[0.1em] font-semibold mb-2">{p.whyEyebrow}</p>
+              <p className="font-body text-sm text-blue uppercase tracking-[0.1em] font-semibold mb-2">{p.whyEyebrow}</p>
               <h2
                 className="font-heading font-bold text-navy uppercase mb-4"
                 style={{ fontSize: "clamp(22px, 2.5vw, 32px)" }}
               >
                 {p.whyHeading}
               </h2>
-              <p className="font-body text-charcoal text-sm leading-relaxed mb-7">{p.whyBody}</p>
+              <p className="font-body text-charcoal text-base leading-relaxed mb-7">{p.whyBody}</p>
               <ul className="space-y-3">
                 {p.whyPoints.map((point, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle className="w-4 h-4 text-green flex-shrink-0 mt-0.5" strokeWidth={2} />
-                    <span className="font-body text-charcoal text-sm">{point}</span>
+                    <span className="font-body text-charcoal text-base">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -207,7 +207,7 @@ export default function FreeMaintenancePage() {
             {p.ctaHeading}
           </motion.h2>
           <motion.p
-            className="font-body text-white/70 text-base mb-8 leading-relaxed"
+            className="font-body text-white/70 text-lg mb-8 leading-relaxed"
             {...fadeUp(0.1)}
           >
             {p.ctaSubtitle}
@@ -218,13 +218,13 @@ export default function FreeMaintenancePage() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-heading font-bold px-10 py-4 rounded-[8px] text-sm uppercase tracking-[0.06em] transition-colors shadow-cta"
+              className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-heading font-bold px-10 py-4 rounded-[8px] text-base uppercase tracking-[0.06em] transition-colors shadow-cta"
             >
               {common.freeEstimate}
             </Link>
             <Link
               href="/products"
-              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-heading font-bold px-10 py-4 rounded-[8px] text-sm uppercase tracking-[0.06em] hover:bg-white/10 hover:border-white/50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-heading font-bold px-10 py-4 rounded-[8px] text-base uppercase tracking-[0.06em] hover:bg-white/10 hover:border-white/50 transition-colors"
             >
               View Our Products
             </Link>

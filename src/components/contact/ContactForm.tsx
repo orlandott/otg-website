@@ -15,9 +15,9 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const inputClass =
-  "w-full px-4 py-3 bg-white border border-[#E0E0E0] rounded text-charcoal placeholder:text-muted font-body text-sm focus:outline-none focus:ring-2 focus:ring-blue/30 focus:border-blue transition-colors";
+  "w-full px-4 py-3 bg-white border border-[#E0E0E0] rounded text-charcoal placeholder:text-muted font-body text-base focus:outline-none focus:ring-2 focus:ring-blue/30 focus:border-blue transition-colors";
 
-const labelClass = "block text-sm font-body font-medium text-charcoal mb-2";
+const labelClass = "block text-base font-body font-medium text-charcoal mb-2";
 
 export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
@@ -91,12 +91,12 @@ export function ContactForm() {
       </div>
 
       {submitStatus === "success" && (
-        <p className="text-blue font-body text-sm text-center py-2">
+        <p className="text-blue font-body text-base text-center py-2">
           Thanks! We will contact you to schedule a consultation.
         </p>
       )}
       {submitStatus === "error" && (
-        <p className="text-red-500 font-body text-sm text-center py-2">
+        <p className="text-red-500 font-body text-base text-center py-2">
           Something went wrong. Please try again or call us directly.
         </p>
       )}

@@ -32,7 +32,7 @@ export function ProjectsSection() {
           >
             {t.projects.heading}
           </h2>
-          <p className="mt-3 font-body text-muted text-sm max-w-2xl mx-auto">
+          <p className="mt-3 font-body text-muted text-base max-w-2xl mx-auto">
             {t.projects.subtitle}
           </p>
         </motion.div>
@@ -69,19 +69,19 @@ export function ProjectsSection() {
         >
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-sm uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
+            className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-base uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
           >
             {t.projects.learnMore}
           </Link>
           <Link
             href="/testimonials"
-            className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-sm uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
+            className="inline-flex items-center justify-center px-8 py-3 border-2 border-blue text-blue font-heading font-bold rounded text-base uppercase tracking-wide hover:bg-blue hover:text-white transition-colors"
           >
             {t.projects.testimonials}
           </Link>
           <a
             href="#consultation"
-            className="inline-flex items-center justify-center px-8 py-3 bg-accent text-white font-heading font-bold rounded text-sm uppercase tracking-wide hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center justify-center px-8 py-3 bg-accent text-white font-heading font-bold rounded text-base uppercase tracking-wide hover:bg-accent-hover transition-colors"
             style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.25)" }}
           >
             {t.projects.freeConsultation}

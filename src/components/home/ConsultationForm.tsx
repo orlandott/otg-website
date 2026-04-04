@@ -16,9 +16,9 @@ type FormData = {
 };
 
 const inputClass =
-  "w-full px-4 py-3 bg-white border border-[#E0E0E0] rounded text-charcoal placeholder:text-muted font-body text-sm focus:outline-none focus:ring-2 focus:ring-blue/30 focus:border-blue transition-colors";
+  "w-full px-4 py-3 bg-white border border-[#E0E0E0] rounded text-charcoal placeholder:text-muted font-body text-base focus:outline-none focus:ring-2 focus:ring-blue/30 focus:border-blue transition-colors";
 
-const labelClass = "block text-sm font-body font-medium text-charcoal mb-2";
+const labelClass = "block text-base font-body font-medium text-charcoal mb-2";
 
 export function ConsultationForm() {
   const { t } = useLanguage();
@@ -65,7 +65,7 @@ export function ConsultationForm() {
           >
             {t.consultation.heading}
           </h2>
-          <p className="mt-3 font-body text-muted text-sm">
+          <p className="mt-3 font-body text-muted text-base">
             {t.consultation.subtitle}
           </p>
         </motion.div>
@@ -157,12 +157,12 @@ export function ConsultationForm() {
           </div>
 
           {submitStatus === "success" && (
-            <p className="text-blue font-body text-sm text-center py-2">
+            <p className="text-blue font-body text-base text-center py-2">
               {t.consultation.success}
             </p>
           )}
           {submitStatus === "error" && (
-            <p className="text-red-500 font-body text-sm text-center py-2">
+            <p className="text-red-500 font-body text-base text-center py-2">
               {t.consultation.error}
             </p>
           )}

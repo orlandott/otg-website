@@ -52,7 +52,7 @@ export function ProductSection({ product, index }: ProductSectionProps) {
               {product.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-center gap-3 text-charcoal font-body text-sm"
+                  className="flex items-center gap-3 text-charcoal font-body text-base"
                 >
                   <Check className="w-4 h-4 text-blue flex-shrink-0" />
                   {feature}
@@ -61,7 +61,7 @@ export function ProductSection({ product, index }: ProductSectionProps) {
             </ul>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-7 py-3.5 rounded text-sm uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
+              className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-7 py-3.5 rounded text-base uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
               style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.25)" }}
             >
               Get Free Quote

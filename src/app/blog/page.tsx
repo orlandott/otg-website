@@ -83,7 +83,7 @@ export default function BlogPage() {
     <>
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/60 text-xs font-body uppercase tracking-wider mb-6">
+          <nav className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6">
             <Link href="/" className="hover:text-white transition-colors">{common.home}</Link>
             <ChevronRight size={14} />
             <span className="text-white/90">{p.breadcrumb}</span>
@@ -100,7 +100,7 @@ export default function BlogPage() {
             ))}
           </motion.h1>
           <motion.p
-            className="mt-4 text-white/70 font-body text-base max-w-2xl"
+            className="mt-4 text-white/70 font-body text-lg max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -141,14 +141,14 @@ export default function BlogPage() {
           >
             <div className="p-8 md:p-12">
               <div className="flex items-center gap-3 mb-4">
-                <span className="px-3 py-1 bg-accent/10 text-accent font-body text-xs uppercase tracking-wider rounded-full">
+                <span className="px-3 py-1 bg-accent/10 text-accent font-body text-sm uppercase tracking-wider rounded-full">
                   {posts[0].category}
                 </span>
-                <span className="font-body text-muted text-xs flex items-center gap-1.5">
+                <span className="font-body text-muted text-sm flex items-center gap-1.5">
                   <Calendar size={12} />
                   {posts[0].date}
                 </span>
-                <span className="font-body text-muted text-xs">{posts[0].readTime}</span>
+                <span className="font-body text-muted text-sm">{posts[0].readTime}</span>
               </div>
               <h2
                 className="font-heading font-bold text-navy uppercase leading-[1.1] mb-4"
@@ -156,12 +156,12 @@ export default function BlogPage() {
               >
                 {posts[0].title}
               </h2>
-              <p className="font-body text-charcoal text-sm leading-relaxed mb-6 max-w-3xl">
+              <p className="font-body text-charcoal text-base leading-relaxed mb-6 max-w-3xl">
                 {posts[0].excerpt}
               </p>
               <Link
                 href={`/blog/${posts[0].slug}`}
-                className="inline-flex items-center gap-2 text-blue font-body font-medium text-sm hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-blue font-body font-medium text-base hover:gap-3 transition-all"
               >
                 {p.readArticle} <ArrowRight size={14} />
               </Link>
@@ -188,20 +188,20 @@ export default function BlogPage() {
                       {post.date}
                     </span>
                   </div>
-                  <h3 className="font-heading font-bold text-navy uppercase text-sm leading-[1.3] tracking-[0.02em] mb-3 flex-1">
+                  <h3 className="font-heading font-bold text-navy uppercase text-base leading-[1.3] tracking-[0.02em] mb-3 flex-1">
                     {post.title}
                   </h3>
-                  <p className="font-body text-charcoal text-xs leading-relaxed mb-5 line-clamp-3">
+                  <p className="font-body text-charcoal text-sm leading-relaxed mb-5 line-clamp-3">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-1.5 text-blue font-body text-xs font-medium hover:gap-2.5 transition-all"
+                      className="inline-flex items-center gap-1.5 text-blue font-body text-sm font-medium hover:gap-2.5 transition-all"
                     >
                       {p.read} <ArrowRight size={12} />
                     </Link>
-                    <span className="font-body text-muted text-xs">{post.readTime}</span>
+                    <span className="font-body text-muted text-sm">{post.readTime}</span>
                   </div>
                 </div>
               </motion.article>
@@ -218,10 +218,10 @@ export default function BlogPage() {
           >
             {p.ctaHeading}
           </h2>
-          <p className="text-white/65 font-body text-sm mb-8">{p.ctaSubtitle}</p>
+          <p className="text-white/65 font-body text-base mb-8">{p.ctaSubtitle}</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-sm uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
             style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
           >
             {common.freeEstimate}

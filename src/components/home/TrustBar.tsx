@@ -42,7 +42,7 @@ export function TrustBar() {
                   stat.value
                 )}
               </p>
-              <p className="text-white/75 font-body text-xs uppercase tracking-[0.15em]">
+              <p className="text-white/75 font-body text-sm uppercase tracking-[0.15em]">
                 {stat.label}
               </p>
             </motion.div>

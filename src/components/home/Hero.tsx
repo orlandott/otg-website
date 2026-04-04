@@ -66,14 +66,14 @@ export function Hero() {
         >
           <Link
             href="#consultation"
-            className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-heading font-bold uppercase tracking-[0.06em] rounded text-sm hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-heading font-bold uppercase tracking-[0.06em] rounded text-base hover:bg-accent-hover transition-colors"
             style={{ boxShadow: "0 4px 16px rgba(17,109,255,0.35)" }}
           >
             {t.hero.ctaConsultation}
           </Link>
           <a
             href="tel:+19546255318"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/50 text-white font-heading font-bold uppercase tracking-[0.06em] rounded text-sm hover:border-white hover:bg-white/10 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/50 text-white font-heading font-bold uppercase tracking-[0.06em] rounded text-base hover:border-white hover:bg-white/10 transition-colors"
           >
             <Phone size={15} />
             (954) 625-5318
@@ -88,7 +88,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.45 }}
         >
           {badges.map((item, i) => (
-            <span key={i} className="font-body text-white text-xs uppercase tracking-wider">
+            <span key={i} className="font-body text-white text-sm uppercase tracking-wider">
               {item}
             </span>
           ))}

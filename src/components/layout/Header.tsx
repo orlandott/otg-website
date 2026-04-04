@@ -138,7 +138,7 @@ export function Header() {
               {/* Contact links */}
               <a
                 href="tel:+19546255318"
-                className="hidden sm:flex items-center gap-1.5 text-navy/65 hover:text-navy transition-colors font-body text-sm"
+                className="hidden sm:flex items-center gap-1.5 text-navy/65 hover:text-navy transition-colors font-body text-base"
               >
                 <Phone size={14} strokeWidth={1.75} />
                 (954) 625-5318
@@ -277,7 +277,7 @@ export function Header() {
                         <button
                           type="button"
                           onClick={() => setProductsOpen((v) => !v)}
-                          className="flex items-center justify-between w-full py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-sm transition-colors"
+                          className="flex items-center justify-between w-full py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-base transition-colors"
                         >
                           {link.label}
                           <ChevronDown
@@ -328,7 +328,7 @@ export function Header() {
                       <Link
                         href={link.href}
                         onClick={close}
-                        className="block py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-sm transition-colors"
+                        className="block py-3 px-3 rounded text-navy/75 hover:text-navy hover:bg-navy/[0.05] font-body font-medium uppercase tracking-wider text-base transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -351,7 +351,7 @@ export function Header() {
               <div className="flex items-center justify-between">
                 <a
                   href="tel:+19546255318"
-                  className="flex items-center gap-2.5 text-navy/60 hover:text-navy transition-colors font-body text-sm"
+                  className="flex items-center gap-2.5 text-navy/60 hover:text-navy transition-colors font-body text-base"
                 >
                   <Phone size={14} strokeWidth={1.75} />
                   (954) 625-5318
@@ -382,7 +382,7 @@ export function Header() {
                 href="https://titan.orlandotgroupinc.com/status-tracking"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full bg-blue hover:bg-blue/90 text-white font-heading font-bold px-6 py-3 rounded-[8px] text-sm uppercase tracking-wide transition-colors"
+                className="flex items-center justify-center gap-2 w-full bg-blue hover:bg-blue/90 text-white font-heading font-bold px-6 py-3 rounded-[8px] text-base uppercase tracking-wide transition-colors"
               >
                 <PackageSearch size={15} strokeWidth={2} />
                 Track My Order
@@ -391,7 +391,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={close}
-                className="flex items-center justify-center gap-2 w-full bg-accent hover:bg-accent-hover text-white font-heading font-bold px-6 py-3 rounded-[8px] text-sm uppercase tracking-wide transition-colors shadow-cta"
+                className="flex items-center justify-center gap-2 w-full bg-accent hover:bg-accent-hover text-white font-heading font-bold px-6 py-3 rounded-[8px] text-base uppercase tracking-wide transition-colors shadow-cta"
               >
                 <CalendarCheck size={15} strokeWidth={2} />
                 {t.nav.freeEstimate}

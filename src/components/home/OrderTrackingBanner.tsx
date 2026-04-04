@@ -15,7 +15,7 @@ export function OrderTrackingBanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="font-body text-white/60 text-xs uppercase tracking-[0.18em] mb-3">
+          <p className="font-body text-white/60 text-sm uppercase tracking-[0.18em] mb-3">
             {t.orderTracking.eyebrow}
           </p>
           <h2
@@ -24,14 +24,14 @@ export function OrderTrackingBanner() {
           >
             {t.orderTracking.heading}
           </h2>
-          <p className="text-white/65 font-body text-sm mb-8">
+          <p className="text-white/65 font-body text-base mb-8">
             {t.orderTracking.subtitle}
           </p>
           <Link
             href="https://titan.orlandotgroupinc.com/status-tracking"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-accent text-white font-heading font-bold px-10 py-4 rounded uppercase tracking-[0.06em] text-sm hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center justify-center bg-accent text-white font-heading font-bold px-10 py-4 rounded uppercase tracking-[0.06em] text-base hover:bg-accent-hover transition-colors"
             style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
           >
             {t.orderTracking.cta}
