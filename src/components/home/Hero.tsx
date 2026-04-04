@@ -102,7 +102,13 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.5 }}
       >
-        <ChevronDown className="w-6 h-6 text-white animate-bounce" />
+        <button
+          onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}
+          aria-label="Scroll to products"
+          className="cursor-pointer"
+        >
+          <ChevronDown className="w-6 h-6 text-white animate-bounce" />
+        </button>
       </motion.div>
     </section>
   );
