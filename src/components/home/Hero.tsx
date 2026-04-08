@@ -67,7 +67,7 @@ export function Hero() {
           <Link
             href="#consultation"
             className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-heading font-bold uppercase tracking-[0.06em] rounded text-base hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(46,125,82,0.35)" }}
+            style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.35)" }}
           >
             {t.hero.ctaConsultation}
           </Link>

@@ -40,7 +40,7 @@
 **Rules:**
 - Never hardcode hex values in components — always use Tailwind tokens above
 - `accent` is reserved for the single highest-priority CTA per page
-- `green` matches the CTA green (`#2E7D52`); use `accent` for buttons and `green` for inline trust marks (checkmarks, etc.)
+- `green` matches the logo / CTA green (`#82c55a`); use `accent` for buttons and `green` for inline trust marks (checkmarks, etc.)
 - Load the theme-selector skill before making any new color decisions
 
 ---

@@ -9,7 +9,7 @@ export function TrustBar() {
 
   const stats = [
     { id: "established", value: "2006", label: t.trustBar.stat1Label, countTo: null, suffix: "" },
-    { id: "projects", value: "1,000+", label: t.trustBar.stat2Label, countTo: 1000, suffix: "+" },
+    { id: "projects", value: "1,600+", label: t.trustBar.stat2Label, countTo: 1600, suffix: "+" },
     { id: "counties", value: "3", label: t.trustBar.stat3Label, countTo: 3, suffix: "" },
   ];
 

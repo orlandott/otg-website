@@ -32,7 +32,7 @@ export function OrderTrackingBanner() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-accent text-white font-heading font-bold px-10 py-4 rounded uppercase tracking-[0.06em] text-base hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(46,125,82,0.30)" }}
+            style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.30)" }}
           >
             {t.orderTracking.cta}
           </Link>

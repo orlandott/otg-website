@@ -44,8 +44,8 @@ Load this skill **automatically** whenever any of the following are requested fo
 
 | Role            | Name         | Hex       | RGB               | Usage                                               |
 | --------------- | ------------ | --------- | ----------------- | --------------------------------------------------- |
-| **CTA Buttons** | Brand Green  | `#2E7D52` | rgb(46, 125, 82)  | Primary CTAs, header/footer estimate buttons        |
-| **Trust Green** | Safety Green | `#2E7D52` | rgb(46, 125, 82)  | Checkmarks, benefits, stars, "verified" indicators  |
+| **CTA Buttons** | Logo Green   | `#82C55A` | rgb(130, 197, 90) | Primary CTAs, header/footer estimate buttons        |
+| **Trust / UI**  | Same green   | `#82C55A` | rgb(130, 197, 90) | Checkmarks, benefits, stars, "verified" indicators  |
 | **Dark Navy**   | Deep Navy    | `#001A4D` | rgb(0, 26, 77)    | Footer, dark sections, overlays                     |
 
 ---
@@ -73,7 +73,7 @@ font-weight: 400 | 600;
 | H3 Card Title | 20–24px | 700    | #003087            |
 | Body          | 16–18px | 400    | #2D3748            |
 | Caption/Label | 13–14px | 600    | #718096            |
-| CTA Button    | 16px    | 700    | #FFFFFF on #003087 |
+| CTA Button    | 16px    | 700    | #FFFFFF on #82C55A |
 
 ---
 
@@ -95,7 +95,7 @@ font-weight: 400 | 600;
   --otg-text-muted: #718096;
 
   /* Accents */
-  --otg-green: #2e7d52; /* CTAs + trust marks (website uses Tailwind accent = this green) */
+  --otg-green: #82c55a; /* CTAs + trust marks (website Tailwind accent = logo green) */
 
   /* Gradients */
   --otg-gradient-hero: linear-gradient(
@@ -164,9 +164,9 @@ font-weight: 400 | 600;
 ## 🖼️ VISUAL STYLE RULES
 
 1. **Backgrounds:** White or very light gray (#F5F7FA) for content areas; deep navy (#001A4D) for hero sections and footers.
-2. **Buttons:** Primary CTA = white text on `#2E7D52` (brand green) with 8px border radius. Secondary = outlined `#317ACC` (blue).
+2. **Buttons:** Primary CTA = white text on `#82C55A` (logo green) with 8px border radius; hover `#6BA845`. Secondary = outlined `#317ACC` (blue).
 3. **Cards:** White background, `--otg-shadow-card` shadow, 16px radius.
-4. **Icons/Checkmarks:** Use `--otg-green` (#2E7D52) for benefit lists.
+4. **Icons/Checkmarks:** Use `--otg-green` (#82C55A) for benefit lists.
 5. **Promotional badges:** Prefer `sky` / `blue` tokens — avoid orange unless a specific campaign requires it.
 6. **Photography:** Real South Florida homes, storms/windows (not stock-generic). Show the before/after transformation.
 7. **Gradients:** Use `--otg-gradient-hero` for hero banners, dark overlays on photos.
@@ -188,8 +188,8 @@ font-weight: 400 | 600;
 PRIMARY BLUE:   #003087   ← Buttons, headlines, logo
 SECONDARY BLUE: #1E5EBF   ← Accents, links
 LIGHT BLUE:     #4A90D9   ← Gradients, icons
-CTA GREEN:      #2E7D52   ← Primary buttons, key actions, checkmarks
-GREEN:          #2E7D52   ← Same token — trust indicators
+LOGO GREEN:     #82C55A   ← Primary buttons, key actions, checkmarks
+GREEN HOVER:    #6BA845   ← CTA hover state
 WHITE:          #FFFFFF   ← Backgrounds
 DARK TEXT:      #2D3748   ← Body copy
 DEEP NAVY:      #001A4D   ← Footer, dark overlays

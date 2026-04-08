@@ -118,7 +118,7 @@ export default function TestimonialsPage() {
             </div>
             <div className="hidden sm:block w-px h-12 bg-[#E0E0E0]" />
             <div>
-              <div className="font-heading font-bold text-navy text-4xl mb-1"><CountUp to={1000} suffix="+" /></div>
+              <div className="font-heading font-bold text-navy text-4xl mb-1"><CountUp to={1600} suffix="+" /></div>
               <div className="font-body text-muted text-sm uppercase tracking-wider">{p.projectsCompleted}</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-[#E0E0E0]" />
@@ -178,7 +178,7 @@ export default function TestimonialsPage() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(46,125,82,0.30)" }}
+            style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.30)" }}
           >
             {common.freeEstimate}
           </Link>

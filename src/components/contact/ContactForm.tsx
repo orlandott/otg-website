@@ -104,7 +104,7 @@ export function ContactForm() {
       <button
         type="submit"
         className="w-full bg-accent text-white font-heading font-bold py-4 px-6 rounded uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
-        style={{ boxShadow: "0 4px 16px rgba(46,125,82,0.25)" }}
+        style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.25)" }}
       >
         Submit Request
       </button>
