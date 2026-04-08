@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { products } from "@/lib/data/products";
@@ -36,11 +36,22 @@ function FAQItem({ faq, index }: { faq: { q: string; a: string }; index: number 
           strokeWidth={2}
         />
       </button>
-      {open && (
-        <p className="font-body text-charcoal text-[15px] leading-relaxed pb-5 pr-8">
-          {faq.a}
-        </p>
-      )}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="answer"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <p className="font-body text-charcoal text-[15px] leading-relaxed pb-5 pr-8">
+              {faq.a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
