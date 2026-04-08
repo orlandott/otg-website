@@ -15,8 +15,8 @@ const config: Config = {
         navy:          "#1a202c",   // neutral dark — header, footer, dark sections
         blue:          "#317ACC",   // brand blue — primary interactive, links
         sky:           "#1E5EBF",   // sky blue — secondary accents, hover states
-        accent:        "#FF6B00",   // bright orange — urgent CTAs only
-        "accent-hover": "#E05A00",  // darker orange on hover
+        accent:        "#2E7D52",   // logo / brand green — primary CTAs
+        "accent-hover": "#256b46",  // darker green on hover
         surface:       "#F5F7FA",   // light gray — section backgrounds, forms
         charcoal:      "#2D3748",   // dark gray — body text
         muted:         "#718096",   // medium gray — captions, secondary info
@@ -36,7 +36,7 @@ const config: Config = {
         sm:  "0 1px 3px rgba(0,0,0,0.08)",
         md:  "0 4px 12px rgba(0,0,0,0.10)",
         lg:  "0 8px 24px rgba(0,0,0,0.12)",
-        cta: "0 4px 16px rgba(224,123,57,0.35)",
+        cta: "0 4px 16px rgba(46,125,82,0.35)",
       },
     },
   },

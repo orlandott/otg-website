@@ -7,8 +7,8 @@
   --color-navy:         #1a202c; /* neutral dark — header, footer, dark sections */
   --color-blue:         #317ACC; /* brand blue — primary interactive */
   --color-sky:          #1E5EBF; /* sky blue — secondary accents */
-  --color-accent:       #FF6B00; /* bright orange — urgent CTAs */
-  --color-accent-hover: #E05A00;
+  --color-accent:       #2E7D52; /* logo / brand green — primary CTAs */
+  --color-accent-hover: #256b46;
   --color-white:        #ffffff;
   --color-surface:      #F5F7FA; /* light gray — section/form backgrounds */
   --color-charcoal:     #2D3748; /* dark gray — body text */
@@ -21,7 +21,7 @@
   --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.10);
   --shadow-lg:   0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-cta:  0 4px 16px rgba(224, 123, 57, 0.35);
+  --shadow-cta:  0 4px 16px rgba(46, 125, 82, 0.35);
 
   --background: #ffffff;
   --foreground: #2D3748;

@@ -29,8 +29,8 @@
 | `navy` | Header, footer, dark section backgrounds |
 | `blue` | Primary interactive — links, borders, focus rings |
 | `sky` | Secondary accents, hover states, icons |
-| `accent` | Urgent CTAs only — "Get a Free Consultation" |
-| `accent-hover` | CTA hover state |
+| `accent` | Primary CTAs — logo green (buttons, key actions) |
+| `accent-hover` | CTA hover state (darker green) |
 | `surface` | Section backgrounds, form backgrounds |
 | `charcoal` | Primary body text |
 | `muted` | Secondary / caption text |
@@ -40,7 +40,7 @@
 **Rules:**
 - Never hardcode hex values in components — always use Tailwind tokens above
 - `accent` is reserved for the single highest-priority CTA per page
-- `green` is only for trust/benefit indicators, never for buttons or headings
+- `green` matches the CTA green (`#2E7D52`); use `accent` for buttons and `green` for inline trust marks (checkmarks, etc.)
 - Load the theme-selector skill before making any new color decisions
 
 ---

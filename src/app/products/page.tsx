@@ -59,7 +59,7 @@ export default function ProductsPage() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
+            style={{ boxShadow: "0 4px 16px rgba(46,125,82,0.30)" }}
           >
             {p.ctaButton}
           </Link>

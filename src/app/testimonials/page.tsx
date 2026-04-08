@@ -5,6 +5,10 @@ import Link from "next/link";
 import { ChevronRight, Star } from "lucide-react";
 import { CountUp } from "@/components/ui/CountUp";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import {
+  GOOGLE_REVIEWS_LANDING_URL,
+  YELP_REVIEWS_LANDING_URL,
+} from "@/lib/data/reviewLinks";
 
 function GoogleIcon() {
   return (
@@ -25,7 +29,18 @@ function YelpIcon() {
   );
 }
 
-const testimonials = [
+type TestimonialSource = "Google Reviews" | "Yelp Reviews";
+
+type Testimonial = {
+  name: string;
+  source: TestimonialSource;
+  rating: number;
+  text: string;
+  /** Optional direct link to this review; otherwise uses Google or Yelp landing URL */
+  reviewUrl?: string;
+};
+
+const testimonials: Testimonial[] = [
   { name: "Gigi", source: "Google Reviews", rating: 5, text: "Excellent job. Professional and with affordable prices." },
   { name: "Janet B.", source: "Google Reviews", rating: 5, text: "I'm very pleased by work done by Orlando T Group. Very professional and work was done quickly and staff was courteous and careful with my living space. Everything was left impecable, I strongly recommend this company." },
   { name: "Javier M.", source: "Google Reviews", rating: 5, text: "Excellent service, good communication, great prices, friendly and professional staff, highly recommended." },
@@ -38,6 +53,16 @@ const testimonials = [
   { name: "Adriana V.", source: "Google Reviews", rating: 5, text: "Excellent job, service and price!!! They were diligent, helpful and delivered as promised. Highly recommended!" },
   { name: "Harry D.", source: "Google Reviews", rating: 5, text: "I would like to say that everything was done excellently. I am very happy with the results. I would recommend them to anyone that wants to do any home improvements." },
 ];
+
+function hrefForTestimonial(t: Testimonial): string {
+  if (t.reviewUrl) return t.reviewUrl;
+  return t.source === "Yelp Reviews" ? YELP_REVIEWS_LANDING_URL : GOOGLE_REVIEWS_LANDING_URL;
+}
+
+function labelForTestimonial(t: Testimonial): string {
+  const platform = t.source === "Yelp Reviews" ? "Yelp" : "Google";
+  return `Read ${t.name}'s review on ${platform} (opens in a new tab)`;
+}
 
 function StarRow({ count }: { count: number }) {
   return (
@@ -121,11 +146,19 @@ export default function TestimonialsPage() {
                 <p className="font-body text-charcoal text-base leading-relaxed mt-4 mb-5">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
-                <div className="border-t border-[#F0F0F0] pt-4 flex items-center justify-between">
+                <div className="border-t border-[#F0F0F0] pt-4 flex items-center justify-between gap-3">
                   <div className="font-heading font-bold text-navy text-base uppercase tracking-[0.03em]">
                     {testimonial.name}
                   </div>
-                  {testimonial.source === "Google Reviews" ? <GoogleIcon /> : <YelpIcon />}
+                  <a
+                    href={hrefForTestimonial(testimonial)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={labelForTestimonial(testimonial)}
+                    className="inline-flex shrink-0 rounded-md p-1.5 text-current ring-offset-2 hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue transition-colors"
+                  >
+                    {testimonial.source === "Google Reviews" ? <GoogleIcon /> : <YelpIcon />}
+                  </a>
                 </div>
               </motion.div>
             ))}
@@ -145,7 +178,7 @@ export default function TestimonialsPage() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
+            style={{ boxShadow: "0 4px 16px rgba(46,125,82,0.30)" }}
           >
             {common.freeEstimate}
           </Link>

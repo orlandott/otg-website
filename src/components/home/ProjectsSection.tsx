@@ -82,7 +82,7 @@ export function ProjectsSection() {
           <a
             href="#consultation"
             className="inline-flex items-center justify-center px-8 py-3 bg-accent text-white font-heading font-bold rounded text-base uppercase tracking-wide hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.25)" }}
+            style={{ boxShadow: "0 4px 16px rgba(46,125,82,0.25)" }}
           >
             {t.projects.freeConsultation}
           </a>
