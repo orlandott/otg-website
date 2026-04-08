@@ -28,7 +28,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Impact Windows South Florida | Orlando T Group Inc.",
     metaDescription:
       "Hurricane impact windows installed by Orlando T Group in South Florida. 5 styles, licensed & insured since 2006. Free in-home estimate — call (954) 625-5318.",
-    heroImage: "/images/impact-windows.jpg",
+    heroImage: "/images/impact-windows.png",
     galleryImages: [
       "/images/impact-windows-2.jpg",
       "/images/impact-windows-3.jpg",
@@ -100,7 +100,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Impact Doors South Florida | Orlando T Group Inc.",
     metaDescription:
       "Hurricane impact doors installed in South Florida. 20+ styles including French, sliding glass, and solid entry. Free estimate — call (954) 625-5318.",
-    heroImage: "/images/impact-doors.jpg",
+    heroImage: "/images/impact-doors.png",
     galleryImages: [
       "/images/impact-doors-2.jpg",
       "/images/impact-doors-3.jpg",
@@ -172,7 +172,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Patio Enclosures South Florida | Orlando T Group Inc.",
     metaDescription:
       "Hurricane-rated patio enclosures installed in South Florida. Extend your living space with impact-rated glass panels. Free estimate — call (954) 625-5318.",
-    heroImage: "/images/patio-enclosures.jpg",
+    heroImage: "/images/patio-enclosures.png",
     galleryImages: [
       "/images/patio-enclosures-2.jpg",
       "/images/patio-enclosures-3.jpg",
@@ -244,7 +244,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Rolldown Hurricane Shutters South Florida | Orlando T Group Inc.",
     metaDescription:
       "Rolldown hurricane shutters installed in South Florida. Motorized & manual options. 2nd most affordable protection. Free estimate — (954) 625-5318.",
-    heroImage: "/images/rolldown-shutters.jpg",
+    heroImage: "/images/rolldown-shutters.png",
     galleryImages: [
       "/images/rolldown-shutters-2.jpg",
       "/images/rolldown-shutters-3.jpg",
@@ -316,7 +316,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Accordion Hurricane Shutters South Florida | Orlando T Group Inc.",
     metaDescription:
       "Accordion hurricane shutters — the most affordable option for South Florida homes. Deploy in minutes. Free estimate from Orlando T Group — (954) 625-5318.",
-    heroImage: "/images/accordion-shutters.jpg",
+    heroImage: "/images/accordion-shutters.png",
     galleryImages: [
       "/images/accordion-shutters-2.jpg",
       "/images/accordion-shutters-3.jpg",
@@ -388,7 +388,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Custom Blinds & Solar Shades South Florida | Orlando T Group Inc.",
     metaDescription:
       "Custom Bandalux blinds and solar shades installed in South Florida. Block UV, reduce energy costs, and protect your interiors. Call (954) 625-5318.",
-    heroImage: "/images/blinds.jpg",
+    heroImage: "/images/blinds.png",
     galleryImages: ["/images/blinds-2.jpg", "/images/blinds-3.jpg"],
     features: [
       {
@@ -457,7 +457,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Retractable Awnings South Florida | Orlando T Group Inc.",
     metaDescription:
       "Motorized retractable awnings installed in South Florida. Solar protection for patios, decks, and doors. Free estimate from Orlando T Group — (954) 625-5318.",
-    heroImage: "/images/retractable-awnings.jpg",
+    heroImage: "/images/retractable-awnings.png",
     galleryImages: [
       "/images/retractable-awnings-2.jpg",
       "/images/retractable-awnings-3.jpg",
@@ -529,7 +529,7 @@ export const productDetails: ProductDetail[] = [
     metaTitle: "Impact Garage Doors South Florida | Orlando T Group Inc.",
     metaDescription:
       "Hurricane-rated impact garage doors installed in South Florida. Custom designs, licensed installation. Free estimate from Orlando T Group — (954) 625-5318.",
-    heroImage: "/images/impact-garage-doors.jpg",
+    heroImage: "/images/impact-garage-doors.png",
     galleryImages: [
       "/images/impact-garage-doors-2.jpg",
       "/images/impact-garage-doors-3.jpg",

@@ -11,7 +11,7 @@ export const products: Product[] = [
     features: ["Hurricane ready 24/7", "5 types of windows", "Clear visibility"],
     featuresEs: ["Protección 24/7", "5 tipos de ventanas", "Visibilidad clara"],
     icon: "Shield",
-    imagePath: "/images/impact-windows.jpg",
+    imagePath: "/images/impact-windows.png",
     href: "/products/impact-windows",
   },
   {
@@ -24,7 +24,7 @@ export const products: Product[] = [
     features: ["20+ different types", "Sliding or hinged", "Intruder protection"],
     featuresEs: ["+20 tipos diferentes", "Corredera o abatible", "Protección contra intrusos"],
     icon: "DoorOpen",
-    imagePath: "/images/impact-doors.jpg",
+    imagePath: "/images/impact-doors.png",
     href: "/products/impact-doors",
   },
   {
@@ -37,7 +37,7 @@ export const products: Product[] = [
     features: ["Extend living space", "Recover your patio", "Sliding panels"],
     featuresEs: ["Amplía el espacio habitable", "Recupera tu patio", "Paneles deslizantes"],
     icon: "Home",
-    imagePath: "/images/patio-enclosures.jpg",
+    imagePath: "/images/patio-enclosures.png",
     href: "/products/patio-enclosures",
   },
   {
@@ -50,7 +50,7 @@ export const products: Product[] = [
     features: ["Deployed in seconds", "Motorized option", "2nd most affordable"],
     featuresEs: ["Desplegadas en segundos", "Opción motorizada", "2da más económica"],
     icon: "ShieldCheck",
-    imagePath: "/images/rolldown-shutters.jpg",
+    imagePath: "/images/impact-garage-doors.png",
     href: "/products/rolldown-shutters",
   },
   {
@@ -63,7 +63,7 @@ export const products: Product[] = [
     features: ["Deployed in minutes", "Most affordable", "Storm-tested"],
     featuresEs: ["Desplegadas en minutos", "La más económica", "Probada en tormentas"],
     icon: "Layers",
-    imagePath: "/images/accordion-shutters.jpg",
+    imagePath: "/images/accordion-shutters.png",
     href: "/products/accordion-shutters",
   },
   {
@@ -76,7 +76,7 @@ export const products: Product[] = [
     features: ["Block UV rays", "Boost AC efficiency", "Cut energy costs"],
     featuresEs: ["Bloquea rayos UV", "Mejora el aire acondicionado", "Reduce costos de energía"],
     icon: "Sun",
-    imagePath: "/images/blinds.jpg",
+    imagePath: "/images/blinds.png",
     href: "/products/blinds",
   },
   {
@@ -89,7 +89,7 @@ export const products: Product[] = [
     features: ["Deployed in seconds", "Motorized", "Solar protection"],
     featuresEs: ["Desplegados en segundos", "Motorizados", "Protección solar"],
     icon: "SunMoon",
-    imagePath: "/images/retractable-awnings.jpg",
+    imagePath: "/images/retractable-awnings.png",
     href: "/products/retractable-awnings",
   },
   {
@@ -102,7 +102,7 @@ export const products: Product[] = [
     features: ["Custom designs", "Protects vehicles", "Intruder protection"],
     featuresEs: ["Diseños personalizados", "Protege vehículos", "Protección contra intrusos"],
     icon: "Car",
-    imagePath: "/images/impact-garage-doors.jpg",
+    imagePath: "/images/rolldown-shutters.png",
     href: "/products/impact-garage-doors",
   },
 ];
