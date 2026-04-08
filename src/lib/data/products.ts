@@ -12,7 +12,7 @@ export const products: Product[] = [
     featuresEs: ["Protección 24/7", "5 tipos de ventanas", "Visibilidad clara"],
     icon: "Shield",
     imagePath: "/images/impact-windows.jpg",
-    href: "/products#impact-windows",
+    href: "/products/impact-windows",
   },
   {
     id: "impact-doors",
@@ -25,7 +25,7 @@ export const products: Product[] = [
     featuresEs: ["+20 tipos diferentes", "Corredera o abatible", "Protección contra intrusos"],
     icon: "DoorOpen",
     imagePath: "/images/impact-doors.jpg",
-    href: "/products#impact-doors",
+    href: "/products/impact-doors",
   },
   {
     id: "patio-enclosures",
@@ -38,7 +38,7 @@ export const products: Product[] = [
     featuresEs: ["Amplía el espacio habitable", "Recupera tu patio", "Paneles deslizantes"],
     icon: "Home",
     imagePath: "/images/patio-enclosures.jpg",
-    href: "/products#patio-enclosures",
+    href: "/products/patio-enclosures",
   },
   {
     id: "rolldown-shutters",
@@ -51,7 +51,7 @@ export const products: Product[] = [
     featuresEs: ["Desplegadas en segundos", "Opción motorizada", "2da más económica"],
     icon: "ShieldCheck",
     imagePath: "/images/rolldown-shutters.jpg",
-    href: "/products#rolldown-shutters",
+    href: "/products/rolldown-shutters",
   },
   {
     id: "accordion-shutters",
@@ -64,7 +64,7 @@ export const products: Product[] = [
     featuresEs: ["Desplegadas en minutos", "La más económica", "Probada en tormentas"],
     icon: "Layers",
     imagePath: "/images/accordion-shutters.jpg",
-    href: "/products#accordion-shutters",
+    href: "/products/accordion-shutters",
   },
   {
     id: "blinds",
@@ -77,7 +77,7 @@ export const products: Product[] = [
     featuresEs: ["Bloquea rayos UV", "Mejora el aire acondicionado", "Reduce costos de energía"],
     icon: "Sun",
     imagePath: "/images/blinds.jpg",
-    href: "/products#blinds",
+    href: "/products/blinds",
   },
   {
     id: "retractable-awnings",
@@ -90,7 +90,7 @@ export const products: Product[] = [
     featuresEs: ["Desplegados en segundos", "Motorizados", "Protección solar"],
     icon: "SunMoon",
     imagePath: "/images/retractable-awnings.jpg",
-    href: "/products#retractable-awnings",
+    href: "/products/retractable-awnings",
   },
   {
     id: "impact-garage-doors",
@@ -103,6 +103,6 @@ export const products: Product[] = [
     featuresEs: ["Diseños personalizados", "Protege vehículos", "Protección contra intrusos"],
     icon: "Car",
     imagePath: "/images/impact-garage-doors.jpg",
-    href: "/products#impact-garage-doors",
+    href: "/products/impact-garage-doors",
   },
 ];
