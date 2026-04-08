@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, MessageCircle, Phone, Shield } from "lucide-react";
+import Image from "next/image";
+import { Facebook, Instagram, MessageCircle, Phone } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Footer() {
@@ -25,12 +26,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
           {/* Brand */}
           <div>
-            <Link
-              href="/"
-              className="flex items-center gap-2.5 font-heading font-bold text-xl text-white tracking-tight mb-4"
-            >
-              <Shield className="w-6 h-6 text-accent" />
-              ORLANDO T GROUP
+            <Link href="/" className="inline-block mb-4 hover:opacity-90 transition-opacity">
+              <div className="bg-white rounded-lg px-3 py-2 inline-block">
+                <Image
+                  src="/images/logo.png"
+                  alt="Orlando T Group Inc."
+                  width={140}
+                  height={42}
+                  className="h-10 w-auto"
+                />
+              </div>
             </Link>
             <p className="text-white/70 text-base font-body max-w-xs leading-relaxed">
               {t.footer.description}

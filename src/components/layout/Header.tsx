@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Phone, Facebook, Instagram, Shield, PackageSearch, CalendarCheck } from "lucide-react";
+import Image from "next/image";
+import { Phone, Facebook, Instagram, PackageSearch, CalendarCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { products } from "@/lib/data/products";
@@ -119,13 +120,15 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link
-              href="/"
-              onClick={close}
-              className="flex items-center gap-2.5 font-heading font-bold text-xl md:text-2xl tracking-tight hover:opacity-90 transition-opacity"
-            >
-              <Shield className="w-7 h-7 text-accent" />
-              <span className="text-navy">ORLANDO T GROUP</span>
+            <Link href="/" onClick={close} className="hover:opacity-90 transition-opacity">
+              <Image
+                src="/images/logo.png"
+                alt="Orlando T Group Inc."
+                width={160}
+                height={48}
+                className="h-10 md:h-12 w-auto"
+                priority
+              />
             </Link>
 
             {/* Center — language selector (desktop only) */}
@@ -238,10 +241,15 @@ export function Header() {
           >
             {/* Sidebar top — logo + close */}
             <div className="flex items-center justify-between px-6 h-16 md:h-20 border-b border-gray-200 flex-shrink-0">
-              <div className="flex items-center gap-2 font-heading font-bold text-base text-navy">
-                <Shield className="w-5 h-5 text-accent" />
-                <span>ORLANDO T GROUP</span>
-              </div>
+              <Link href="/" onClick={close} className="hover:opacity-90 transition-opacity">
+                <Image
+                  src="/images/logo.png"
+                  alt="Orlando T Group Inc."
+                  width={130}
+                  height={40}
+                  className="h-9 w-auto"
+                />
+              </Link>
               <button
                 ref={firstFocusRef}
                 type="button"
