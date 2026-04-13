@@ -1,14 +1,11 @@
 # Cloudflare PAGES only — do not create this repo as a Cloudflare Worker.
 # Workers (wrangler deploy) are a different product; use Dashboard → Pages → Create → Pages.
-# This site uses Next.js static export (output: "export") - no Workers/OpenNext
 #
-# Do NOT use `wrangler deploy` (Workers). After `npm run build`, upload with:
-#   npm run deploy
-# or: npx wrangler pages deploy out --project-name=otg-website
+# Build: `npx @cloudflare/next-on-pages@1` (runs `next build` then emits the Pages bundle).
+# Publish directory must match next-on-pages output (not Next static `out/`).
 #
-# CI: If the UI requires a deploy command but forbids an empty value, use:
-#   npm run deploy:ci
-# Pages still publishes from ./out after `npm run build` — no Wrangler/API token needed.
-# For manual uploads from your machine: `npm run deploy` (needs a Pages-capable API token).
+# Manual deploy after a local next-on-pages build:
+#   npx wrangler pages deploy .vercel/output/static --project-name=otg-website
+#
 name = "otg-website"
-pages_build_output_dir = "./out"
+pages_build_output_dir = ".vercel/output/static"
