@@ -22,7 +22,7 @@ export default function FreeMaintenancePage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-blue">
+      <section className="pt-44 pb-16 md:pt-36 md:pb-24 bg-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             className="flex items-center gap-2 text-white/60 text-sm font-body uppercase tracking-wider mb-6"

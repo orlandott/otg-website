@@ -117,6 +117,19 @@ export function Header() {
           isScrolled || isOpen ? "shadow-md" : "shadow-sm"
         )}
       >
+        {/* Mobile: order tracking at top of viewport (desktop uses bar button below) */}
+        <div className="md:hidden border-b border-white/15 bg-blue pt-[env(safe-area-inset-top,0px)]">
+          <a
+            href="https://titan.orlandotgroupinc.com/status-tracking"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 text-center font-heading font-bold text-[11px] uppercase tracking-[0.08em] text-white hover:bg-white/10 active:bg-white/15 transition-colors"
+          >
+            <PackageSearch size={15} strokeWidth={2} aria-hidden />
+            {t.orderTracking.cta}
+          </a>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
@@ -170,8 +183,8 @@ export function Header() {
                 rel="noopener noreferrer"
                 className="hidden md:inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-heading font-bold text-[12px] uppercase tracking-[0.06em] rounded-[8px] px-4 py-2 shadow-cta hover:-translate-y-px transition-all duration-150"
               >
-                <PackageSearch size={14} strokeWidth={2} />
-                Track My Order
+                <PackageSearch size={14} strokeWidth={2} aria-hidden />
+                {t.orderTracking.cta}
               </a>
               <div className="hidden sm:block w-px h-5 bg-navy/15 mx-1" />
               {/* Animated hamburger */}
@@ -348,8 +361,8 @@ export function Header() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full bg-blue hover:bg-blue/90 text-white font-heading font-bold px-6 py-3 rounded-[8px] text-base uppercase tracking-wide transition-colors"
               >
-                <PackageSearch size={15} strokeWidth={2} />
-                Track My Order
+                <PackageSearch size={15} strokeWidth={2} aria-hidden />
+                {t.orderTracking.cta}
               </a>
 
               <Link
