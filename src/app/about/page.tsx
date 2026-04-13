@@ -8,7 +8,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const statCounters = [
   { countTo: null, suffix: "" },
-  { countTo: 1000, suffix: "+" },
+  { countTo: 1600, suffix: "+" },
   { countTo: 3, suffix: "" },
   { countTo: 18, suffix: "+" },
 ];
@@ -189,7 +189,7 @@ export default function AboutPage() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-10 py-4 rounded text-base uppercase tracking-[0.06em] hover:bg-accent-hover transition-colors"
-            style={{ boxShadow: "0 4px 16px rgba(245,158,11,0.30)" }}
+            style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.30)" }}
           >
             {common.freeEstimate}
           </Link>

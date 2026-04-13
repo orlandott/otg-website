@@ -25,7 +25,7 @@ export const translations = {
       ctaConsultation: "Get a Free Consultation",
       badge1: "Since 2006",
       badge2: "Licensed & Insured",
-      badge3: "1,000+ Projects",
+      badge3: "1,600+ Projects",
       badge4: "3 Counties Served",
     },
     trustBar: {
@@ -95,7 +95,7 @@ export const translations = {
     projects: {
       heading: "Our Projects",
       subtitle:
-        "Working in South Florida since 2006 with over 1,000 installations completed.",
+        "Working in South Florida since 2006 with over 1,600 installations completed.",
       learnMore: "Learn More",
       testimonials: "Testimonials",
       freeConsultation: "Free Consultation",
@@ -148,7 +148,7 @@ export const translations = {
         storyEyebrow: "Our Story",
         storyHeading: "Built on Trust,\nBacked by Results",
         storyP1: "Orlando T Group was founded in 2006 with a simple mission: provide South Florida homeowners with the highest-quality hurricane protection products and the kind of honest, straightforward service they deserve.",
-        storyP2: "Over nearly two decades, we've completed more than 1,000 projects across Miami-Dade, Broward, and Palm Beach counties — from single-family homes to large commercial properties. Every job, big or small, gets the same attention to detail and commitment to excellence.",
+        storyP2: "Over nearly two decades, we've completed more than 1,600 projects across Miami-Dade, Broward, and Palm Beach counties — from single-family homes to large commercial properties. Every job, big or small, gets the same attention to detail and commitment to excellence.",
         storyP3: "We're not a national franchise. We're a local team that lives and works in the same communities we serve. When a storm rolls through, we feel it too — and that's exactly why we take this work seriously.",
         statsLabels: ["Year Founded", "Projects Completed", "Counties Served", "Years Experience"],
         valuesEyebrow: "Why Choose Us",
@@ -362,7 +362,7 @@ export const translations = {
       ctaConsultation: "Consulta Gratuita",
       badge1: "Desde 2006",
       badge2: "Licenciados y Asegurados",
-      badge3: "+1,000 Proyectos",
+      badge3: "+1,600 Proyectos",
       badge4: "3 Condados",
     },
     trustBar: {
@@ -433,7 +433,7 @@ export const translations = {
     projects: {
       heading: "Nuestros Proyectos",
       subtitle:
-        "Trabajando en el Sur de Florida desde 2006 con más de 1,000 instalaciones completadas.",
+        "Trabajando en el Sur de Florida desde 2006 con más de 1,600 instalaciones completadas.",
       learnMore: "Más Información",
       testimonials: "Testimonios",
       freeConsultation: "Consulta Gratuita",
@@ -486,7 +486,7 @@ export const translations = {
         storyEyebrow: "Nuestra Historia",
         storyHeading: "Construidos en Confianza,\nAvalados por Resultados",
         storyP1: "Orlando T Group fue fundado en 2006 con una misión simple: brindar a los propietarios del Sur de Florida los productos de protección contra huracanes de la más alta calidad y el tipo de servicio honesto y directo que se merecen.",
-        storyP2: "Durante casi dos décadas, hemos completado más de 1,000 proyectos en los condados de Miami-Dade, Broward y Palm Beach — desde casas unifamiliares hasta grandes propiedades comerciales. Cada trabajo, grande o pequeño, recibe la misma atención al detalle y compromiso con la excelencia.",
+        storyP2: "Durante casi dos décadas, hemos completado más de 1,600 proyectos en los condados de Miami-Dade, Broward y Palm Beach — desde casas unifamiliares hasta grandes propiedades comerciales. Cada trabajo, grande o pequeño, recibe la misma atención al detalle y compromiso con la excelencia.",
         storyP3: "No somos una franquicia nacional. Somos un equipo local que vive y trabaja en las mismas comunidades a las que servimos. Cuando pasa una tormenta, también la sentimos — y es exactamente por eso que tomamos este trabajo en serio.",
         statsLabels: ["Año de Fundación", "Proyectos Completados", "Condados Atendidos", "Años de Experiencia"],
         valuesEyebrow: "Por Qué Elegirnos",
