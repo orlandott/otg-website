@@ -19,10 +19,22 @@ const barlow = Barlow({
   variable: "--font-barlow",
 });
 
+/** Used for absolute OG / Twitter image URLs (WhatsApp, iMessage, etc.). */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  "https://www.orlandotgroupinc.com";
+
+const defaultTitle =
+  "Orlando T Group Inc. | Hurricane & Solar Protection | South Florida";
+const shortDescription =
+  "Protect what matters most. Free in-home consultation. Licensed & insured since 2006.";
+const longDescription =
+  "Hurricane and solar protection for South Florida. Impact windows, doors, shutters, awnings, and more. Free in-home consultation. Licensed & insured since 2006.";
+
 export const metadata: Metadata = {
-  title: "Orlando T Group Inc. | Hurricane & Solar Protection | South Florida",
-  description:
-    "Hurricane and solar protection for South Florida. Impact windows, doors, shutters, awnings, and more. Free in-home consultation. Licensed & insured since 2006.",
+  metadataBase: new URL(siteUrl),
+  title: defaultTitle,
+  description: longDescription,
   keywords: [
     "hurricane protection",
     "impact windows",
@@ -32,10 +44,30 @@ export const metadata: Metadata = {
     "rolldown shutters",
     "patio enclosures",
   ],
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Orlando T Group Inc.",
     title: "Orlando T Group Inc. | Hurricane & Solar Protection",
-    description: "Protect what matters most. Free in-home consultation.",
-    url: "https://www.orlandotgroupinc.com",
+    description: shortDescription,
+    url: siteUrl,
+    images: [
+      {
+        url: "/images/hero.png",
+        width: 1500,
+        height: 760,
+        alt: "Orlando T Group — hurricane and solar protection for South Florida homes",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Orlando T Group Inc. | Hurricane & Solar Protection",
+    description: shortDescription,
+    images: ["/images/hero.png"],
   },
 };
 
