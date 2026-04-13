@@ -2,7 +2,8 @@
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const nextConfig = {
-  output: "export",
+  // "output: export" removed — static export does not support API routes.
+  // Deploy via Cloudflare Pages with @cloudflare/next-on-pages or Node.js runtime.
   basePath,
   assetPrefix: basePath || undefined,
   images: {

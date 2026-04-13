@@ -12,6 +12,7 @@ type FormData = {
   lastName: string;
   email: string;
   phone: string;
+  city: string;
   message?: string;
 };
 
@@ -22,7 +23,7 @@ const labelClass = "block text-base font-body font-medium text-charcoal mb-2";
 
 export function ConsultationForm() {
   const { t } = useLanguage();
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const formSchema = useMemo(
     () =>
@@ -31,6 +32,7 @@ export function ConsultationForm() {
         lastName: z.string().min(2, t.consultation.lastNameError),
         email: z.string().email(t.consultation.emailError),
         phone: z.string().min(10, t.consultation.phoneError),
+        city: z.string().min(2, t.consultation.cityError),
         message: z.string().optional(),
       }),
     [t]
@@ -45,9 +47,25 @@ export function ConsultationForm() {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit() {
-    setSubmitStatus("success");
-    reset();
+  async function onSubmit(data: FormData) {
+    setSubmitStatus("loading");
+    try {
+      const res = await fetch("/api/consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        console.error("[ConsultationForm] API error:", json);
+        setSubmitStatus("error");
+        return;
+      }
+      setSubmitStatus("success");
+      reset();
+    } catch {
+      setSubmitStatus("error");
+    }
   }
 
   return (
@@ -144,6 +162,21 @@ export function ConsultationForm() {
           </div>
 
           <div>
+            <label htmlFor="city" className={labelClass}>
+              {t.consultation.city} {t.consultation.required}
+            </label>
+            <input
+              id="city"
+              {...register("city")}
+              className={inputClass}
+              placeholder={t.consultation.cityPlaceholder}
+            />
+            {errors.city && (
+              <p className="mt-1 text-xs text-red-500">{errors.city.message}</p>
+            )}
+          </div>
+
+          <div>
             <label htmlFor="message" className={labelClass}>
               {t.consultation.message}
             </label>
@@ -169,10 +202,11 @@ export function ConsultationForm() {
 
           <button
             type="submit"
-            className="w-full bg-accent text-white font-heading font-bold py-4 px-6 rounded uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
+            disabled={submitStatus === "loading"}
+            className="w-full bg-accent text-white font-heading font-bold py-4 px-6 rounded uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.30)" }}
           >
-            {t.consultation.submit}
+            {submitStatus === "loading" ? "Sending…" : t.consultation.submit}
           </button>
         </motion.form>
       </div>

@@ -9,6 +9,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email"),
   phone: z.string().min(10, "Please enter a valid phone number"),
+  city: z.string().min(2, "Please enter your city"),
   message: z.string().optional(),
 });
 
@@ -20,7 +21,7 @@ const inputClass =
 const labelClass = "block text-base font-body font-medium text-charcoal mb-2";
 
 export function ContactForm() {
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const {
     register,
@@ -31,9 +32,25 @@ export function ContactForm() {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit() {
-    setSubmitStatus("success");
-    reset();
+  async function onSubmit(data: FormData) {
+    setSubmitStatus("loading");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        console.error("[ContactForm] API error:", json);
+        setSubmitStatus("error");
+        return;
+      }
+      setSubmitStatus("success");
+      reset();
+    } catch {
+      setSubmitStatus("error");
+    }
   }
 
   return (
@@ -80,6 +97,19 @@ export function ContactForm() {
       </div>
 
       <div>
+        <label htmlFor="contact-city" className={labelClass}>City *</label>
+        <input
+          id="contact-city"
+          {...register("city")}
+          className={inputClass}
+          placeholder="e.g. Sunrise, Fort Lauderdale"
+        />
+        {errors.city && (
+          <p className="mt-1 text-xs text-red-500">{errors.city.message}</p>
+        )}
+      </div>
+
+      <div>
         <label htmlFor="contact-message" className={labelClass}>Message (optional)</label>
         <textarea
           id="contact-message"
@@ -103,10 +133,11 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="w-full bg-accent text-white font-heading font-bold py-4 px-6 rounded uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
+        disabled={submitStatus === "loading"}
+        className="w-full bg-accent text-white font-heading font-bold py-4 px-6 rounded uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.25)" }}
       >
-        Submit Request
+        {submitStatus === "loading" ? "Sending…" : "Submit Request"}
       </button>
     </form>
   );
