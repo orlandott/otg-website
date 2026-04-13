@@ -9,3 +9,8 @@
 #
 name = "otg-website"
 pages_build_output_dir = ".vercel/output/static"
+
+# Required for @cloudflare/next-on-pages (Node.js APIs in the worker bundle).
+# See: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+compatibility_date = "2026-04-13"
+compatibility_flags = [ "nodejs_compat" ]
