@@ -1,0 +1,4 @@
+---
+name: page-scraper
+description: Scrapes all the text content, links, media files with its original extention. Use this skill whenever the user asks to scrape a webpage, extract content from a URL, or gather information from an online source. This skill will fetch the page's HTML, parse it, and return the relevant data in a structured format. If there are media files, it will download them and provide the file paths. Always ensure to handle any potential errors gracefully, such as invalid URLs or inaccessible pages. Triggers on phrases like "scrape this webpage", "extract content from this URL", "gather information from this online source", or similar requests.
+---
