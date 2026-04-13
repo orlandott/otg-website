@@ -10,7 +10,9 @@ const FROM = {
 };
 
 function getClient(): typeof sgMail {
-  const apiKey = process.env.SENDGRID_API_KEY;
+  const apiKey =
+    "process.env.SENDGRID_API_KEY";
+
   if (!apiKey)
     throw new Error("Missing environment variable: SENDGRID_API_KEY");
   sgMail.setApiKey(apiKey);

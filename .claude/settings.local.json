@@ -7,7 +7,9 @@
       "Bash(curl -s https://www.orlandotgroupinc.com/__TRACKED_VAR__)",
       "Bash(curl -s \"https://www.orlandotgroupinc.com/our-products\")",
       "Bash(curl -sI \"https://static.wixstatic.com/media/5b73f9_87c2e3c6c49c40e2b2dce4900d8d697d~mv2.jpg/v1/fill/w_400,h_300,al_c,q_80/image.jpg\")",
-      "Bash(ls -la \"c:/Users/Admin/Desktop/AI Projects/otg-website/public/images/\"*.png)"
+      "Bash(ls -la \"c:/Users/Admin/Desktop/AI Projects/otg-website/public/images/\"*.png)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Admin\\Desktop\\AI Projects\\otg-website\\public"
