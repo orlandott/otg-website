@@ -12,7 +12,8 @@
       "Bash(npx tsc:*)"
     ],
     "additionalDirectories": [
-      "c:\\Users\\Admin\\Desktop\\AI Projects\\otg-website\\public"
+      "c:\\Users\\Admin\\Desktop\\AI Projects\\otg-website\\public",
+      "c:\\Users\\Admin\\Desktop\\AI Projects\\otg-website\\src\\app\\products\\[slug]"
     ]
   }
 }
