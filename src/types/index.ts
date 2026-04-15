@@ -1,3 +1,23 @@
+export interface ProductFAQ {
+  q: string;
+  a: string;
+}
+
+export interface ProductDetail {
+  slug: string;
+  name: string;
+  headline: string;
+  description: string;
+  metaTitle: string;
+  metaDescription: string;
+  heroImage: string;
+  galleryImages: string[];
+  features: { title: string; body: string }[];
+  specs: string[];
+  faqs: ProductFAQ[];
+  relatedSlugs: string[];
+}
+
 export interface Product {
   id: string;
   name: string;
