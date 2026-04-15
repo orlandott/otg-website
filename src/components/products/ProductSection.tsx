@@ -60,11 +60,11 @@ export function ProductSection({ product, index }: ProductSectionProps) {
               ))}
             </ul>
             <Link
-              href="/contact"
+              href={product.href}
               className="inline-flex items-center gap-2 bg-accent text-white font-heading font-bold px-7 py-3.5 rounded text-base uppercase tracking-[0.05em] hover:bg-accent-hover transition-colors"
               style={{ boxShadow: "0 4px 16px rgba(130,197,90,0.25)" }}
             >
-              Get Free Quote
+              See More Details
             </Link>
           </div>
         </div>
