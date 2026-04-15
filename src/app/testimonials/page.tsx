@@ -5,10 +5,6 @@ import Link from "next/link";
 import { ChevronRight, Star } from "lucide-react";
 import { CountUp } from "@/components/ui/CountUp";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import {
-  GOOGLE_REVIEWS_LANDING_URL,
-  YELP_REVIEWS_LANDING_URL,
-} from "@/lib/data/reviewLinks";
 
 function GoogleIcon() {
   return (
@@ -36,8 +32,6 @@ type Testimonial = {
   source: TestimonialSource;
   rating: number;
   text: string;
-  /** Optional direct link to this review; otherwise uses Google or Yelp landing URL */
-  reviewUrl?: string;
 };
 
 const testimonials: Testimonial[] = [
@@ -54,15 +48,6 @@ const testimonials: Testimonial[] = [
   { name: "Harry D.", source: "Google Reviews", rating: 5, text: "I would like to say that everything was done excellently. I am very happy with the results. I would recommend them to anyone that wants to do any home improvements." },
 ];
 
-function hrefForTestimonial(t: Testimonial): string {
-  if (t.reviewUrl) return t.reviewUrl;
-  return t.source === "Yelp Reviews" ? YELP_REVIEWS_LANDING_URL : GOOGLE_REVIEWS_LANDING_URL;
-}
-
-function labelForTestimonial(t: Testimonial): string {
-  const platform = t.source === "Yelp Reviews" ? "Yelp" : "Google";
-  return `Read ${t.name}'s review on ${platform} (opens in a new tab)`;
-}
 
 function StarRow({ count }: { count: number }) {
   return (
@@ -150,15 +135,9 @@ export default function TestimonialsPage() {
                   <div className="font-heading font-bold text-navy text-base uppercase tracking-[0.03em]">
                     {testimonial.name}
                   </div>
-                  <a
-                    href={hrefForTestimonial(testimonial)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={labelForTestimonial(testimonial)}
-                    className="inline-flex shrink-0 rounded-md p-1.5 text-current ring-offset-2 hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue transition-colors"
-                  >
+                  <span className="inline-flex shrink-0 rounded-md p-1.5">
                     {testimonial.source === "Google Reviews" ? <GoogleIcon /> : <YelpIcon />}
-                  </a>
+                  </span>
                 </div>
               </motion.div>
             ))}
