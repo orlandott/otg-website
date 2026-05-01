@@ -9,15 +9,12 @@ export function Footer() {
   const { t } = useLanguage();
 
   const footerLinks = [
-    { href: "/", label: t.footer.links.home },
-    { href: "/products", label: t.footer.links.products },
-    { href: "/donations", label: t.footer.links.donations },
     { href: "/contact", label: t.footer.links.contact },
-    {
-      href: "https://titan.orlandotgroupinc.com/status-tracking",
-      label: t.footer.links.trackOrder,
-      external: true,
-    },
+    { href: "/about", label: t.footer.links.about },
+    { href: "/products", label: t.footer.links.products },
+    { href: "/testimonials", label: t.footer.links.testimonials },
+    { href: "/refer-a-friend", label: t.footer.links.referAFriend },
+    { href: "/blog", label: t.footer.links.blog },
   ];
 
   return (
@@ -52,10 +49,6 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    {...(link.external && {
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    })}
                     className="text-white/70 hover:text-white text-base font-body transition-colors"
                   >
                     {link.label}
