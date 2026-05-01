@@ -59,6 +59,9 @@ export default function BlogPostClient({ post }: Props) {
   const { t } = useLanguage();
   const p = t.pages.blog;
   const common = t.pages.common;
+  const categoryLabels = p.categoryLabels as Record<string, string>;
+  const postMeta = p.postMeta as Record<string, { title: string; excerpt: string; date: string } | undefined>;
+  const meta = postMeta[post.slug];
 
   const related = blogPosts
     .filter((b) => b.slug !== post.slug && b.category === post.category)
@@ -84,12 +87,12 @@ export default function BlogPostClient({ post }: Props) {
               {p.breadcrumb}
             </Link>
             <ChevronRight size={14} />
-            <span className="text-white/90 truncate max-w-[200px]">{post.category}</span>
+            <span className="text-white/90 truncate max-w-[200px]">{categoryLabels[post.category] ?? post.category}</span>
           </nav>
 
           <div className="flex items-center gap-3 mb-5">
             <span className="px-3 py-1 bg-white/15 text-white/90 font-body text-xs uppercase tracking-wider rounded-full">
-              {post.category}
+              {categoryLabels[post.category] ?? post.category}
             </span>
           </div>
 
@@ -100,7 +103,7 @@ export default function BlogPostClient({ post }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {post.title}
+            {meta?.title ?? post.title}
           </motion.h1>
 
           <motion.div
@@ -111,11 +114,11 @@ export default function BlogPostClient({ post }: Props) {
           >
             <span className="flex items-center gap-1.5">
               <Calendar size={13} />
-              {post.date}
+              {meta?.date ?? post.date}
             </span>
             <span className="flex items-center gap-1.5">
               <Clock size={13} />
-              {post.readTime}
+              {parseInt(post.readTime)} {p.minuteRead}
             </span>
           </motion.div>
         </div>
@@ -133,7 +136,7 @@ export default function BlogPostClient({ post }: Props) {
             >
               {/* Lead / excerpt */}
               <p className="font-body text-charcoal text-[17px] leading-[1.8] mb-6 pb-6 border-b border-[#E0E0E0] font-medium">
-                {post.excerpt}
+                {meta?.excerpt ?? post.excerpt}
               </p>
 
               {/* Article sections */}
@@ -163,10 +166,10 @@ export default function BlogPostClient({ post }: Props) {
               {/* CTA card */}
               <div className="bg-blue rounded-xl p-6 text-white">
                 <p className="font-heading font-bold text-white uppercase text-[17px] leading-[1.2] mb-2">
-                  Ready to protect your home?
+                  {p.sidebarCta}
                 </p>
                 <p className="font-body text-white/75 text-[13px] leading-[1.6] mb-5">
-                  Free in-home consultation. No obligation. Licensed & insured since 2006.
+                  {p.sidebarCtaBody}
                 </p>
                 <Link
                   href="/contact"
@@ -181,7 +184,7 @@ export default function BlogPostClient({ post }: Props) {
               {related.length > 0 && (
                 <div>
                   <p className="font-body text-xs uppercase tracking-wider text-muted mb-3">
-                    More Articles
+                    {p.moreArticles}
                   </p>
                   <div className="space-y-3">
                     {related.map((r) => (
@@ -192,10 +195,10 @@ export default function BlogPostClient({ post }: Props) {
                       >
                         <div className="flex-1 min-w-0">
                           <span className="font-body text-[10px] uppercase tracking-wider text-muted block mb-1">
-                            {r.category}
+                            {categoryLabels[r.category] ?? r.category}
                           </span>
                           <p className="font-body font-medium text-navy text-[13px] leading-[1.4] line-clamp-2 group-hover:text-blue transition-colors">
-                            {r.title}
+                            {(postMeta[r.slug])?.title ?? r.title}
                           </p>
                         </div>
                         <ArrowRight size={14} className="flex-shrink-0 mt-1 text-muted group-hover:text-blue transition-colors" />
