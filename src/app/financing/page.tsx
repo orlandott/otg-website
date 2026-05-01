@@ -102,7 +102,7 @@ export default function FinancingPage() {
                   <p className="text-white/60 font-body text-sm mt-1">{f.tableCaption}</p>
                 </div>
 
-                <div className="grid grid-cols-3 bg-charcoal px-6 py-3">
+                <div className="grid grid-cols-3 bg-muted px-6 py-3">
                   {[f.tableTerms, f.tablePayment, f.tableRate].map((label) => (
                     <p
                       key={label}
