@@ -2,14 +2,16 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronRight, DollarSign, Clock, CheckCircle, TrendingUp, Phone } from "lucide-react";
+import { ChevronRight, DollarSign, Clock, CheckCircle, TrendingUp, Phone, Home, Zap } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const benefitIcons = [DollarSign, Clock, TrendingUp, CheckCircle];
+const perkIcons = [DollarSign, Clock, CheckCircle, Home, Zap];
 
 export default function FinancingPage() {
   const { t } = useLanguage();
   const p = t.pages.financing;
+  const f = t.homeFinancing;
   const common = t.pages.common;
 
   return (
@@ -40,6 +42,102 @@ export default function FinancingPage() {
           >
             {p.subtitle}
           </motion.p>
+        </div>
+      </section>
+
+      {/* Perks + Payment Summary */}
+      <section className="bg-surface py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+            {/* Feature perks */}
+            <div>
+              <p className="font-body text-accent uppercase tracking-[0.18em] text-sm font-medium mb-3">
+                {f.eyebrow}
+              </p>
+              <h2
+                className="font-heading font-bold text-navy uppercase leading-[1.1] mb-6"
+                style={{ fontSize: "clamp(24px, 2.8vw, 34px)" }}
+              >
+                {f.tableHeading}
+              </h2>
+              <ul className="space-y-4">
+                {f.perks.map((perk, i) => {
+                  const Icon = perkIcons[i];
+                  return (
+                    <motion.li
+                      key={i}
+                      className="flex items-center gap-4 bg-white rounded-xl px-5 py-4 border border-[#E0E0E0]"
+                      style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: i * 0.08 }}
+                    >
+                      <span className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-accent" strokeWidth={1.75} />
+                      </span>
+                      <span className="font-body font-medium text-charcoal text-[15px]">{perk}</span>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Payment table */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div
+                className="bg-white rounded-[16px] overflow-hidden"
+                style={{ boxShadow: "0 8px 40px rgba(0,48,135,0.10)" }}
+              >
+                <div className="bg-navy px-6 py-5 text-center">
+                  <p className="font-heading font-bold text-white uppercase tracking-[0.04em] text-lg">
+                    {f.tableHeading}
+                  </p>
+                  <p className="text-white/60 font-body text-sm mt-1">{f.tableCaption}</p>
+                </div>
+
+                <div className="grid grid-cols-3 bg-blue px-6 py-3">
+                  {[f.tableTerms, f.tablePayment, f.tableRate].map((label) => (
+                    <p
+                      key={label}
+                      className="font-heading font-bold text-white uppercase tracking-[0.08em] text-[11px] text-center"
+                    >
+                      {label}
+                    </p>
+                  ))}
+                </div>
+
+                <div className="divide-y divide-[#E8EEF6]">
+                  {f.rows.map((row, i) => (
+                    <div key={i} className="grid grid-cols-3 px-6 py-6 items-center">
+                      <div className="flex flex-col items-center gap-1.5">
+                        <div className="w-10 h-10 rounded-full bg-blue/10 flex items-center justify-center">
+                          <Clock className="w-5 h-5 text-blue" strokeWidth={1.5} />
+                        </div>
+                        <span className="font-heading font-bold text-navy text-[13px] uppercase tracking-[0.04em] text-center">
+                          {row.term}
+                        </span>
+                      </div>
+                      <p className="font-heading font-bold text-navy text-2xl text-center">{row.payment}</p>
+                      <p className="font-body font-semibold text-charcoal text-base text-center">{row.rate}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="px-6 py-4 bg-surface border-t border-[#E8EEF6]">
+                  <p className="font-body text-muted text-[12px] text-center leading-relaxed">
+                    Rates are approximate and subject to credit approval. Contact us for your personalized quote.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

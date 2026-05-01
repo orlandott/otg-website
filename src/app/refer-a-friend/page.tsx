@@ -111,7 +111,7 @@ export default function ReferAFriendPage() {
             {...fadeUp(0.1)}
           >
             Know someone who needs hurricane protection? Share their info and
-            we'll reach out with a free consultation — no obligation, no hassle.
+            we&apos;ll reach out with a free consultation — no obligation, no hassle.
           </motion.p>
 
           <motion.div
@@ -215,7 +215,7 @@ export default function ReferAFriendPage() {
                     Referral Sent!
                   </h3>
                   <p className="font-body text-charcoal text-base leading-relaxed">
-                    Thanks for spreading the word. We'll reach out to your friend
+                    Thanks for spreading the word. We&apos;ll reach out to your friend
                     within one business day.
                   </p>
                   <button
@@ -235,13 +235,13 @@ export default function ReferAFriendPage() {
                 >
                   {/* Friend section */}
                   <p className="font-heading font-bold text-navy uppercase text-[11px] tracking-[0.12em] mb-4">
-                    Your Friend's Details
+                    Your Friend&apos;s Details
                   </p>
 
                   <div className="space-y-4 mb-6">
                     <div>
                       <label htmlFor="friendName" className={labelClass}>
-                        What's their full name? <span className="text-red-500">*</span>
+                        What&apos;s their full name? <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="friendName"
@@ -261,7 +261,7 @@ export default function ReferAFriendPage() {
 
                     <div>
                       <label htmlFor="friendPhone" className={labelClass}>
-                        What's their phone number? <span className="text-red-500">*</span>
+                        What&apos;s their phone number? <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="friendPhone"
@@ -291,7 +291,7 @@ export default function ReferAFriendPage() {
                   <div className="space-y-4 mb-8">
                     <div>
                       <label htmlFor="yourName" className={labelClass}>
-                        What's your full name? <span className="text-red-500">*</span>
+                        What&apos;s your full name? <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="yourName"
@@ -370,7 +370,7 @@ export default function ReferAFriendPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Get a free in-home consultation with no obligation. South Florida's
+            Get a free in-home consultation with no obligation. South Florida&apos;s
             trusted hurricane protection since 2006.
           </motion.p>
           <motion.div
