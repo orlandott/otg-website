@@ -95,14 +95,14 @@ export default function FinancingPage() {
                 className="bg-white rounded-[16px] overflow-hidden"
                 style={{ boxShadow: "0 8px 40px rgba(0,48,135,0.10)" }}
               >
-                <div className="bg-navy px-6 py-5 text-center">
+                <div className="bg-blue px-6 py-5 text-center">
                   <p className="font-heading font-bold text-white uppercase tracking-[0.04em] text-lg">
                     {f.tableHeading}
                   </p>
                   <p className="text-white/60 font-body text-sm mt-1">{f.tableCaption}</p>
                 </div>
 
-                <div className="grid grid-cols-3 bg-blue px-6 py-3">
+                <div className="grid grid-cols-3 bg-charcoal px-6 py-3">
                   {[f.tableTerms, f.tablePayment, f.tableRate].map((label) => (
                     <p
                       key={label}
