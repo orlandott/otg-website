@@ -109,6 +109,29 @@ export const translations = {
       heading: "Follow Us on Instagram",
       imageAlt: "Instagram project thumbnail",
     },
+    homeFinancing: {
+      eyebrow: "Flexible Financing",
+      heading: "Protect Your Home Today.\nPay Over Time.",
+      body: "We partner with leading lenders to offer 100%, no-money-down financing — so nothing stands between your family and hurricane protection. Based on a $15,000 contract.",
+      perks: [
+        "100% Financing, No Money Down",
+        "No Payment For Up To A Year",
+        "No Minimum FICO Required",
+        "Eligibility Based On Home Equity",
+        "Get Prequalified In Minutes",
+      ],
+      tableHeading: "Approximate Payment Summary",
+      tableCaption: "Based on $15,000 Contract",
+      tableTerms: "Terms",
+      tablePayment: "Payment",
+      tableRate: "Interest Rate",
+      rows: [
+        { term: "10 Years", payment: "$211/month", rate: "7.46%" },
+        { term: "20 Years", payment: "$143/month", rate: "7.51%" },
+      ],
+      cta: "Explore Financing Options",
+      ctaSecondary: "Get a Free Estimate",
+    },
     footer: {
       description:
         "Hurricane and solar protection for South Florida homeowners. Licensed, insured, and trusted since 2006.",
@@ -234,6 +257,60 @@ export const translations = {
         backToBlog: "Back to Blog",
         articleNotFound: "Article not found.",
         minuteRead: "min read",
+        noArticles: "No articles in this category yet.",
+        moreArticles: "More Articles",
+        sidebarCta: "Ready to protect your home?",
+        sidebarCtaBody: "Free in-home consultation. No obligation. Licensed & insured since 2006.",
+        categoryLabels: {
+          All: "All",
+          "Buying Guide": "Buying Guide",
+          "Product Guide": "Product Guide",
+          "Hurricane Season": "Hurricane Season",
+          "Home Insurance": "Home Insurance",
+          Regulations: "Regulations",
+        },
+        postMeta: {
+          "impact-windows-vs-shutters": {
+            title: "Impact Windows vs. Hurricane Shutters: Which Is Right for Your Home?",
+            excerpt: "Both impact windows and hurricane shutters protect your home, but they work differently and suit different homeowners. Here's how to choose the right solution based on your budget, lifestyle, and property.",
+            date: "March 2025",
+          },
+          "accordion-shutters-guide": {
+            title: "Everything You Need to Know About Accordion Shutters",
+            excerpt: "Accordion shutters are the most popular hurricane protection choice in South Florida for good reason. We break down how they work, what they cost, and why so many homeowners choose them over other shutter types.",
+            date: "February 2025",
+          },
+          "insurance-savings-impact-windows": {
+            title: "How Impact Windows Can Lower Your Homeowner's Insurance Premium",
+            excerpt: "Installing impact-rated windows and doors can qualify you for significant wind insurance discounts in Florida. Learn how the savings work and what documentation your insurer needs.",
+            date: "January 2025",
+          },
+          "hurricane-prep-checklist": {
+            title: "South Florida Hurricane Prep Checklist: Protect Your Home Before the Season",
+            excerpt: "Hurricane season starts June 1st. Don't wait until a storm is in the forecast. This practical checklist covers everything you need to do to make sure your home is ready — from windows and doors to backup power.",
+            date: "December 2024",
+          },
+          "retractable-awnings-benefits": {
+            title: "5 Reasons to Add a Retractable Awning to Your South Florida Home",
+            excerpt: "A motorized retractable awning does more than provide shade. It can cut cooling costs, protect outdoor furniture, expand your usable living space, and add real curb appeal. Here's what to know before buying.",
+            date: "November 2024",
+          },
+          "florida-building-code-impact-products": {
+            title: "Florida Building Code & Impact Products: What Homeowners Need to Know",
+            excerpt: "Florida has some of the strictest building codes in the country when it comes to wind-resistant construction. Understanding what's required — and what that means for permits — can save you time and money on your next project.",
+            date: "October 2024",
+          },
+          "patio-enclosure-guide": {
+            title: "How to Choose the Right Patio Enclosure for Your Florida Home",
+            excerpt: "A patio enclosure can transform an underused outdoor space into a year-round living area. From screen rooms to glass-enclosed lanais, here's everything you need to know about the options available.",
+            date: "September 2024",
+          },
+          "garage-door-hurricane-rating": {
+            title: "Why Your Garage Door Is Your Home's Biggest Hurricane Vulnerability",
+            excerpt: "Most homeowners focus on windows and doors when planning hurricane protection — but the garage door is often the weakest point. An impact-rated garage door can prevent catastrophic structural failure during a storm.",
+            date: "August 2024",
+          },
+        },
       },
       freeMaintenance: {
         breadcrumb: "Free Maintenance",
@@ -455,6 +532,29 @@ export const translations = {
       heading: "Síguenos en Instagram",
       imageAlt: "Miniatura de proyecto de Instagram",
     },
+    homeFinancing: {
+      eyebrow: "Financiamiento Flexible",
+      heading: "Proteja Su Hogar Hoy.\nPague a Lo Largo del Tiempo.",
+      body: "Nos asociamos con prestamistas líderes para ofrecer financiamiento del 100%, sin pago inicial — para que nada se interponga entre su familia y la protección contra huracanes. Basado en un contrato de $15,000.",
+      perks: [
+        "100% de Financiamiento, Sin Pago Inicial",
+        "Sin Pago Por Hasta Un Año",
+        "Sin Puntaje FICO Mínimo",
+        "Elegibilidad Basada en Patrimonio del Hogar",
+        "Precalifíquese en Minutos",
+      ],
+      tableHeading: "Resumen Aproximado de Pagos",
+      tableCaption: "Basado en Contrato de $15,000",
+      tableTerms: "Plazo",
+      tablePayment: "Pago",
+      tableRate: "Tasa de Interés",
+      rows: [
+        { term: "10 Años", payment: "$211/mes", rate: "7.46%" },
+        { term: "20 Años", payment: "$143/mes", rate: "7.51%" },
+      ],
+      cta: "Explorar Opciones de Financiamiento",
+      ctaSecondary: "Obtener Estimado Gratis",
+    },
     footer: {
       description:
         "Protección contra huracanes y solar para propietarios del Sur de Florida. Licenciados, asegurados y de confianza desde 2006.",
@@ -580,6 +680,60 @@ export const translations = {
         backToBlog: "Volver al Blog",
         articleNotFound: "Artículo no encontrado.",
         minuteRead: "min de lectura",
+        noArticles: "Aún no hay artículos en esta categoría.",
+        moreArticles: "Más Artículos",
+        sidebarCta: "¿Listo para proteger su hogar?",
+        sidebarCtaBody: "Consulta en casa gratis. Sin compromiso. Licenciados y asegurados desde 2006.",
+        categoryLabels: {
+          All: "Todo",
+          "Buying Guide": "Guía de Compra",
+          "Product Guide": "Guía de Producto",
+          "Hurricane Season": "Temporada de Huracanes",
+          "Home Insurance": "Seguro del Hogar",
+          Regulations: "Regulaciones",
+        },
+        postMeta: {
+          "impact-windows-vs-shutters": {
+            title: "Ventanas de Impacto vs. Persianas para Huracanes: ¿Cuál es la Correcta para su Hogar?",
+            excerpt: "Tanto las ventanas de impacto como las persianas para huracanes protegen su hogar, pero funcionan de manera diferente y se adaptan a distintos propietarios. Aquí le explicamos cómo elegir la solución correcta según su presupuesto, estilo de vida y propiedad.",
+            date: "Marzo 2025",
+          },
+          "accordion-shutters-guide": {
+            title: "Todo lo que Necesita Saber sobre las Persianas Acordeón",
+            excerpt: "Las persianas acordeón son la opción de protección contra huracanes más popular en el Sur de Florida por una buena razón. Le explicamos cómo funcionan, cuánto cuestan y por qué tantos propietarios las prefieren sobre otros tipos de persianas.",
+            date: "Febrero 2025",
+          },
+          "insurance-savings-impact-windows": {
+            title: "Cómo las Ventanas de Impacto Pueden Reducir su Prima de Seguro de Propietario",
+            excerpt: "Instalar ventanas y puertas resistentes a impactos puede calificarle para descuentos significativos en seguros de viento en Florida. Conozca cómo funcionan los ahorros y qué documentación necesita su aseguradora.",
+            date: "Enero 2025",
+          },
+          "hurricane-prep-checklist": {
+            title: "Lista de Preparación para Huracanes en el Sur de Florida: Proteja su Hogar Antes de la Temporada",
+            excerpt: "La temporada de huracanes comienza el 1 de junio. No espere hasta que haya una tormenta en el pronóstico. Esta práctica lista cubre todo lo que necesita hacer para asegurarse de que su hogar esté listo — desde ventanas y puertas hasta energía de respaldo.",
+            date: "Diciembre 2024",
+          },
+          "retractable-awnings-benefits": {
+            title: "5 Razones para Agregar un Toldo Retráctil a su Hogar en el Sur de Florida",
+            excerpt: "Un toldo retráctil motorizado hace más que proporcionar sombra. Puede reducir los costos de refrigeración, proteger los muebles exteriores, ampliar su espacio habitable y agregar un atractivo real a su propiedad. Esto es lo que debe saber antes de comprar.",
+            date: "Noviembre 2024",
+          },
+          "florida-building-code-impact-products": {
+            title: "Código de Construcción de Florida y Productos de Impacto: Lo que los Propietarios Necesitan Saber",
+            excerpt: "Florida tiene algunos de los códigos de construcción más estrictos del país en cuanto a la construcción resistente al viento. Comprender qué se requiere — y qué significa eso para los permisos — puede ahorrarle tiempo y dinero en su próximo proyecto.",
+            date: "Octubre 2024",
+          },
+          "patio-enclosure-guide": {
+            title: "Cómo Elegir el Cerramiento de Patio Correcto para su Hogar en Florida",
+            excerpt: "Un cerramiento de patio puede transformar un espacio exterior poco utilizado en un área habitable durante todo el año. Desde habitaciones con pantalla hasta lanais cerrados con vidrio, aquí encontrará todo lo que necesita saber sobre las opciones disponibles.",
+            date: "Septiembre 2024",
+          },
+          "garage-door-hurricane-rating": {
+            title: "Por Qué la Puerta de su Garaje es la Mayor Vulnerabilidad de su Hogar ante los Huracanes",
+            excerpt: "La mayoría de los propietarios se centran en las ventanas y puertas al planificar la protección contra huracanes — pero la puerta del garaje suele ser el punto más débil. Una puerta de garaje con clasificación de impacto puede prevenir fallas estructurales catastróficas durante una tormenta.",
+            date: "Agosto 2024",
+          },
+        },
       },
       freeMaintenance: {
         breadcrumb: "Mantenimiento Gratis",

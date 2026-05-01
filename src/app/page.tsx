@@ -6,12 +6,14 @@ import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { WhyUs } from "@/components/home/WhyUs";
 import { TrustBar } from "@/components/home/TrustBar";
 import { ProjectsSection } from "@/components/home/ProjectsSection";
+import { FinancingSection } from "@/components/home/FinancingSection";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <ProductsGrid />
+      <FinancingSection />
       <ConsultationForm />
       <OrderTrackingBanner />
       <InstagramFeed />
