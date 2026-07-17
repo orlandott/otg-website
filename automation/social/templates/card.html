@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1080px; overflow: hidden; }
+  body {
+    font-family: "Montserrat", "Arial Black", Arial, sans-serif;
+    background: linear-gradient(135deg, #001a4d 0%, #003087 52%, #1e5ebf 100%);
+    color: #ffffff;
+    position: relative;
+  }
+  .deco { position: absolute; border-radius: 50%; pointer-events: none; }
+  .deco-1 { width: 620px; height: 620px; right: -220px; top: -220px; border: 3px solid rgba(255,255,255,0.07); }
+  .deco-2 { width: 420px; height: 420px; right: -120px; top: -120px; border: 3px solid rgba(255,255,255,0.09); }
+  .deco-3 { width: 340px; height: 340px; left: -150px; bottom: 120px; background: rgba(130,197,90,0.08); }
+
+  .frame {
+    position: absolute; inset: 0;
+    padding: 64px 72px;
+    display: flex; flex-direction: column;
+  }
+
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .logo-chip {
+    background: #ffffff; border-radius: 16px; padding: 18px 26px;
+    display: flex; align-items: center;
+    box-shadow: 0 4px 16px rgba(0, 26, 77, 0.35);
+  }
+  .logo-chip img { height: 72px; display: block; }
+  .badge {
+    background: rgba(74, 144, 217, 0.22);
+    border: 2px solid rgba(74, 144, 217, 0.65);
+    color: #ffffff; font-weight: 700; font-size: 26px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 16px 30px; border-radius: 999px;
+  }
+
+  .center { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .headline {
+    font-weight: 800; font-size: 84px; line-height: 1.06;
+    text-transform: uppercase; letter-spacing: 0.01em;
+    max-width: 900px;
+  }
+  .rule { width: 140px; height: 12px; background: #82c55a; border-radius: 999px; margin: 40px 0; }
+  .subline {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 400; font-size: 34px; line-height: 1.45;
+    color: rgba(255, 255, 255, 0.88); max-width: 830px;
+  }
+
+  .bottom { display: flex; align-items: center; justify-content: space-between; }
+  .cta {
+    background: #82c55a; color: #ffffff;
+    font-weight: 800; font-size: 32px; text-transform: uppercase;
+    letter-spacing: 0.05em; padding: 26px 44px; border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(130, 197, 90, 0.4);
+  }
+  .contact { text-align: right; }
+  .phone { font-weight: 800; font-size: 44px; letter-spacing: 0.01em; }
+  .site {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 600; font-size: 26px; color: rgba(255, 255, 255, 0.75);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="deco deco-1"></div>
+  <div class="deco deco-2"></div>
+  <div class="deco deco-3"></div>
+  <div class="frame">
+    <div class="top">
+      <div class="logo-chip"><img src="{{LOGO_URL}}" alt="" /></div>
+      <div class="badge">{{BADGE}}</div>
+    </div>
+    <div class="center">
+      <div class="headline">{{HEADLINE}}</div>
+      <div class="rule"></div>
+      <div class="subline">{{SUBLINE}}</div>
+    </div>
+    <div class="bottom">
+      <div class="cta">{{CTA}}</div>
+      <div class="contact">
+        <div class="phone">{{PHONE}}</div>
+        <div class="site">{{SITE}}</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

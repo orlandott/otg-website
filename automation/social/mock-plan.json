@@ -1,0 +1,31 @@
+{
+  "plan": {
+    "theme": "Mock: garage doors are the biggest hurricane weak point",
+    "angle": "Most homeowners protect windows first — the garage door fails first",
+    "postType": "safety-tip",
+    "productSlug": "impact-garage-doors",
+    "tieToBlog": false
+  },
+  "copy": {
+    "igCaption": "Your garage door is the largest opening in your home — and usually the weakest. 🌪️\n\nWhen a garage door fails in a storm, pressure floods the house and puts the whole roof at risk. An impact-rated door closes that gap for good. 💙\n\nFree in-home assessment across South Florida. Call (954) 625-5318 to schedule.",
+    "fbCaption": "Did you know your garage door is usually the weakest point of your home in a hurricane? It's the largest opening in the house, and standard doors aren't built for hurricane-force winds. An impact-rated garage door protects your home, your vehicles, and everything in between. We've been protecting South Florida families since 2006 — free consultation and home visit, always. Call (954) 625-5318 or visit https://www.orlandotgroupinc.com/contact",
+    "hashtags": ["#ImpactWindows", "#HurricaneProtection", "#OrlandoTGroup", "#HomeSafety", "#StormReady", "#SouthFlorida", "#GarageDoors", "#ImpactGarageDoors", "#MiamiDade", "#Broward"],
+    "onImageHeadline": "Your Garage Door Is the Weak Point",
+    "onImageSubline": "The largest opening in your home deserves impact-rated protection.",
+    "badge": "Storm Ready",
+    "cta": "Free Consultation"
+  },
+  "design": {
+    "photo": "impact-garage-doors.jpg",
+    "headline": "The #1 Hurricane Weak Point",
+    "subline": "Your garage door is the largest opening in your home. Protect it with an impact-rated door.",
+    "badge": "Storm Ready",
+    "cta": "Free Consultation"
+  },
+  "guardrail": {
+    "approved": true,
+    "issues": [],
+    "igCaptionFinal": "Your garage door is the largest opening in your home — and usually the weakest. 🌪️\n\nWhen a garage door fails in a storm, pressure floods the house and puts the whole roof at risk. An impact-rated door closes that gap for good. 💙\n\nFree in-home assessment across South Florida. Call (954) 625-5318 to schedule.",
+    "fbCaptionFinal": "Did you know your garage door is usually the weakest point of your home in a hurricane? It's the largest opening in the house, and standard doors aren't built for hurricane-force winds. An impact-rated garage door protects your home, your vehicles, and everything in between. We've been protecting South Florida families since 2006 — free consultation and home visit, always. Call (954) 625-5318 or visit https://www.orlandotgroupinc.com/contact"
+  }
+}

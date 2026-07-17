@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1080px; overflow: hidden; }
+  body {
+    font-family: "Montserrat", "Arial Black", Arial, sans-serif;
+    color: #ffffff; position: relative; background: #001a4d;
+  }
+  .photo {
+    position: absolute; inset: 0;
+    background-image: url("{{PHOTO_URL}}");
+    background-size: cover; background-position: center;
+  }
+  .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 26, 77, 0.30) 0%,
+      rgba(0, 26, 77, 0.05) 26%,
+      rgba(0, 26, 77, 0.55) 55%,
+      rgba(0, 26, 77, 0.95) 100%
+    );
+  }
+  .frame {
+    position: absolute; inset: 0;
+    padding: 64px 72px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .logo-chip {
+    background: #ffffff; border-radius: 16px; padding: 16px 24px;
+    display: flex; align-items: center;
+    box-shadow: 0 4px 16px rgba(0, 26, 77, 0.45);
+  }
+  .logo-chip img { height: 64px; display: block; }
+  .badge {
+    background: rgba(0, 48, 135, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff; font-weight: 700; font-size: 26px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 16px 30px; border-radius: 999px;
+  }
+
+  .lower { max-width: 930px; }
+  .headline {
+    font-weight: 800; font-size: 74px; line-height: 1.08;
+    text-transform: uppercase;
+  }
+  .rule { width: 120px; height: 10px; background: #82c55a; border-radius: 999px; margin: 30px 0; }
+  .subline {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 400; font-size: 32px; line-height: 1.45;
+    color: rgba(255, 255, 255, 0.92); max-width: 840px;
+    margin-bottom: 44px;
+  }
+  .bottom { display: flex; align-items: center; justify-content: space-between; }
+  .cta {
+    background: #82c55a; color: #ffffff;
+    font-weight: 800; font-size: 30px; text-transform: uppercase;
+    letter-spacing: 0.05em; padding: 24px 40px; border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(130, 197, 90, 0.45);
+  }
+  .contact { text-align: right; }
+  .phone { font-weight: 800; font-size: 42px; }
+  .site {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 600; font-size: 25px; color: rgba(255, 255, 255, 0.85);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="photo"></div>
+  <div class="overlay"></div>
+  <div class="frame">
+    <div class="top">
+      <div class="logo-chip"><img src="{{LOGO_URL}}" alt="" /></div>
+      <div class="badge">{{BADGE}}</div>
+    </div>
+    <div class="lower">
+      <div class="headline">{{HEADLINE}}</div>
+      <div class="rule"></div>
+      <div class="subline">{{SUBLINE}}</div>
+      <div class="bottom">
+        <div class="cta">{{CTA}}</div>
+        <div class="contact">
+          <div class="phone">{{PHONE}}</div>
+          <div class="site">{{SITE}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
