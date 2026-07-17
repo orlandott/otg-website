@@ -1,4 +1,19 @@
+import generatedPostMetaJson from "@/lib/data/generated-post-meta.json";
+
 export type Language = "en" | "es";
+
+export interface BlogPostMeta {
+  title: string;
+  excerpt: string;
+  date: string;
+}
+
+// Weekly automation appends per-language blog meta to generated-post-meta.json
+// (validated before commit); the JSON import is untyped, hence the casts.
+const generatedPostMeta = generatedPostMetaJson as unknown as Record<
+  Language,
+  Record<string, BlogPostMeta>
+>;
 
 export const translations = {
   en: {
@@ -270,6 +285,7 @@ export const translations = {
           Regulations: "Regulations",
         },
         postMeta: {
+          ...generatedPostMeta.en,
           "impact-windows-vs-shutters": {
             title: "Impact Windows vs. Hurricane Shutters: Which Is Right for Your Home?",
             excerpt: "Both impact windows and hurricane shutters protect your home, but they work differently and suit different homeowners. Here's how to choose the right solution based on your budget, lifestyle, and property.",
@@ -693,6 +709,7 @@ export const translations = {
           Regulations: "Regulaciones",
         },
         postMeta: {
+          ...generatedPostMeta.es,
           "impact-windows-vs-shutters": {
             title: "Ventanas de Impacto vs. Persianas para Huracanes: ¿Cuál es la Correcta para su Hogar?",
             excerpt: "Tanto las ventanas de impacto como las persianas para huracanes protegen su hogar, pero funcionan de manera diferente y se adaptan a distintos propietarios. Aquí le explicamos cómo elegir la solución correcta según su presupuesto, estilo de vida y propiedad.",

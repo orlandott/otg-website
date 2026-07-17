@@ -1,3 +1,5 @@
+import generatedPostsJson from "./generated-posts.json";
+
 export interface BlogSection {
   type: "paragraph" | "h2" | "h3" | "list" | "callout";
   text?: string;
@@ -11,10 +13,16 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   readTime: string;
+  /** ISO date (YYYY-MM-DD). Present on automation-generated posts; used for sitemap/RSS. */
+  publishedAt?: string;
   sections: BlogSection[];
 }
 
-export const blogPosts: BlogPost[] = [
+// Weekly automation appends posts to generated-posts.json (validated against the
+// BlogPost shape before commit); the JSON import is untyped, hence the cast.
+const generatedPosts = generatedPostsJson as unknown as BlogPost[];
+
+const handAuthoredPosts: BlogPost[] = [
   {
     slug: "impact-windows-vs-shutters",
     category: "Buying Guide",
@@ -782,6 +790,22 @@ export const blogPosts: BlogPost[] = [
     ],
   },
 ];
+
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+export function getPostDate(post: BlogPost): Date {
+  if (post.publishedAt) return new Date(post.publishedAt);
+  const [month, year] = post.date.split(" ");
+  const monthIndex = MONTHS.indexOf(month);
+  return new Date(Number(year), monthIndex === -1 ? 0 : monthIndex, 1);
+}
+
+export const blogPosts: BlogPost[] = [...generatedPosts, ...handAuthoredPosts].sort(
+  (a, b) => getPostDate(b).getTime() - getPostDate(a).getTime()
+);
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
