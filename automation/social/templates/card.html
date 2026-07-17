@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <style>
+  :root { {{PALETTE}}; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1080px; height: 1080px; overflow: hidden; }
   body {
     font-family: "Montserrat", "Arial Black", Arial, sans-serif;
-    background: linear-gradient(135deg, #001a4d 0%, #003087 52%, #1e5ebf 100%);
+    background: linear-gradient(135deg, var(--deep-navy) 0%, var(--primary) 52%, var(--secondary) 100%);
     color: #ffffff;
     position: relative;
   }
@@ -43,7 +44,7 @@
     text-transform: uppercase; letter-spacing: 0.01em;
     max-width: 900px;
   }
-  .rule { width: 140px; height: 12px; background: #82c55a; border-radius: 999px; margin: 40px 0; }
+  .rule { width: 140px; height: 12px; background: var(--green); border-radius: 999px; margin: 40px 0; }
   .subline {
     font-family: "Open Sans", Arial, sans-serif;
     font-weight: 400; font-size: 34px; line-height: 1.45;
@@ -52,7 +53,7 @@
 
   .bottom { display: flex; align-items: center; justify-content: space-between; }
   .cta {
-    background: #82c55a; color: #ffffff;
+    background: var(--green); color: #ffffff;
     font-weight: 800; font-size: 32px; text-transform: uppercase;
     letter-spacing: 0.05em; padding: 26px 44px; border-radius: 14px;
     box-shadow: 0 6px 20px rgba(130, 197, 90, 0.4);

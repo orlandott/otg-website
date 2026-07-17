@@ -13,7 +13,8 @@
 import fs from "node:fs";
 import { runAgent } from "../lib/claude.mjs";
 import { notifyOwner } from "../lib/notify.mjs";
-import { repoPath, readJson, writeJson, writeText } from "../lib/files.mjs";
+import { repoPath, readJson, writeJson, writeText, existingBlogPosts } from "../lib/files.mjs";
+import { todayInMiami } from "../lib/dates.mjs";
 import { BRAND, MONTHS_EN } from "../lib/brand.mjs";
 import { PLAN_SCHEMA, COPY_SCHEMA, DESIGN_SCHEMA, GUARDRAIL_SCHEMA } from "./schemas.mjs";
 import { renderSocialImage } from "./render.mjs";
@@ -39,27 +40,11 @@ ${BRAND.proofPoints.map((p) => `- ${p}`).join("\n")}
 
 Social style: energetic, emoji-friendly (💙 is the brand signature emoji, plus 🏠🌪️💪), educational or promotional, never fearmongering without a solution. Never invent statistics, prices, or offers beyond the verified facts.`;
 
-function todayIso() {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
-}
-
 function pickFormat(config, state) {
   const rotation = config.social.formatRotation;
   if (!state.social.lastFormat) return rotation[0];
   const idx = rotation.indexOf(state.social.lastFormat);
   return rotation[(idx + 1) % rotation.length];
-}
-
-function latestBlogPost() {
-  const generated = readJson(repoPath("src/lib/data/generated-posts.json"));
-  if (generated.length) {
-    const p = generated[0];
-    return { title: p.title, excerpt: p.excerpt, slug: p.slug };
-  }
-  const source = fs.readFileSync(repoPath("src/lib/data/blogPosts.ts"), "utf8");
-  const title = source.match(/^\s{4}title: "([^"]+)"/m)?.[1] ?? "";
-  const slug = source.match(/^\s{4}slug: "([^"]+)"/m)?.[1] ?? "";
-  return { title, excerpt: "", slug };
 }
 
 function productPhotoOptions() {
@@ -71,7 +56,7 @@ function productPhotoOptions() {
 
 async function runPipeline({ format, today, state }) {
   const month = MONTHS_EN[Number(today.slice(5, 7)) - 1];
-  const blog = latestBlogPost();
+  const blog = existingBlogPosts().latest;
   const recentPosts = state.social.history.slice(0, 8);
 
   console.log("→ Agent 1/4: Campaign Planner");
@@ -197,7 +182,7 @@ async function main() {
 
   const statePath = repoPath("automation/state.json");
   const state = readJson(statePath);
-  const today = todayIso();
+  const today = todayInMiami().iso;
   const format = pickFormat(config, state);
   const outDir = repoPath("automation", "out", "social", today);
 

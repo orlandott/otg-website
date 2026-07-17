@@ -17,9 +17,9 @@ import {
   readJson,
   writeJson,
   writeText,
-  existingBlogSlugs,
-  existingBlogTitles,
+  existingBlogPosts,
 } from "../lib/files.mjs";
+import { todayInMiami } from "../lib/dates.mjs";
 import { BRAND, BLOG_CATEGORIES, MONTHS_EN, MONTHS_ES } from "../lib/brand.mjs";
 import {
   TOPIC_SCHEMA,
@@ -30,21 +30,6 @@ import {
 
 const MOCK = process.argv.includes("--mock");
 const DRY_RUN = process.argv.includes("--dry-run");
-
-function nowInMiami() {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/New_York",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  }).formatToParts(new Date());
-  const get = (type) => Number(parts.find((p) => p.type === type).value);
-  const year = get("year");
-  const month = get("month");
-  const day = get("day");
-  const iso = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-  return { year, month, day, iso };
-}
 
 function wordCount(sections) {
   return sections
@@ -69,8 +54,8 @@ Hard rules:
 - Never guarantee insurance savings — say discounts "may" or "typically" apply.
 - No markdown, no HTML, no links inside text — plain sentences only.`;
 
-async function runPipeline(today) {
-  const existingTitles = existingBlogTitles();
+async function runPipeline(today, existing, config) {
+  const wordTarget = `${config.blog.minWords}–${config.blog.maxWords}`;
   const topics = readJson(repoPath("automation/topics.json"));
 
   console.log("→ Agent 1/5: Topic Strategist");
@@ -84,7 +69,7 @@ Topic seed backlog (you may adapt one or propose a better one):
 ${JSON.stringify(topics.seeds, null, 2)}
 
 Existing post titles — the new topic must NOT overlap with any of these:
-${existingTitles.map((t) => `- ${t}`).join("\n")}
+${existing.titles.map((t) => `- ${t}`).join("\n")}
 
 Prioritize: (1) seasonal relevance to the current month, (2) purchase-intent keywords, (3) coverage gaps vs existing posts. Categories allowed: ${BLOG_CATEGORIES.join(", ")}.`,
   });
@@ -104,7 +89,7 @@ Target keyword: ${topic.targetKeyword}
 Category: ${topic.category}
 
 Requirements:
-- 900–1300 words total.
+- ${wordTarget} words total.
 - Structure: opening paragraph(s) that hook a South Florida homeowner, then h2 sections (5–8), with lists where they genuinely help, optional h3 subsections.
 - The FIRST section must be type "paragraph" (the lead).
 - The LAST section must be type "callout": a call to action mentioning the free in-home consultation and the phone number ${BRAND.phone}.
@@ -128,14 +113,15 @@ Checklist:
 - Slug: 3–6 lowercase hyphenated words, keyword-based.
 - Heading hierarchy clean (h2 → h3, no skips), headings scannable.
 - Keyword and close variants appear naturally (no stuffing).
-- Tighten weak sentences; keep 900–1300 words; keep the closing callout with the phone number.
+- Tighten weak sentences; keep ${wordTarget} words; keep the closing callout with the phone number.
 
 Draft:
 ${JSON.stringify(draft, null, 2)}`,
   });
 
-  console.log("→ Agent 4/5: Claims Checker");
-  const claims = await runAgent({
+  // Claims checker and translator are independent — run them concurrently.
+  console.log("→ Agents 4+5/5: Claims Checker ∥ Translator (es)");
+  const claimsPromise = runAgent({
     name: "claims-checker",
     system: SYSTEM,
     schema: CLAIMS_SCHEMA,
@@ -156,10 +142,8 @@ Verdict: "approved" (no flags), "approved_with_notes" (info/warning only), "need
 Post:
 ${JSON.stringify(post, null, 2)}`,
   });
-  console.log(`  verdict: ${claims.verdict} (${claims.flags.length} flags)`);
 
-  console.log("→ Agent 5/5: Translator (es)");
-  const translation = await runAgent({
+  const translationPromise = runAgent({
     name: "translator",
     system:
       "You are a professional English→Spanish translator for a South Florida home improvement company. Use the neutral Latin American Spanish used in Miami. Translate marketing copy naturally, not literally.",
@@ -170,17 +154,20 @@ Title: ${post.title}
 Excerpt: ${post.excerpt}`,
   });
 
+  const [claims, translation] = await Promise.all([claimsPromise, translationPromise]);
+  console.log(`  verdict: ${claims.verdict} (${claims.flags.length} flags)`);
+
   return { topic, post, claims, translation };
 }
 
-function validatePost(post, today) {
+function validatePost(post, existing, config) {
   const errors = [];
   const warnings = [];
 
   if (!/^[a-z0-9]+(-[a-z0-9]+){1,7}$/.test(post.slug)) {
     errors.push(`slug "${post.slug}" is not a valid hyphenated slug`);
   }
-  if (existingBlogSlugs().includes(post.slug)) {
+  if (existing.slugs.includes(post.slug)) {
     errors.push(`slug "${post.slug}" already exists`);
   }
   if (!BLOG_CATEGORIES.includes(post.category)) {
@@ -205,9 +192,12 @@ function validatePost(post, today) {
     }
   }
 
+  const { minWords, maxWords } = config.blog;
   const words = wordCount(post.sections ?? []);
-  if (words < 600) errors.push(`post too short: ${words} words`);
-  else if (words < 850 || words > 1500) warnings.push(`word count ${words} outside 900–1300 target`);
+  if (words < Math.round(minWords * (2 / 3))) errors.push(`post too short: ${words} words`);
+  else if (words < minWords - 50 || words > maxWords + 200) {
+    warnings.push(`word count ${words} outside ${minWords}–${maxWords} target`);
+  }
 
   if (post.excerpt.length < 120 || post.excerpt.length > 175) {
     warnings.push(`excerpt is ${post.excerpt.length} chars (target 150–160)`);
@@ -307,14 +297,15 @@ async function main() {
     return;
   }
 
-  const today = nowInMiami();
+  const today = todayInMiami();
+  const existing = existingBlogPosts();
   console.log(`Blog pipeline starting (${today.iso})${MOCK ? " [MOCK]" : ""}${DRY_RUN ? " [DRY-RUN]" : ""}`);
 
   const result = MOCK
     ? readJson(repoPath("automation/blog/mock-post.json"))
-    : await runPipeline(today);
+    : await runPipeline(today, existing, config);
 
-  const meta = validatePost(result.post, today);
+  const meta = validatePost(result.post, existing, config);
   const fullPost = publish(result, today, meta);
 
   console.log(`✓ Post ready: /blog/${fullPost.slug} (${meta.words} words, verdict: ${result.claims.verdict})`);

@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeScript } from "@/components/providers/ThemeScript";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import { SITE_URL } from "@/lib/siteUrl";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -19,11 +20,6 @@ const barlow = Barlow({
   variable: "--font-barlow",
 });
 
-/** Used for absolute OG / Twitter image URLs (WhatsApp, iMessage, etc.). */
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-  "https://www.orlandotgroupinc.com";
-
 const defaultTitle =
   "Orlando T Group Inc. | Hurricane & Solar Protection | South Florida";
 const shortDescription =
@@ -32,7 +28,7 @@ const longDescription =
   "Hurricane and solar protection for South Florida. Impact windows, doors, shutters, awnings, and more. Free in-home consultation. Licensed & insured since 2006.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: defaultTitle,
   description: longDescription,
   keywords: [
@@ -53,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Orlando T Group Inc.",
     title: "Orlando T Group Inc. | Hurricane & Solar Protection",
     description: shortDescription,
-    url: siteUrl,
+    url: SITE_URL,
     images: [
       {
         url: "/images/hero.png",

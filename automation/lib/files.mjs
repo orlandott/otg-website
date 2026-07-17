@@ -26,18 +26,23 @@ export function writeText(filePath, text) {
   fs.writeFileSync(filePath, text, "utf8");
 }
 
-/** Slugs of every existing post: generated JSON + hand-authored in blogPosts.ts. */
-export function existingBlogSlugs() {
+/**
+ * Every existing post's slugs and titles (generated JSON + hand-authored in
+ * blogPosts.ts), plus the newest post — read and parsed once per call.
+ */
+export function existingBlogPosts() {
   const generated = readJson(repoPath("src/lib/data/generated-posts.json"));
   const source = fs.readFileSync(repoPath("src/lib/data/blogPosts.ts"), "utf8");
-  const handAuthored = [...source.matchAll(/^\s{4}slug: "([^"]+)"/gm)].map((m) => m[1]);
-  return [...generated.map((p) => p.slug), ...handAuthored];
-}
-
-/** Titles of every existing post (for topic-overlap avoidance). */
-export function existingBlogTitles() {
-  const generated = readJson(repoPath("src/lib/data/generated-posts.json"));
-  const source = fs.readFileSync(repoPath("src/lib/data/blogPosts.ts"), "utf8");
-  const handAuthored = [...source.matchAll(/^\s{4}title: "([^"]+)"/gm)].map((m) => m[1]);
-  return [...generated.map((p) => p.title), ...handAuthored];
+  const extract = (field) =>
+    [...source.matchAll(new RegExp(`^\\s*${field}: "([^"]+)"`, "gm"))].map((m) => m[1]);
+  const handSlugs = extract("slug");
+  const handTitles = extract("title");
+  const latest = generated[0]
+    ? { slug: generated[0].slug, title: generated[0].title, excerpt: generated[0].excerpt }
+    : { slug: handSlugs[0] ?? "", title: handTitles[0] ?? "", excerpt: "" };
+  return {
+    slugs: [...generated.map((p) => p.slug), ...handSlugs],
+    titles: [...generated.map((p) => p.title), ...handTitles],
+    latest,
+  };
 }

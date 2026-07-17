@@ -1,18 +1,12 @@
 import type { MetadataRoute } from "next";
 import { blogPosts, getPostDate } from "@/lib/data/blogPosts";
+import { products } from "@/lib/data/products";
 import { SITE_URL } from "@/lib/siteUrl";
 
 const STATIC_ROUTES: { path: string; priority: number }[] = [
   { path: "", priority: 1.0 },
   { path: "/products", priority: 0.9 },
-  { path: "/products/impact-windows", priority: 0.8 },
-  { path: "/products/impact-doors", priority: 0.8 },
-  { path: "/products/accordion-shutters", priority: 0.8 },
-  { path: "/products/rolldown-shutters", priority: 0.8 },
-  { path: "/products/patio-enclosures", priority: 0.8 },
-  { path: "/products/retractable-awnings", priority: 0.8 },
-  { path: "/products/blinds", priority: 0.8 },
-  { path: "/products/impact-garage-doors", priority: 0.8 },
+  ...products.map((p) => ({ path: p.href, priority: 0.8 })),
   { path: "/contact", priority: 0.9 },
   { path: "/about", priority: 0.7 },
   { path: "/financing", priority: 0.7 },

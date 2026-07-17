@@ -2,6 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { repoPath } from "../lib/files.mjs";
+import { BRAND } from "../lib/brand.mjs";
+
+// Solid brand colors are injected into the templates as CSS variables so the
+// palette has one home (brand.mjs). Translucent overlay tints stay in the
+// templates — they are per-design effects, not palette entries.
+const PALETTE_CSS = [
+  `--deep-navy: ${BRAND.colors.deepNavy}`,
+  `--primary: ${BRAND.colors.primary}`,
+  `--secondary: ${BRAND.colors.secondary}`,
+  `--green: ${BRAND.colors.green}`,
+].join("; ");
 
 async function getChromium() {
   try {
@@ -43,6 +54,7 @@ export async function renderSocialImage(format, fields, outPath) {
   let html = fs.readFileSync(templatePath, "utf8");
 
   const replacements = {
+    PALETTE: PALETTE_CSS,
     BADGE: escapeHtml(fields.badge),
     HEADLINE: escapeHtml(fields.headline),
     SUBLINE: escapeHtml(fields.subline),
