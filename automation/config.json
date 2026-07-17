@@ -1,0 +1,12 @@
+{
+  "blog": {
+    "enabled": true,
+    "minWords": 900,
+    "maxWords": 1300
+  },
+  "social": {
+    "enabled": true,
+    "live": false,
+    "formatRotation": ["card", "photo"]
+  }
+}
