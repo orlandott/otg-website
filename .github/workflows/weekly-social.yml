@@ -1,0 +1,68 @@
+name: Weekly social post
+
+on:
+  schedule:
+    # Thursdays 14:00 UTC = 10:00 AM ET (9:00 AM during EST)
+    - cron: "0 14 * * 4"
+  workflow_dispatch:
+    inputs:
+      mock:
+        description: "Use mock fixture instead of calling the Claude API"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-social
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: |
+          npm i --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Generate social post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          META_SYSTEM_USER_TOKEN: ${{ secrets.META_SYSTEM_USER_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_IMAGES_TOKEN: ${{ secrets.CF_IMAGES_TOKEN }}
+        run: node automation/social/generate.mjs ${{ inputs.mock && '--mock' || '' }}
+
+      - name: Upload post artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: social-post
+          path: automation/out/social/
+          retention-days: 30
+
+      - name: Commit state update
+        continue-on-error: true
+        run: |
+          git config user.name "otg-automation"
+          git config user.email "noreply@orlandotgroupinc.com"
+          git add automation/state.json
+          git diff --cached --quiet || {
+            git commit -m "Update social automation state [skip ci]"
+            git push
+          }

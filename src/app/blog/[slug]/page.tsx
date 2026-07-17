@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBlogPost, blogPosts } from "@/lib/data/blogPosts";
+import { getBlogPost, getPostDate, blogPosts } from "@/lib/data/blogPosts";
+import { SITE_URL } from "@/lib/siteUrl";
 import BlogPostClient from "./BlogPostClient";
 
 interface Props {
@@ -15,17 +16,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPost(params.slug);
   if (!post) return {};
 
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    "https://www.orlandotgroupinc.com";
-
   return {
     title: `${post.title} | Orlando T Group`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: `${SITE_URL}/blog/${post.slug}`,
       siteName: "Orlando T Group Inc.",
       type: "article",
       images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
@@ -36,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
     },
     alternates: {
-      canonical: `${siteUrl}/blog/${post.slug}`,
+      canonical: `${SITE_URL}/blog/${post.slug}`,
     },
   };
 }
@@ -45,5 +42,33 @@ export default function BlogPostPage({ params }: Props) {
   const post = getBlogPost(params.slug);
   if (!post) notFound();
 
-  return <BlogPostClient post={post} />;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: getPostDate(post).toISOString().slice(0, 10),
+    articleSection: post.category,
+    url: `${SITE_URL}/blog/${post.slug}`,
+    author: {
+      "@type": "Organization",
+      name: "Orlando T Group Inc.",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Orlando T Group Inc.",
+      url: SITE_URL,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <BlogPostClient post={post} />
+    </>
+  );
 }

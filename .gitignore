@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+# marketing automation run artifacts
+/automation/out/
+
 # next.js
 /.next/
 /out/
