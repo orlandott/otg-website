@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-const MODEL = "claude-opus-4-8";
+const MODEL = "claude-opus-5";
 
 let client;
 function getClient() {
