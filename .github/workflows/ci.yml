@@ -23,5 +23,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # Deterministic, secret-free check on the weekly blog post the scheduled
+      # routine commits — see docs/weekly-blog-post.md.
+      - name: Validate blog posts
+        run: npm run validate:blog
+
       - name: Build
         run: npm run build

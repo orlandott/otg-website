@@ -1,42 +1,57 @@
 # Marketing Automation
 
-Two weekly multi-agent pipelines, scheduled with GitHub Actions:
+Two weekly automations, driven two different ways:
 
-| Pipeline | Schedule | Workflow | Output |
+| Pipeline | Schedule | Driven by | Needs an API key? |
 |---|---|---|---|
-| **Blog post** | Tuesdays 9am ET | `.github/workflows/weekly-blog.yml` | Publishes itself to `main` — you get an email once it's live |
-| **IG + FB post** | Thursdays 10am ET | `.github/workflows/weekly-social.yml` | Rendered image + captions (dry-run artifacts until Meta is wired) |
-
-Both can be run on demand: GitHub → Actions → pick the workflow → *Run workflow* (check **mock** to test without spending API tokens).
+| **Blog post** | Tuesdays 9am ET | A **Claude Code routine** — see [`docs/weekly-blog-post.md`](../docs/weekly-blog-post.md) | **No** |
+| **IG + FB post** | Thursdays 10am ET | GitHub Actions (`.github/workflows/weekly-social.yml`) | Yes — `ANTHROPIC_API_KEY` |
 
 ## How the blog pipeline works
 
-`automation/blog/generate.mjs` runs five Claude agents (model: `claude-opus-5`, structured outputs so every step returns schema-valid JSON):
+The weekly post is written by a **scheduled Claude Code session**, not by a
+GitHub Action calling the Anthropic API. That session runs on the account's own
+Claude subscription, so **the blog path needs no `ANTHROPIC_API_KEY`**.
 
-1. **Topic Strategist** — picks this week's topic from `automation/topics.json` seeds + seasonality, avoiding overlap with every existing post.
-2. **Writer** — drafts the full post in the site's exact section schema (900–1300 words).
-3. **SEO Editor** — title ≤70 chars, 150–160-char meta excerpt, keyword placement, heading hierarchy, slug.
-4. **Claims Checker** — audits Florida Building Code / NOA / insurance / pricing claims; its verdict decides whether the post can publish unattended.
-5. **Translator** — Spanish title/excerpt for the bilingual listing page.
+The process the routine follows lives in
+[`docs/weekly-blog-post.md`](../docs/weekly-blog-post.md) — pick a topic from
+`automation/topics.json` and the seasonal calendar, write the post in the site's
+`BlogPost` shape, add the Spanish listing meta, validate, build, and publish.
+That file is the canonical description: **edit it to change what the routine
+does**, without touching the schedule.
 
-The publisher then validates the post in code (slug uniqueness, section shapes, word count, computed read time), appends it to `src/lib/data/generated-posts.json` + `generated-post-meta.json`, and verifies `npm run build` passes.
+Create or change the schedule at
+[claude.ai/code/routines](https://claude.ai/code/routines) with this repository
+selected under Repositories. Routines created there can push branches and open
+PRs; one created programmatically from inside a session cannot, and will end
+with a reviewable summary instead of publishing.
 
 ### What actually publishes it
 
-Cloudflare Pages builds `main` through its own GitHub App, so **landing the commit on `main` is what puts the post on the site** — usually live a couple of minutes later. No merge, no manual step.
+Cloudflare Pages builds `main` through its own GitHub App, so **landing the
+commit on `main` is what puts the post on the site** — usually live a couple of
+minutes later. No merge, no manual step.
 
-Each run ends one of two ways:
+### What CI checks
 
-| Outcome | When | What you get |
-|---|---|---|
-| **Published** | Claims verdict is `approved` or `approved_with_notes`, with no `blocker` flags | Commit pushed to `main`; email with the post, its claims table, and the live URL |
-| **Held for review** | Any `blocker` flag (verdict `needs_review`), `blog.autoPublish: false`, or a `--mock` run | A PR instead of a push, plus an email — nothing goes live until you merge |
+`npm run validate:blog` (`automation/blog/validate.mjs`) runs on every push and
+PR. It is deterministic and uses no secrets:
 
-Two things never reach `main` on their own: a post the Claims Checker judged unpublishable, and a mock run. Lower-severity `warning`/`info` flags **do** publish — they are "verify this" notes rather than stop signs, and holding every one of them would mean nothing ever ships unattended. They're listed in full in the email so you can correct a live post if one reads wrong.
+- slug format, uniqueness, and collisions with hand-authored posts
+- section shapes, lead paragraph, closing CTA callout, heading hierarchy
+- title ≤ 70 chars, excerpt 120–175 chars, word count against `automation/config.json`
+- `readTime` recomputed from the actual word count
+- `publishedAt` / `date` formats, and newest-first ordering
+- an `en` **and** `es` entry in `generated-post-meta.json` for every post
+- banned claims — guaranteed discounts or percentages, "hurricane-proof",
+  free installs, unverifiable superlatives — and any phone number that isn't
+  (954) 625-5318
 
-If a run fails *after* the post was written (e.g. the push is rejected), you get a separate failure email and nothing is published.
+The claim checks are a backstop, not the standard; the judgement lives in
+`docs/weekly-blog-post.md` step 4.
 
-> One-time GitHub settings: repo **Settings → Actions → General → Workflow permissions** — enable *"Allow GitHub Actions to create and approve pull requests"* (for the review path). If `main` has a branch-protection rule, allow `github-actions[bot]` to push to it, or the publish step cannot land the commit.
+> If `main` has a branch-protection rule, the routine needs permission to push
+> to it, or it will stop at a branch and hand you a summary instead.
 
 ## How the social pipeline works
 
@@ -56,21 +71,26 @@ The image is rendered from `automation/social/templates/{card,photo}.html` (1080
 `automation/config.json`:
 
 ```json
-{ "blog": { "enabled": true, "autoPublish": true }, "social": { "enabled": true, "live": false } }
+{ "blog": { "minWords": 900, "maxWords": 1300 }, "social": { "enabled": true, "live": false } }
 ```
 
-- Set `enabled: false` to pause a pipeline entirely.
-- Set `blog.autoPublish: false` to keep writing a post every week but go back to opening a PR for each one instead of publishing it.
-- Set `social.live: true` (plus secrets below) to switch social from dry-run to auto-posting.
+- **Blog:** the schedule is a Claude Code routine, so pause or stop it at
+  [claude.ai/code/routines](https://claude.ai/code/routines) (or ask Claude Code
+  to delete the trigger) — there is no in-repo switch. `minWords`/`maxWords` are
+  the word-count band the validator enforces.
+- **Social:** set `enabled: false` to pause the pipeline entirely, or
+  `social.live: true` (plus the secrets below) to switch it from dry-run to
+  auto-posting.
 
-Failures email `orlandot@gmail.com` via SendGrid.
+Social failures email `orlandot@gmail.com` via SendGrid. A failed blog routine
+surfaces on its run page in the Claude Code UI.
 
 ## Secrets (GitHub → Settings → Secrets and variables → Actions)
 
 | Secret | Needed for | Where to get it |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | both pipelines | console.anthropic.com |
-| `SENDGRID_API_KEY` | failure emails | already used by the site's contact form |
+| `ANTHROPIC_API_KEY` | the **social** pipeline only — the blog needs no key | console.anthropic.com |
+| `SENDGRID_API_KEY` | social failure emails | already used by the site's contact form |
 | `META_SYSTEM_USER_TOKEN` | live FB/IG posting | Business Manager → System User (see checklist) |
 | `FB_PAGE_ID` | live FB posting | Page → About, or Graph Explorer `me/accounts` |
 | `IG_USER_ID` | live IG posting | Graph API: `{page-id}?fields=instagram_business_account` |
@@ -90,9 +110,10 @@ Failures email `orlandot@gmail.com` via SendGrid.
 ## Local testing
 
 ```bash
-node automation/blog/generate.mjs --mock      # full publisher path, no API calls
-node automation/blog/generate.mjs --dry-run   # real agents, writes out/ only
+npm run validate:blog                         # check every committed post (no API calls)
 node automation/social/generate.mjs --mock    # renders a real PNG from the fixture
 ```
 
-Mock blog runs write a `mock-*` post into the data files — discard with `git checkout -- src/lib/data automation/state.json` afterwards. Run artifacts land in `automation/out/` (gitignored).
+To rehearse the blog routine, just follow `docs/weekly-blog-post.md` yourself in
+a Claude Code session — that is exactly what the schedule does. Social run
+artifacts land in `automation/out/` (gitignored).
