@@ -1,6 +1,7 @@
 {
   "blog": {
     "enabled": true,
+    "autoPublish": true,
     "minWords": 900,
     "maxWords": 1300
   },

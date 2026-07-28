@@ -3,7 +3,9 @@
  *
  * Agents: Topic Strategist → Writer → SEO Editor → Claims Checker → Translator.
  * The publisher then appends the post to src/lib/data/generated-posts.json and
- * its en/es meta to generated-post-meta.json, and writes a PR body for review.
+ * its en/es meta to generated-post-meta.json, and decides whether the post can
+ * go live unattended (see decidePublication) — the workflow reads that decision
+ * to either push straight to main or open a review PR.
  *
  * Usage:
  *   node automation/blog/generate.mjs             # full run (needs ANTHROPIC_API_KEY)
@@ -209,7 +211,33 @@ function validatePost(post, existing, config) {
   return { words, warnings, readTime: `${Math.max(2, Math.ceil(words / 200))} min read` };
 }
 
-function publish({ topic, post, claims, translation }, today, meta) {
+/**
+ * Whether this post can go live unattended.
+ *
+ * Blockers (and the `needs_review` verdict that accompanies them) are the only
+ * compliance stop: a licensed contractor should not auto-publish a claim the
+ * checker judged unpublishable. Warnings still publish — they are "verify this"
+ * notes, and holding every one of them would mean nothing ever ships on its own
+ * — but they are listed in the owner's email so the live post can be corrected.
+ */
+function decidePublication(claims, config) {
+  if (MOCK) return { autoPublish: false, reason: "mock run — never publishes to main" };
+  if (DRY_RUN) return { autoPublish: false, reason: "dry run — no data files written" };
+  if (!config.blog.autoPublish) {
+    return { autoPublish: false, reason: "auto-publish is off in automation/config.json" };
+  }
+
+  const blockers = claims.flags.filter((f) => f.severity === "blocker");
+  if (blockers.length) {
+    return { autoPublish: false, reason: `claims check raised ${blockers.length} blocker(s)` };
+  }
+  if (claims.verdict === "needs_review") {
+    return { autoPublish: false, reason: "claims verdict: needs_review" };
+  }
+  return { autoPublish: true, reason: `claims verdict: ${claims.verdict}` };
+}
+
+function publish({ topic, post, claims, translation }, today, meta, decision) {
   const fullPost = {
     slug: post.slug,
     category: post.category,
@@ -249,8 +277,22 @@ function publish({ topic, post, claims, translation }, today, meta) {
     writeJson(statePath, state);
   }
 
-  // Run artifacts + PR body
-  writeJson(repoPath("automation/out/blog/post.json"), { topic, post: fullPost, claims, translation });
+  writeRunArtifacts({ topic, post: fullPost, claims, translation }, meta, decision);
+  return fullPost;
+}
+
+/** Everything under automation/out/blog/ — consumed by the workflow, not committed. */
+function writeRunArtifacts({ topic, post, claims, translation }, meta, decision) {
+  const out = (name) => repoPath("automation/out/blog", name);
+
+  writeJson(out("post.json"), { topic, post, claims, translation });
+  writeJson(out("publish-decision.json"), {
+    autoPublish: decision.autoPublish,
+    reason: decision.reason,
+    slug: post.slug,
+    verdict: claims.verdict,
+  });
+  writeText(out("slug.txt"), post.slug);
 
   const flagLines = claims.flags.length
     ? claims.flags
@@ -258,9 +300,7 @@ function publish({ topic, post, claims, translation }, today, meta) {
         .join("\n")
     : "| — | No flags raised | — |";
 
-  const prBody = `## Weekly blog post: ${post.title}
-
-**Category:** ${post.category} · **Target keyword:** \`${topic.targetKeyword}\` · **${meta.words} words · ${meta.readTime}**
+  const details = `**Category:** ${post.category} · **Target keyword:** \`${topic.targetKeyword}\` · **${meta.words} words · ${meta.readTime}**
 
 **Why this topic:** ${topic.rationale}
 
@@ -275,7 +315,15 @@ ${meta.warnings.length ? `### Validation warnings\n${meta.warnings.map((w) => `-
 
 - **Título:** ${translation.title}
 - **Extracto:** ${translation.excerpt}
+`;
 
+  writeText(
+    out("pr-body.md"),
+    `## Weekly blog post held for review: ${post.title}
+
+**This post did not publish automatically.** Reason: ${decision.reason}
+
+${details}
 ### Review checklist
 
 - [ ] Claims table reviewed — nothing risky for a licensed contractor
@@ -283,11 +331,22 @@ ${meta.warnings.length ? `### Validation warnings\n${meta.warnings.map((w) => `-
 - [ ] Preview: \`/blog/${post.slug}\`
 
 Merging publishes the post on the next Cloudflare Pages deploy.
-`;
-  writeText(repoPath("automation/out/blog/pr-body.md"), prBody);
-  writeText(repoPath("automation/out/blog/slug.txt"), post.slug);
+`
+  );
 
-  return fullPost;
+  writeText(
+    out("summary.md"),
+    `${post.title}
+
+Live at ${BRAND.siteUrl}/blog/${post.slug} once Cloudflare Pages finishes the deploy
+(usually a couple of minutes after the commit lands on main).
+
+${details}
+Nothing to do if this all reads well. To correct the post, edit
+src/lib/data/generated-posts.json on main. To pause weekly publishing, set
+blog.autoPublish (or blog.enabled) to false in automation/config.json.
+`
+  );
 }
 
 async function main() {
@@ -306,9 +365,15 @@ async function main() {
     : await runPipeline(today, existing, config);
 
   const meta = validatePost(result.post, existing, config);
-  const fullPost = publish(result, today, meta);
+  const decision = decidePublication(result.claims, config);
+  const fullPost = publish(result, today, meta, decision);
 
   console.log(`✓ Post ready: /blog/${fullPost.slug} (${meta.words} words, verdict: ${result.claims.verdict})`);
+  console.log(
+    decision.autoPublish
+      ? `  → publishing to main (${decision.reason})`
+      : `  → held for review (${decision.reason})`
+  );
   if (meta.warnings.length) {
     console.log(`  warnings:\n  - ${meta.warnings.join("\n  - ")}`);
   }

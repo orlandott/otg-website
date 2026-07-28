@@ -11,7 +11,7 @@ Two weekly, multi-agent content automations for the Orlando T Group site.
 - Blog posts are text-only (no image field).
 
 ## Locked decisions
-- **Blog gating:** human-approved. Each weekly post is committed to a branch and opened as a **GitHub PR** (draft queue); owner approves/merges every one. **Never auto-publish.**
+- **Blog gating:** ~~human-approved on every post~~ → **superseded: auto-publish weekly.** The post commits straight to `main` (Cloudflare Pages then deploys it) unless the Claims Checker raises a `blocker`, in which case it opens a PR instead. The owner is emailed either way, and `blog.autoPublish: false` in `automation/config.json` restores PR-per-post.
 - **Social image:** **rotate** branded template cards ⇄ real product photos from `/public/images` week to week.
 - **Meta setup:** unknown — owner completes the readiness checklist (bottom) before social posting is wired live.
 - **Scheduler:** GitHub Actions cron for both (one place for secrets/logs/manual re-runs).
@@ -21,9 +21,9 @@ Agent pipeline → deterministic publish:
 1. **Topic Strategist** — keeps `automation/topics.json` (products × South-FL seasonal calendar: hurricane season, insurance renewals, permit cycles); picks next topic + target keyword + category, no overlap with existing posts.
 2. **Writer** — full `BlogPost` object, ~900–1,300 words, brand voice, exact `sections` schema.
 3. **SEO Editor** — title, 150–160-char excerpt, slug, heading hierarchy, keyword usage, **internal links to product pages**, `readTime`, `Article` JSON-LD.
-4. **Claims/Brand Checker** — verify pricing ranges, Florida Building Code / NOA / OIR-form / insurance % claims, phone `954-625-5318`; flag anything risky in the PR body.
+4. **Claims/Brand Checker** — verify pricing ranges, Florida Building Code / NOA / OIR-form / insurance % claims, phone `954-625-5318`; a `blocker` flag holds the post back for review.
 5. **Translator** — Spanish `postMeta` (title/excerpt/date) for the `es` block.
-6. **Publisher (code)** — insert into `blogPosts.ts` + `translations.ts`, regenerate sitemap, commit to branch, **open PR** with a claims-check summary.
+6. **Publisher (code)** — insert into the generated-post data files, verify the build, then **push to `main`** (or open a PR if the claims check blocked it) and email the owner.
 
 One-time SEO add: `src/app/sitemap.ts`, `src/app/robots.ts`, RSS feed.
 
