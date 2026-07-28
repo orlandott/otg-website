@@ -277,30 +277,44 @@ function publish({ topic, post, claims, translation }, today, meta, decision) {
     writeJson(statePath, state);
   }
 
-  writeRunArtifacts({ topic, post: fullPost, claims, translation }, meta, decision);
+  writeRunArtifacts({ topic, post: fullPost, claims, translation, meta, decision });
   return fullPost;
 }
 
-/** Everything under automation/out/blog/ — consumed by the workflow, not committed. */
-function writeRunArtifacts({ topic, post, claims, translation }, meta, decision) {
+/**
+ * Everything under automation/out/blog/ — consumed by the workflow, not committed.
+ *
+ * The same facts are rendered twice on purpose: the PR body is GitHub-flavoured
+ * markdown, while the owner's email goes out as text/plain (see lib/notify.mjs),
+ * where a pipe table would arrive as unreadable punctuation.
+ */
+function writeRunArtifacts({ topic, post, claims, translation, meta, decision }) {
   const out = (name) => repoPath("automation/out/blog", name);
 
   writeJson(out("post.json"), { topic, post, claims, translation });
+  // The workflow reads this one file for every value it needs.
   writeJson(out("publish-decision.json"), {
     autoPublish: decision.autoPublish,
     reason: decision.reason,
     slug: post.slug,
-    verdict: claims.verdict,
   });
-  writeText(out("slug.txt"), post.slug);
 
-  const flagLines = claims.flags.length
+  writeText(out("pr-body.md"), renderPrBody({ topic, post, claims, translation, meta, decision }));
+  writeText(out("summary.txt"), renderEmail({ topic, post, claims, translation, meta }));
+}
+
+function renderPrBody({ topic, post, claims, translation, meta, decision }) {
+  const flagRows = claims.flags.length
     ? claims.flags
         .map((f) => `| ${f.severity} | ${f.claim.slice(0, 80)} | ${f.issue}${f.suggestion ? ` — _${f.suggestion}_` : ""} |`)
         .join("\n")
     : "| — | No flags raised | — |";
 
-  const details = `**Category:** ${post.category} · **Target keyword:** \`${topic.targetKeyword}\` · **${meta.words} words · ${meta.readTime}**
+  return `## Weekly blog post held for review: ${post.title}
+
+**This post did not publish automatically.** Reason: ${decision.reason}
+
+**Category:** ${post.category} · **Target keyword:** \`${topic.targetKeyword}\` · **${meta.words} words · ${meta.readTime}**
 
 **Why this topic:** ${topic.rationale}
 
@@ -308,22 +322,14 @@ function writeRunArtifacts({ topic, post, claims, translation }, meta, decision)
 
 | Severity | Claim | Issue |
 |---|---|---|
-${flagLines}
+${flagRows}
 
 ${meta.warnings.length ? `### Validation warnings\n${meta.warnings.map((w) => `- ${w}`).join("\n")}\n` : ""}
 ### Spanish meta (listing page)
 
 - **Título:** ${translation.title}
 - **Extracto:** ${translation.excerpt}
-`;
 
-  writeText(
-    out("pr-body.md"),
-    `## Weekly blog post held for review: ${post.title}
-
-**This post did not publish automatically.** Reason: ${decision.reason}
-
-${details}
 ### Review checklist
 
 - [ ] Claims table reviewed — nothing risky for a licensed contractor
@@ -331,22 +337,50 @@ ${details}
 - [ ] Preview: \`/blog/${post.slug}\`
 
 Merging publishes the post on the next Cloudflare Pages deploy.
-`
-  );
+`;
+}
 
-  writeText(
-    out("summary.md"),
-    `${post.title}
+function renderEmail({ topic, post, claims, translation, meta }) {
+  const flagLines = claims.flags.length
+    ? claims.flags
+        .map((f) =>
+          [
+            `  [${f.severity}] ${f.claim}`,
+            `      ${f.issue}`,
+            f.suggestion ? `      Suggested: ${f.suggestion}` : null,
+          ]
+            .filter(Boolean)
+            .join("\n")
+        )
+        .join("\n\n")
+    : "  No flags raised.";
 
-Live at ${BRAND.siteUrl}/blog/${post.slug} once Cloudflare Pages finishes the deploy
-(usually a couple of minutes after the commit lands on main).
+  const warnings = meta.warnings.length
+    ? `\nVALIDATION WARNINGS\n${meta.warnings.map((w) => `  - ${w}`).join("\n")}\n`
+    : "";
 
-${details}
+  return `${post.title}
+
+Live at ${BRAND.siteUrl}/blog/${post.slug} once Cloudflare Pages finishes the
+deploy — usually a couple of minutes after the commit lands on main.
+
+Category:       ${post.category}
+Target keyword: ${topic.targetKeyword}
+Length:         ${meta.words} words, ${meta.readTime}
+
+Why this topic: ${topic.rationale}
+
+CLAIMS CHECK: ${claims.verdict}
+${flagLines}
+${warnings}
+SPANISH META (listing page)
+  Titulo:   ${translation.title}
+  Extracto: ${translation.excerpt}
+
 Nothing to do if this all reads well. To correct the post, edit
 src/lib/data/generated-posts.json on main. To pause weekly publishing, set
 blog.autoPublish (or blog.enabled) to false in automation/config.json.
-`
-  );
+`;
 }
 
 async function main() {

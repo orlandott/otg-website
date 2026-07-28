@@ -25,7 +25,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Full history so the pre-push rebase below has something to replay onto.
+          # The publish step rebases onto origin/main, which needs real history
+          # rather than the default depth-1 checkout.
           fetch-depth: 0
 
       - name: Setup Node
@@ -38,6 +39,7 @@ jobs:
         run: npm ci
 
       - name: Generate blog post
+        id: generate
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
@@ -50,10 +52,8 @@ jobs:
         id: decision
         run: |
           set -euo pipefail
-          {
-            echo "slug=$(cat automation/out/blog/slug.txt)"
-            echo "auto=$(node -p "require('./automation/out/blog/publish-decision.json').autoPublish")"
-          } >> "$GITHUB_OUTPUT"
+          node -e 'const d = require("./automation/out/blog/publish-decision.json");
+                   console.log(`slug=${d.slug}\nauto=${d.autoPublish}`)' >> "$GITHUB_OUTPUT"
 
       - name: Commit the post
         run: |
@@ -66,36 +66,34 @@ jobs:
           git commit -m "Add weekly blog post: ${{ steps.decision.outputs.slug }}"
 
       # Cloudflare Pages watches main via its own GitHub App, so landing the
-      # commit here is what actually publishes the post.
-      - name: Publish to main
-        if: steps.decision.outputs.auto == 'true'
-        run: |
-          set -euo pipefail
-          for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
-              echo "Published ${{ steps.decision.outputs.slug }} to main."
-              exit 0
-            fi
-            echo "Push attempt ${attempt} failed; retrying."
-            sleep $((attempt * 10))
-          done
-          echo "::error::Could not push to main after 3 attempts."
-          exit 1
-
-      - name: Email the owner that the post is live
+      # commit here is what actually publishes the post. The owner is emailed
+      # from inside this step so the mail only goes out once the push lands.
+      - name: Publish to main and tell the owner
         if: steps.decision.outputs.auto == 'true'
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
         run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && break
+            if [ "$attempt" = 3 ]; then
+              echo "::error::Could not push to main after 3 attempts."
+              exit 1
+            fi
+            echo "Push attempt ${attempt} failed; retrying."
+            sleep $((attempt * 10))
+          done
+          echo "Published ${{ steps.decision.outputs.slug }} to main."
           node automation/notify.mjs \
             "OTG blog: new post published" \
-            automation/out/blog/summary.md
+            automation/out/blog/summary.txt
 
       # Compliance blockers, a flipped kill switch, or a mock run land here instead.
-      - name: Open a review PR
+      - name: Open a review PR and tell the owner
         if: steps.decision.outputs.auto != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
         run: |
           set -euo pipefail
           BRANCH="auto/blog-${{ steps.decision.outputs.slug }}"
@@ -106,28 +104,23 @@ jobs:
             --body-file automation/out/blog/pr-body.md \
             --base main \
             --head "$BRANCH"
-
-      - name: Email the owner that a post needs review
-        if: steps.decision.outputs.auto != 'true'
-        env:
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-        run: |
           node automation/notify.mjs \
             "OTG blog: post held for review" \
             automation/out/blog/pr-body.md
 
-      # generate.mjs emails its own failures; this covers everything after it.
+      # generate.mjs emails its own failures, so this covers every step after it
+      # — including the build, which otherwise would have failed silently.
       - name: Email the owner if publishing failed
-        if: failure() && steps.decision.outcome == 'success'
+        if: failure() && steps.generate.outcome == 'success'
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
         run: |
-          printf '%s\n' \
-            "The weekly blog post was written but could not be published." \
-            "" \
-            "Slug: ${{ steps.decision.outputs.slug }}" \
-            "Run:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
-            "" \
-            "The post is not live. Re-run: GitHub -> Actions -> Weekly blog post -> Run workflow." \
-            > /tmp/publish-failure.txt
+          cat > /tmp/publish-failure.txt <<EOF
+          The weekly blog post was written but could not be published.
+
+          Slug: ${{ steps.decision.outputs.slug }}
+          Run:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          The post is not live. Re-run: GitHub -> Actions -> Weekly blog post -> Run workflow.
+          EOF
           node automation/notify.mjs "OTG blog automation failed to publish" /tmp/publish-failure.txt
