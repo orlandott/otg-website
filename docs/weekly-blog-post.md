@@ -1,9 +1,12 @@
 # Weekly blog post
 
 A scheduled Claude Code task (a "routine") runs weekly — every **Tuesday
-morning** — to research, write, and publish one SEO blog post for
-orlandotgroupinc.com. Each run works in a fresh session and follows the process
-below.
+morning** — to research and write one SEO blog post for orlandotgroupinc.com,
+open it as a pull request, and email the owner the link. Each run works in a
+fresh session and follows the process below.
+
+**Nothing publishes itself.** The owner merges the PR, and merging is what puts
+the post on the site.
 
 This file is the canonical, editable description of that process. The routine
 reads it at the start of every run, so changing this file changes what the
@@ -82,38 +85,56 @@ process.)
    Fix anything either one reports. Warnings (e.g. a word count slightly outside
    the target) are yours to judge; errors must be fixed.
 
-8. **Publish the run.** Commit the post and its meta together with a message
-   naming the slug.
-   - If the run can push to `main`, push there. Cloudflare Pages builds `main`
-     through its own GitHub App, so the post is live a couple of minutes later.
-   - If the run was given a `claude/...` branch, commit and push there instead,
-     and end with the branch name plus a one-paragraph summary of the post so a
-     human can open the PR from the run's session page with one click.
-   - If the push is rejected, still end with that summary — the diff remains
-     reviewable on the session page.
+8. **Open a pull request.** Nothing publishes itself — the owner merges. Commit
+   the post and its meta together with a message naming the slug, on a branch
+   named `claude/blog-<slug>`, and open a PR against `main`. The PR body should
+   give the owner everything they need to approve without opening the diff:
 
-   Either way, end the run with the post title, its target keyword, and the URL
-   it will live at.
+   - the title, target keyword, category, word count, and read time;
+   - why this topic this week;
+   - the Spanish title and excerpt;
+   - anything you were unsure about, especially any claim you softened or any
+     figure you framed as an estimate.
 
-9. **If nothing is worth publishing**, publish nothing and say why. A skipped
-   week is a valid outcome and is far better than a thin post — the site is a
-   licensed contractor's storefront, not a content farm.
+   Merging is what publishes: Cloudflare Pages builds `main` through its own
+   GitHub App, so the post goes live a couple of minutes after the merge.
+
+9. **Email the owner that it's ready.** Write the PR summary to a file and send
+   it:
+
+   ```bash
+   node automation/notify.mjs "OTG blog: new post ready to merge" <body-file>
+   ```
+
+   Put the PR URL on the first line of the body — that link is the whole point
+   of the email. `SENDGRID_API_KEY` must be set in the routine's cloud
+   environment; if it is missing the command warns and returns without sending,
+   so check its output rather than assuming the mail went out. If it did not
+   send, say so in your final message and include the PR URL there.
+
+   End the run with the post title, its target keyword, and the PR URL.
+
+10. **If nothing is worth publishing**, publish nothing and say why. A skipped
+    week is a valid outcome and is far better than a thin post — the site is a
+    licensed contractor's storefront, not a content farm. Do not open an empty
+    PR and do not send an email; just end with what you considered and why none
+    of it cleared the bar.
 
 ## Adjusting or stopping the schedule
 
 The schedule lives in a Claude Code routine (scheduled trigger), not in this
-repository. Ask Claude Code to list, update, or delete the trigger, or manage it
-from the Claude Code web UI. Deleting this file does not stop the schedule.
+repository. Manage it at
+[claude.ai/code/routines](https://claude.ai/code/routines), or with `/schedule`
+in the CLI. Deleting this file does not stop the schedule.
 
-**Create the routine through the web form at
-[claude.ai/code/routines](https://claude.ai/code/routines)** with this
-repository selected under Repositories. Routines created that way can push
-branches and open pull requests on their own. A trigger created programmatically
-from inside a session gets no repository branch-push permission and no GitHub
-tools, so it can write a post but cannot publish it — step 8 degrades to ending
-with a reviewable summary.
+Because the routine only ever opens a PR, it needs no special branch
+permissions: routines can push `claude/`-prefixed branches by default, and
+**Allow unrestricted branch pushes** should stay **off**. The one thing the
+routine's cloud environment does need is `SENDGRID_API_KEY` as an environment
+variable, for step 9.
 
 Suggested routine prompt:
 
 > Follow `docs/weekly-blog-post.md` in the otg-website repository to research,
-> write, validate, and publish this week's SEO blog post.
+> write, and validate this week's SEO blog post, then open a PR and email me the
+> link.

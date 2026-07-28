@@ -2,10 +2,10 @@
 
 Two weekly automations, driven two different ways:
 
-| Pipeline | Schedule | Driven by | Needs an API key? |
-|---|---|---|---|
-| **Blog post** | Tuesdays 9am ET | A **Claude Code routine** — see [`docs/weekly-blog-post.md`](../docs/weekly-blog-post.md) | **No** |
-| **IG + FB post** | Thursdays 10am ET | GitHub Actions (`.github/workflows/weekly-social.yml`) | Yes — `ANTHROPIC_API_KEY` |
+| Pipeline | Schedule | Driven by | Output | Needs an API key? |
+|---|---|---|---|---|
+| **Blog post** | Tuesdays 9am ET | A **Claude Code routine** — see [`docs/weekly-blog-post.md`](../docs/weekly-blog-post.md) | A PR + an email; you merge | **No** |
+| **IG + FB post** | Thursdays 10am ET | GitHub Actions (`.github/workflows/weekly-social.yml`) | Image + captions (dry-run until Meta is wired) | Yes — `ANTHROPIC_API_KEY` |
 
 ## How the blog pipeline works
 
@@ -22,15 +22,23 @@ does**, without touching the schedule.
 
 Create or change the schedule at
 [claude.ai/code/routines](https://claude.ai/code/routines) with this repository
-selected under Repositories. Routines created there can push branches and open
-PRs; one created programmatically from inside a session cannot, and will end
-with a reviewable summary instead of publishing.
+selected under Repositories.
 
 ### What actually publishes it
 
-Cloudflare Pages builds `main` through its own GitHub App, so **landing the
-commit on `main` is what puts the post on the site** — usually live a couple of
-minutes later. No merge, no manual step.
+Each run opens a PR on a `claude/blog-<slug>` branch and emails
+`orlandot@gmail.com` with the link. **Nothing goes live until you merge.**
+Cloudflare Pages builds `main` through its own GitHub App, so the post appears a
+couple of minutes after the merge.
+
+Two consequences worth knowing:
+
+- The routine needs **no** special branch permission — `claude/`-prefixed pushes
+  are allowed by default, so leave *Allow unrestricted branch pushes* **off**.
+- The routine's **cloud environment** needs `SENDGRID_API_KEY` set as an
+  environment variable, or the email is silently skipped. This is separate from
+  the GitHub Actions secret of the same name; a routine is not a GitHub Action
+  and cannot see repository secrets.
 
 ### What CI checks
 
@@ -82,15 +90,16 @@ The image is rendered from `automation/social/templates/{card,photo}.html` (1080
   `social.live: true` (plus the secrets below) to switch it from dry-run to
   auto-posting.
 
-Social failures email `orlandot@gmail.com` via SendGrid. A failed blog routine
-surfaces on its run page in the Claude Code UI.
+Both pipelines email `orlandot@gmail.com` via SendGrid — the blog routine to
+hand you a PR to merge, the social pipeline on failure. A blog run that fails
+before it opens a PR surfaces on its run page in the Claude Code UI instead.
 
 ## Secrets (GitHub → Settings → Secrets and variables → Actions)
 
 | Secret | Needed for | Where to get it |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | the **social** pipeline only — the blog needs no key | console.anthropic.com |
-| `SENDGRID_API_KEY` | social failure emails | already used by the site's contact form |
+| `SENDGRID_API_KEY` | social failure emails — and, set separately in the **routine's cloud environment**, the blog's "ready to merge" email | already used by the site's contact form |
 | `META_SYSTEM_USER_TOKEN` | live FB/IG posting | Business Manager → System User (see checklist) |
 | `FB_PAGE_ID` | live FB posting | Page → About, or Graph Explorer `me/accounts` |
 | `IG_USER_ID` | live IG posting | Graph API: `{page-id}?fields=instagram_business_account` |

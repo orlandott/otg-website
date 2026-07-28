@@ -11,7 +11,7 @@ Two weekly, multi-agent content automations for the Orlando T Group site.
 - Blog posts are text-only (no image field).
 
 ## Locked decisions
-- **Blog gating:** ~~human-approved on every post~~ → **superseded: auto-publish weekly, no API key.** The post is written by a scheduled **Claude Code routine** (not a GitHub Action calling the API), following `docs/weekly-blog-post.md`, and commits straight to `main` — Cloudflare Pages then deploys it. GitHub Actions only runs the deterministic, secret-free `npm run validate:blog`.
+- **Blog gating:** human-approved, as originally decided — but **no API key**. The post is written by a scheduled **Claude Code routine** (not a GitHub Action calling the API) following `docs/weekly-blog-post.md`. Each run opens a PR and emails the owner the link; merging is what publishes, via Cloudflare Pages. GitHub Actions only runs the deterministic, secret-free `npm run validate:blog`.
 - **Social image:** **rotate** branded template cards ⇄ real product photos from `/public/images` week to week.
 - **Meta setup:** unknown — owner completes the readiness checklist (bottom) before social posting is wired live.
 - **Scheduler:** GitHub Actions cron for both (one place for secrets/logs/manual re-runs).
@@ -23,7 +23,7 @@ Agent pipeline → deterministic publish:
 3. **SEO Editor** — title, 150–160-char excerpt, slug, heading hierarchy, keyword usage, **internal links to product pages**, `readTime`, `Article` JSON-LD.
 4. **Claims/Brand Checker** — verify pricing ranges, Florida Building Code / NOA / OIR-form / insurance % claims, phone `954-625-5318`; the mechanical subset is enforced by `automation/blog/validate.mjs` in CI.
 5. **Translator** — Spanish `postMeta` (title/excerpt/date) for the `es` block.
-6. **Publisher** — insert into the generated-post data files, run `npm run validate:blog` and `npm run build`, then **push to `main`**.
+6. **Publisher** — insert into the generated-post data files, run `npm run validate:blog` and `npm run build`, then **open a PR** and email the owner the link.
 
 Steps 1–6 all happen inside one scheduled Claude Code session; `docs/weekly-blog-post.md` is the editable process it follows.
 
