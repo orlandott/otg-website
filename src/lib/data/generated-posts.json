@@ -1,1 +1,67 @@
-[]
+[
+  {
+    "slug": "how-to-read-miami-dade-noa",
+    "category": "Regulations",
+    "date": "July 2026",
+    "publishedAt": "2026-07-29",
+    "title": "How to Read a Miami-Dade NOA Before You Buy",
+    "excerpt": "Every hurricane product quote says Miami-Dade approved. Here is how to read the Miami-Dade NOA behind it, and the five details that decide your inspection.",
+    "readTime": "6 min read",
+    "sections": [
+      {
+        "type": "paragraph",
+        "text": "Every company that sells hurricane protection in South Florida will tell you their products are Miami-Dade approved. Most of them are telling the truth. But that phrase on its own does not tell you whether the specific window going into your specific opening is approved, at what size, or how it has to be installed. The document that answers all of that is called a Notice of Acceptance, and it is public. Learning to read one takes about ten minutes, and it is the fastest way to tell a precise quote from a vague one. Here is what a Miami-Dade NOA contains, and which parts of it actually affect your project."
+      },
+      { "type": "h2", "text": "What a Miami-Dade NOA Actually Is" },
+      {
+        "type": "paragraph",
+        "text": "A Notice of Acceptance is a product approval issued by Miami-Dade County's Product Control Section. To earn one, a manufacturer submits a specific product configuration to an approved laboratory for testing against the standards the Florida Building Code references for impact and pressure resistance. Large missile testing means firing a nine-pound piece of lumber at the glass, then subjecting the damaged unit to thousands of positive and negative pressure cycles meant to imitate the hours of buffeting a hurricane delivers after the first debris strike. The glass is allowed to crack. What it cannot do is let the missile through or come out of the frame, because once the building envelope is open, wind pressure inside the house does the rest of the damage."
+      },
+      { "type": "h2", "text": "Why the NOA Matters Outside Miami-Dade County" },
+      {
+        "type": "paragraph",
+        "text": "Miami-Dade and Broward counties sit inside what the Florida Building Code calls the High Velocity Hurricane Zone, the most demanding wind region in the country. Products installed there have to carry approval for that zone, which is why the Miami-Dade NOA became the standard South Florida homeowners recognize by name. Palm Beach County is not in the High Velocity Hurricane Zone, so products there may instead be approved through the statewide Florida Product Approval system, which issues FL numbers rather than NOA numbers. Both are legitimate. What matters is that the approval your contractor cites covers the county you live in and the pressures your house actually sees, and that the number on your quote matches the number on the document."
+      },
+      { "type": "h2", "text": "Five Things to Check on Any NOA" },
+      {
+        "type": "list",
+        "items": [
+          "The expiration date. Approvals are issued for a set term and renewed periodically. One that lapsed before your permit is pulled can hold up your inspection, so confirm the approval on your quote is current.",
+          "The exact product name and series. Manufacturers sell several series that look nearly identical in a showroom. The approval covers one of them, and substituting a series after you sign changes which document applies to your job.",
+          "The maximum approved dimensions. Every approval lists the largest size tested for each configuration. A unit wider or taller than what was tested is not covered, no matter who installs it.",
+          "The design pressure ratings, listed as positive and negative pounds per square foot. These have to meet or exceed what your specific opening requires.",
+          "The installation and anchoring details. The attached drawings specify fastener type, spacing, embedment depth, and which substrate each detail applies to."
+        ]
+      },
+      { "type": "h2", "text": "Design Pressure: The Number That Has to Match Your Opening" },
+      {
+        "type": "paragraph",
+        "text": "Design pressure is where most homeowners stop reading, and it is the number that most often separates a quote that will pass inspection from one that will not. Every opening in your house has a required pressure rating, and it is not one figure for the whole building. It depends on the wind speed assigned to your address, how tall the wall is, how close the opening sits to a corner, and whether your home is treated as enclosed or partially enclosed. Corners and upper floors carry the highest loads. That is why a product perfectly adequate for a ground-floor window on a sheltered wall can be under-rated for a second-story corner unit in the same house. Any contractor quoting your job should be able to tell you the required pressure for each opening, not only the product's rating."
+      },
+      { "type": "h2", "text": "The Installation Details Are Part of the Approval" },
+      {
+        "type": "paragraph",
+        "text": "An approval covers a product installed a particular way. The drawings attached to it specify which fasteners, at what spacing, driven how deep, into which substrate. Concrete, hollow block, and wood framing all get different details. Deviating from them undermines the approval for that opening even when the window itself is the right one, and checking the installation against exactly those pages is the inspector's job at final inspection. This is the practical reason permits protect you rather than simply costing you money and time: the inspection is an independent check that the product you paid for went in the way its approval requires."
+      },
+      { "type": "h2", "text": "How to Verify an NOA Yourself" },
+      {
+        "type": "paragraph",
+        "text": "You do not have to take anyone's word for any of this. Miami-Dade County publishes a searchable product control database where you can look up an approval by number, manufacturer, or product category and read the same document your contractor is working from. Ask for the number in writing, search it, and confirm three things: that it is current, that it covers the product and series named on your quote, and that the sizes you are buying fall inside the approved dimensions. A contractor quoting precisely will hand the number over without hesitation. Reluctance to produce it is itself an answer."
+      },
+      { "type": "h2", "text": "Questions to Ask Before You Sign" },
+      {
+        "type": "list",
+        "items": [
+          "Which NOA or Florida Product Approval number covers each product on this quote?",
+          "What design pressure does each of my openings require, and what is the rated pressure of the product proposed for it?",
+          "Which installation detail from the approval applies to my wall construction?",
+          "Who pulls the permit, and who meets the inspector at final inspection?"
+        ]
+      },
+      {
+        "type": "callout",
+        "text": "Orlando T Group has installed impact windows, doors, and shutters across Miami-Dade, Broward, and Palm Beach since 2006, and every product we carry holds Miami-Dade NOA certification. If you would like someone to walk your home, measure each opening, and explain the approvals behind the products in plain language, call (954) 625-5318 to schedule a free in-home consultation."
+      }
+    ]
+  }
+]
