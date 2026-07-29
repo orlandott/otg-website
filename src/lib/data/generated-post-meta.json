@@ -1,4 +1,16 @@
 {
-  "en": {},
-  "es": {}
+  "en": {
+    "how-to-read-miami-dade-noa": {
+      "title": "How to Read a Miami-Dade NOA Before You Buy",
+      "excerpt": "Every hurricane product quote says Miami-Dade approved. Here is how to read the Miami-Dade NOA behind it, and the five details that decide your inspection.",
+      "date": "July 2026"
+    }
+  },
+  "es": {
+    "how-to-read-miami-dade-noa": {
+      "title": "Cómo Leer un NOA de Miami-Dade Antes de Comprar",
+      "excerpt": "Toda cotización dice aprobado por Miami-Dade. Aprenda a leer el NOA que la respalda y los cinco detalles que deciden si su instalación pasa la inspección.",
+      "date": "Julio 2026"
+    }
+  }
 }
