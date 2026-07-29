@@ -1,6 +1,5 @@
 {
   "blog": {
-    "enabled": true,
     "minWords": 900,
     "maxWords": 1300
   },
