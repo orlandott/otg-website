@@ -1,12 +1,13 @@
 # Weekly blog post
 
 A scheduled Claude Code task (a "routine") runs weekly — every **Tuesday
-morning** — to research and write one SEO blog post for orlandotgroupinc.com,
-open it as a pull request, and email the owner the link. Each run works in a
-fresh session and follows the process below.
+morning** — to research and write one SEO blog post for orlandotgroupinc.com and
+open it as a pull request. Each run works in a fresh session and follows the
+process below.
 
 **Nothing publishes itself.** The owner merges the PR, and merging is what puts
-the post on the site.
+the post on the site. GitHub sends the notification email when the PR opens, so
+this process sends no mail of its own.
 
 This file is the canonical, editable description of that process. The routine
 reads it at the start of every run, so changing this file changes what the
@@ -99,26 +100,15 @@ process.)
    Merging is what publishes: Cloudflare Pages builds `main` through its own
    GitHub App, so the post goes live a couple of minutes after the merge.
 
-9. **Email the owner that it's ready.** Write the PR summary to a file and send
-   it:
+   Opening the PR is also what notifies the owner — GitHub emails them. Send no
+   mail yourself, and do not add a notification step. End the run with the post
+   title, its target keyword, and the PR URL, so the link is on the run page too
+   if the mail is ever missed.
 
-   ```bash
-   node automation/notify.mjs "OTG blog: new post ready to merge" <body-file>
-   ```
-
-   Put the PR URL on the first line of the body — that link is the whole point
-   of the email. `SENDGRID_API_KEY` must be set in the routine's cloud
-   environment; if it is missing the command warns and returns without sending,
-   so check its output rather than assuming the mail went out. If it did not
-   send, say so in your final message and include the PR URL there.
-
-   End the run with the post title, its target keyword, and the PR URL.
-
-10. **If nothing is worth publishing**, publish nothing and say why. A skipped
-    week is a valid outcome and is far better than a thin post — the site is a
-    licensed contractor's storefront, not a content farm. Do not open an empty
-    PR and do not send an email; just end with what you considered and why none
-    of it cleared the bar.
+9. **If nothing is worth publishing**, publish nothing and say why. A skipped
+   week is a valid outcome and is far better than a thin post — the site is a
+   licensed contractor's storefront, not a content farm. Do not open an empty
+   PR; just end with what you considered and why none of it cleared the bar.
 
 ## Adjusting or stopping the schedule
 
@@ -129,12 +119,19 @@ in the CLI. Deleting this file does not stop the schedule.
 
 Because the routine only ever opens a PR, it needs no special branch
 permissions: routines can push `claude/`-prefixed branches by default, and
-**Allow unrestricted branch pushes** should stay **off**. The one thing the
-routine's cloud environment does need is `SENDGRID_API_KEY` as an environment
-variable, for step 9.
+**Allow unrestricted branch pushes** should stay **off**. It needs no secrets
+and no environment variables either.
+
+### Making sure the weekly email actually arrives
+
+A routine acts under the owner's own GitHub identity, so the PR it opens is
+authored by them — and GitHub does **not** email you about your own activity by
+default. Enable **Settings → Notifications → "Include your own updates"** on the
+account that owns the routine. Without it the PR still opens and still shows on
+the run page; only the email is missing.
 
 Suggested routine prompt:
 
 > Follow `docs/weekly-blog-post.md` in the otg-website repository to research,
-> write, and validate this week's SEO blog post, then open a PR and email me the
-> link.
+> write, and validate this week's SEO blog post, then open a pull request. Do
+> not publish it and do not send email — opening the PR is what notifies me.
