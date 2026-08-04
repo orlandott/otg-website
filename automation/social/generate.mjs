@@ -13,6 +13,8 @@
 import fs from "node:fs";
 import { runAgent } from "../lib/claude.mjs";
 import { notifyOwner } from "../lib/notify.mjs";
+import { assertSocialEnv } from "../lib/env.mjs";
+import { annotate, stepSummary } from "../lib/actions.mjs";
 import { repoPath, readJson, writeJson, writeText, existingBlogPosts } from "../lib/files.mjs";
 import { todayInMiami } from "../lib/dates.mjs";
 import { BRAND, MONTHS_EN } from "../lib/brand.mjs";
@@ -180,6 +182,9 @@ async function main() {
     return;
   }
 
+  // Fail before the first API call if a secret this run needs is unset.
+  assertSocialEnv({ mock: MOCK, live: Boolean(config.social.live) });
+
   const statePath = repoPath("automation/state.json");
   const state = readJson(statePath);
   const today = todayInMiami().iso;
@@ -249,9 +254,12 @@ async function main() {
 
 main().catch(async (err) => {
   console.error(`✗ Social pipeline failed: ${err.message}`);
-  await notifyOwner(
+  annotate("error", "Social pipeline failed", err.message);
+  stepSummary(`## ✗ Social pipeline failed\n\n\`\`\`\n${err.message}\n\`\`\``);
+  const emailed = await notifyOwner(
     "OTG social automation failed",
     `The weekly social pipeline failed:\n\n${err.stack ?? err.message}\n\nRe-run: GitHub → Actions → Weekly social post → Run workflow.`
   );
+  if (!emailed) console.error("  (no failure email sent — this run page is the only notice)");
   process.exit(1);
 });
