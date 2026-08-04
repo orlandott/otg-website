@@ -21,6 +21,15 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      META_SYSTEM_USER_TOKEN: ${{ secrets.META_SYSTEM_USER_TOKEN }}
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      CF_IMAGES_TOKEN: ${{ secrets.CF_IMAGES_TOKEN }}
+      MOCK_FLAG: ${{ inputs.mock && '--mock' || '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -29,6 +38,11 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
+
+      # Before npm ci and the ~2-minute Chromium download: an unset repository
+      # secret should fail here, in seconds, saying exactly which one.
+      - name: Check required secrets
+        run: node automation/social/preflight.mjs $MOCK_FLAG
 
       - name: Install dependencies
         run: npm ci
@@ -39,15 +53,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Generate social post
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-          META_SYSTEM_USER_TOKEN: ${{ secrets.META_SYSTEM_USER_TOKEN }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_IMAGES_TOKEN: ${{ secrets.CF_IMAGES_TOKEN }}
-        run: node automation/social/generate.mjs ${{ inputs.mock && '--mock' || '' }}
+        run: node automation/social/generate.mjs $MOCK_FLAG
 
       - name: Upload post artifacts
         uses: actions/upload-artifact@v4

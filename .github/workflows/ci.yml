@@ -28,5 +28,10 @@ jobs:
       - name: Validate blog posts
         run: npm run validate:blog
 
+      # A mock run needs no secrets, so this only checks that the preflight
+      # itself still loads and runs — it never depends on repository secrets.
+      - name: Check social preflight
+        run: node automation/social/preflight.mjs --mock
+
       - name: Build
         run: npm run build
