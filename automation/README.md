@@ -96,7 +96,12 @@ blog routine sends no mail of its own: GitHub notifies you when its PR opens,
 and a run that fails before opening one surfaces on its run page in the Claude
 Code UI.
 
-## Secrets (GitHub → Settings → Secrets and variables → Actions)
+## Secrets
+
+Add these under **GitHub → Settings → Secrets and variables → Actions → New
+repository secret**. A secret that was never created reaches the job as an
+*empty* env var, so the workflow's first step (`Check required secrets`) checks
+them itself — see [Troubleshooting](#troubleshooting-a-failed-social-run).
 
 | Secret | Needed for | Where to get it |
 |---|---|---|
@@ -118,10 +123,31 @@ Code UI.
 
 **FB-only shortcut:** steps 3–5 with just the Page asset → set `META_SYSTEM_USER_TOKEN` + `FB_PAGE_ID` and leave `IG_USER_ID` unset. The pipeline posts to Facebook and skips Instagram.
 
+## Troubleshooting a failed social run
+
+**`Missing 1 required secret: ANTHROPIC_API_KEY`** — the secret does not exist
+on the repository (or is empty). Nothing is wrong with the code: add it under
+Settings → Secrets and variables → Actions, then re-run **Actions → Weekly
+social post → Run workflow**. The same message names any other secret the run
+needs, and appears both as the job's error annotation and in the run summary —
+which matters because failure *email* itself depends on `SENDGRID_API_KEY`.
+
+What each mode requires:
+
+| Run | Requires | Notes |
+|---|---|---|
+| **mock** (workflow input, or `--mock`) | nothing | Renders a PNG from the fixture — the way to rehearse with no secrets at all |
+| **dry** (`social.live: false` — current) | `ANTHROPIC_API_KEY` | Artifacts only; nothing is posted |
+| **live** (`social.live: true`) | + `META_SYSTEM_USER_TOKEN`, `FB_PAGE_ID` | With `IG_USER_ID` set, `CF_ACCOUNT_ID` + `CF_IMAGES_TOKEN` are required too — otherwise the run would post to Facebook and *then* fail on the Instagram image upload |
+
+`SENDGRID_API_KEY` is never required; without it a failure is reported on the
+run page instead of by email.
+
 ## Local testing
 
 ```bash
 npm run validate:blog                         # check every committed post (no API calls)
+npm run preflight:social                      # which secrets a real run is missing
 node automation/social/generate.mjs --mock    # renders a real PNG from the fixture
 ```
 
