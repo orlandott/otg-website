@@ -34,14 +34,19 @@ export function ContactForm() {
 
   async function onSubmit(data: FormData) {
     setSubmitStatus("loading");
+    const payload = JSON.stringify(data);
+    const headers = { "Content-Type": "application/json" };
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
+      const requests: Promise<Response>[] = [
+        fetch("/api/contact", { method: "POST", headers, body: payload }),
+      ];
+      const siteURL = process.env.NEXT_PUBLIC_TITAN_URL;
+      if (siteURL) {
+        requests.push(fetch(siteURL, { method: "POST", headers, body: payload }));
+      }
+      const [primary] = await Promise.all(requests);
+      if (!primary.ok) {
+        const json = await primary.json().catch(() => ({}));
         console.error("[ContactForm] API error:", json);
         setSubmitStatus("error");
         return;

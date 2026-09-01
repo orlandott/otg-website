@@ -61,13 +61,22 @@ export default function ReferAFriendPage() {
 
   async function onSubmit(data: FormData) {
     setStatus("loading");
+    const payload = JSON.stringify(data);
+    const headers = { "Content-Type": "application/json" };
     try {
-      const res = await fetch("/api/refer", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error();
+      const requests: Promise<Response>[] = [
+        fetch("/api/refer", { method: "POST", headers, body: payload }),
+      ]
+      const siteURL = process.env.NEXT_PUBLIC_TITAN_URL;
+
+      if (siteURL) {
+        requests.push(fetch(siteURL, { method: "POST", headers, body: payload }));
+      }
+
+      const [primary] = await Promise.all(requests);
+
+      if (!primary.ok) throw new Error();
+
       setStatus("success");
       reset();
     } catch {

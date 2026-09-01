@@ -47,20 +47,34 @@ export function ConsultationForm() {
     resolver: zodResolver(formSchema),
   });
 
+  interface AddCustomerResponse {
+    success: boolean
+  }
+
   async function onSubmit(data: FormData) {
     setSubmitStatus("loading");
+    const payload = JSON.stringify(data);
+    const headers = { "Content-Type": "application/json" };
     try {
-      const res = await fetch("/api/consultation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        console.error("[ConsultationForm] API error:", json);
-        setSubmitStatus("error");
-        return;
+      const siteURL = process.env.NEXT_PUBLIC_TITAN_URL;
+
+      if (!siteURL) {
+        setSubmitStatus("error")
+        return
       }
+
+      const res = await fetch(`${siteURL}/api/customer/add-from-site`, {
+        method: "POST",
+        headers,
+        body: payload,
+      });
+      const { success } = await res.json() as AddCustomerResponse
+      
+      if (!success) {
+        setSubmitStatus("error");
+        return
+      }
+
       setSubmitStatus("success");
       reset();
     } catch {

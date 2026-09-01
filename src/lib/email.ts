@@ -10,7 +10,10 @@ const FROM = {
 
 function requireApiKey(): string {
   const apiKey = process.env.SENDGRID_API_KEY;
-  if (!apiKey) throw new Error("Missing environment variable: SENDGRID_API_KEY");
+
+  if (!apiKey)
+    throw new Error("Missing environment variable: SENDGRID_API_KEY");
+
   return apiKey;
 }
 
@@ -39,9 +42,7 @@ async function sendTemplateMail(dynamicTemplateData: Record<string, string>) {
 
   if (!res.ok) {
     const detail = await res.text();
-    throw new Error(
-      `SendGrid HTTP ${res.status}: ${detail.slice(0, 500)}`,
-    );
+    throw new Error(`SendGrid HTTP ${res.status}: ${detail.slice(0, 500)}`);
   }
 }
 
