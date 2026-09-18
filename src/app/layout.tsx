@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -85,6 +86,12 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </LanguageProvider>
+        <Script
+          src="https://datagran-agents-api.fly.dev/widget/v1.js"
+          data-agent="dga_bVSlodcrFjSaL_kY8-RJh88B"
+          data-label="Orlando"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
