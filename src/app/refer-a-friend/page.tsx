@@ -62,7 +62,7 @@ export default function ReferAFriendPage() {
 
   async function onSubmit(data: FormData) {
     setStatus("loading");
-    const payload = JSON.stringify(data);
+    const payload = JSON.stringify({ ...data, source: "website" });
     const headers = { "Content-Type": "application/json" };
     try {
       const requests: Promise<Response>[] = [

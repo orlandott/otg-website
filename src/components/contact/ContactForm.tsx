@@ -35,7 +35,7 @@ export function ContactForm() {
 
   async function onSubmit(data: FormData) {
     setSubmitStatus("loading");
-    const payload = JSON.stringify(data);
+    const payload = JSON.stringify({ ...data, source: "website" });
     const headers = { "Content-Type": "application/json" };
     try {
       const requests: Promise<Response>[] = [

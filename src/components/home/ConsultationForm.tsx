@@ -54,7 +54,7 @@ export function ConsultationForm() {
 
   async function onSubmit(data: FormData) {
     setSubmitStatus("loading");
-    const payload = JSON.stringify(data);
+    const payload = JSON.stringify({ ...data, source: "website" });
     const headers = { "Content-Type": "application/json" };
     try {
       const res = await fetch(`${TITAN_API_URL}/api/customer/add-from-site`, {
