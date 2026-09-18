@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { TITAN_API_URL } from "@/lib/constants";
 
 type FormData = {
   firstName: string;
@@ -56,14 +57,7 @@ export function ConsultationForm() {
     const payload = JSON.stringify(data);
     const headers = { "Content-Type": "application/json" };
     try {
-      const siteURL = process.env.NEXT_PUBLIC_TITAN_URL;
-
-      if (!siteURL) {
-        setSubmitStatus("error")
-        return
-      }
-
-      const res = await fetch(`${siteURL}/api/customer/add-from-site`, {
+      const res = await fetch(`${TITAN_API_URL}/api/customer/add-from-site`, {
         method: "POST",
         headers,
         body: payload,

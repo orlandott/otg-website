@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { TITAN_API_URL } from "@/lib/constants";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -40,10 +41,7 @@ export function ContactForm() {
       const requests: Promise<Response>[] = [
         fetch("/api/contact", { method: "POST", headers, body: payload }),
       ];
-      const siteURL = process.env.NEXT_PUBLIC_TITAN_URL;
-      if (siteURL) {
-        requests.push(fetch(siteURL, { method: "POST", headers, body: payload }));
-      }
+      requests.push(fetch(TITAN_API_URL, { method: "POST", headers, body: payload }));
       const [primary] = await Promise.all(requests);
       if (!primary.ok) {
         const json = await primary.json().catch(() => ({}));

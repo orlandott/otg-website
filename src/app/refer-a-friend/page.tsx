@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, Gift, Users, CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TITAN_API_URL } from "@/lib/constants";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const schema = z.object({
@@ -67,11 +68,7 @@ export default function ReferAFriendPage() {
       const requests: Promise<Response>[] = [
         fetch("/api/refer", { method: "POST", headers, body: payload }),
       ]
-      const siteURL = process.env.NEXT_PUBLIC_TITAN_URL;
-
-      if (siteURL) {
-        requests.push(fetch(siteURL, { method: "POST", headers, body: payload }));
-      }
+      requests.push(fetch(TITAN_API_URL, { method: "POST", headers, body: payload }));
 
       const [primary] = await Promise.all(requests);
 
