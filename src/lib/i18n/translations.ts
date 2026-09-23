@@ -221,6 +221,15 @@ export const translations = {
         sendMessage: "Send Us a Message",
         servingArea: "Serving South Florida",
       },
+      chat: {
+        breadcrumb: "Ask Orlando",
+        heading: "Ask Orlando",
+        subtitle:
+          "Chat or talk with our AI assistant. Get instant answers about products, financing, and scheduling your free consultation.",
+        cardTitle: "Chat with Orlando",
+        cardSubtitle: "Available 24/7 in English and Spanish",
+        fallback: "Prefer a person? Call us at",
+      },
       financing: {
         breadcrumb: "Financing",
         heading: "Flexible Financing\nOptions",
@@ -644,6 +653,15 @@ export const translations = {
         checkOrderStatus: "Verificar estado del pedido",
         sendMessage: "Envíenos un Mensaje",
         servingArea: "Sirviendo el Sur de Florida",
+      },
+      chat: {
+        breadcrumb: "Pregúntale a Orlando",
+        heading: "Pregúntale a Orlando",
+        subtitle:
+          "Chatee o hable con nuestro asistente de IA. Obtenga respuestas instantáneas sobre productos, financiamiento y cómo agendar su consulta gratuita.",
+        cardTitle: "Chatea con Orlando",
+        cardSubtitle: "Disponible 24/7 en inglés y español",
+        fallback: "¿Prefiere hablar con una persona? Llámenos al",
       },
       financing: {
         breadcrumb: "Financiamiento",

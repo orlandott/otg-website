@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingChatWidget } from "@/components/layout/FloatingChatWidget";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeScript } from "@/components/providers/ThemeScript";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
@@ -94,12 +94,7 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </LanguageProvider>
-        <Script
-          src="https://datagran-agents-api.fly.dev/widget/v1.js"
-          data-agent="dga_bVSlodcrFjSaL_kY8-RJh88B"
-          data-label="Orlando"
-          strategy="lazyOnload"
-        />
+        <FloatingChatWidget />
       </body>
     </html>
   );

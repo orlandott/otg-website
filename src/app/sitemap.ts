@@ -8,6 +8,7 @@ const STATIC_ROUTES: { path: string; priority: number }[] = [
   { path: "/products", priority: 0.9 },
   ...products.map((p) => ({ path: p.href, priority: 0.8 })),
   { path: "/contact", priority: 0.9 },
+  { path: "/chat", priority: 0.6 },
   { path: "/about", priority: 0.7 },
   { path: "/financing", priority: 0.7 },
   { path: "/free-maintenance", priority: 0.6 },
