@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
@@ -27,6 +27,14 @@ const shortDescription =
   "Protect what matters most. Free in-home consultation. Licensed & insured since 2006.";
 const longDescription =
   "Hurricane and solar protection for South Florida. Impact windows, doors, shutters, awnings, and more. Free in-home consultation. Licensed & insured since 2006.";
+
+// maximumScale stops iOS Safari from auto-zooming the page when the chat
+// widget's sub-16px input is focused; pinch zoom on iOS is unaffected.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
