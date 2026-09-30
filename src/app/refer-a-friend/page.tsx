@@ -15,7 +15,7 @@ const schema = z.object({
   friendName: z.string().min(2, "Friend's name must be at least 2 characters"),
   friendPhone: z.string().min(10, "Please enter a valid phone number"),
   yourName: z.string().min(2, "Your name must be at least 2 characters"),
-  yourEmail: z.string().email("Please enter a valid email address"),
+  yourEmail: z.string().email("Please enter a valid email address").or(z.literal("")).optional(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -317,7 +317,7 @@ export default function ReferAFriendPage() {
 
                     <div>
                       <label htmlFor="yourEmail" className={labelClass}>
-                        What is your email address? <span className="text-red-500">*</span>
+                        What is your email address?
                       </label>
                       <input
                         id="yourEmail"

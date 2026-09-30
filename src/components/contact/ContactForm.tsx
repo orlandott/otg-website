@@ -8,7 +8,7 @@ import { TITAN_API_URL } from "@/lib/constants";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email"),
+  email: z.string().email("Please enter a valid email").or(z.literal("")).optional(),
   phone: z.string().min(10, "Please enter a valid phone number"),
   city: z.string().min(2, "Please enter your city"),
   message: z.string().optional(),
@@ -72,16 +72,18 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-email" className={labelClass}>Email *</label>
+        <label htmlFor="contact-email" className={labelClass}>Email</label>
         <input
           id="contact-email"
           type="email"
+          autoComplete="email"
+          aria-describedby={errors.email ? "contact-email-error" : undefined}
           {...register("email")}
           className={inputClass}
           placeholder="your@email.com"
         />
         {errors.email && (
-          <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+          <p id="contact-email-error" className="mt-1 text-xs text-red-500">{errors.email.message}</p>
         )}
       </div>
 

@@ -11,7 +11,7 @@ import { TITAN_API_URL } from "@/lib/constants";
 type FormData = {
   firstName: string;
   lastName: string;
-  email: string;
+  email?: string;
   phone: string;
   city: string;
   message?: string;
@@ -31,7 +31,7 @@ export function ConsultationForm() {
       z.object({
         firstName: z.string().min(2, t.consultation.firstNameError),
         lastName: z.string().min(2, t.consultation.lastNameError),
-        email: z.string().email(t.consultation.emailError),
+        email: z.string().email(t.consultation.emailError).or(z.literal("")).optional(),
         phone: z.string().min(10, t.consultation.phoneError),
         city: z.string().min(2, t.consultation.cityError),
         message: z.string().optional(),
@@ -139,17 +139,19 @@ export function ConsultationForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label htmlFor="email" className={labelClass}>
-                {t.consultation.email} {t.consultation.required}
+                {t.consultation.email}
               </label>
               <input
                 id="email"
                 type="email"
+                autoComplete="email"
+                aria-describedby={errors.email ? "email-error" : undefined}
                 {...register("email")}
                 className={inputClass}
                 placeholder={t.consultation.emailPlaceholder}
               />
               {errors.email && (
-                <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+                <p id="email-error" className="mt-1 text-xs text-red-500">{errors.email.message}</p>
               )}
             </div>
             <div>
