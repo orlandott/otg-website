@@ -6,7 +6,7 @@ export const runtime = "edge";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.email("Invalid email address"),
+  email: z.email("Invalid email address").or(z.literal("")).optional(),
   phone: z.string().min(10, "Phone must be at least 10 characters"),
   city: z.string().min(2, "City must be at least 2 characters"),
   message: z.string().optional(),

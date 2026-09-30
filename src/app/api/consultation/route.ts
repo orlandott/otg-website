@@ -7,7 +7,7 @@ export const runtime = "edge";
 const consultationSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
-  email: z.email("Invalid email address"),
+  email: z.email("Invalid email address").or(z.literal("")).optional(),
   phone: z.string().min(10, "Phone must be at least 10 characters"),
   city: z.string().min(2, "City must be at least 2 characters"),
   message: z.string().optional(),

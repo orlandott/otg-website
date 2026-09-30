@@ -53,7 +53,7 @@ async function sendTemplateMail(dynamicTemplateData: Record<string, string>) {
 export interface ConsultationEmailData {
   firstName: string;
   lastName: string;
-  email: string;
+  email?: string;
   phone: string;
   city: string;
   message?: string;
@@ -61,7 +61,7 @@ export interface ConsultationEmailData {
 
 export interface ContactEmailData {
   name: string;
-  email: string;
+  email?: string;
   phone: string;
   city: string;
   message?: string;
@@ -76,7 +76,7 @@ export async function sendConsultationEmail(
 ): Promise<void> {
   await sendTemplateMail({
     name: `${data.firstName} ${data.lastName}`,
-    email: data.email,
+    email: data.email ?? "",
     phone: data.phone,
     city: data.city,
     message: data.message ?? "",
@@ -86,7 +86,7 @@ export async function sendConsultationEmail(
 export async function sendContactEmail(data: ContactEmailData): Promise<void> {
   await sendTemplateMail({
     name: data.name,
-    email: data.email,
+    email: data.email ?? "",
     phone: data.phone,
     city: data.city,
     message: data.message ?? "",

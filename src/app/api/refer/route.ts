@@ -8,7 +8,7 @@ const schema = z.object({
   friendName: z.string().min(2),
   friendPhone: z.string().min(10),
   yourName: z.string().min(2),
-  yourEmail: z.string().email(),
+  yourEmail: z.email().or(z.literal("")).optional(),
 });
 
 export async function POST(req: Request) {
