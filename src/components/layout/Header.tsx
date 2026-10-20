@@ -6,9 +6,9 @@ import Image from "next/image";
 import { Phone, Facebook, Instagram, PackageSearch, CalendarCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { products } from "@/lib/data/products";
+import { localizeProduct, products } from "@/lib/data/products";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { Language } from "@/lib/i18n/translations";
+import { LanguageToggle } from "@/components/ui/LanguageToggle";
 
 type NavLink = {
   href: string;
@@ -16,44 +16,6 @@ type NavLink = {
   external?: boolean;
   children?: { href: string; label: string }[];
 };
-
-function LanguageToggle({ variant = "light" }: { variant?: "light" | "dark" }) {
-  const { language, setLanguage } = useLanguage();
-
-  const labels: Record<Language, string> = { en: "English", es: "Español" };
-
-  return (
-    <div
-      className={cn(
-        "flex items-center rounded overflow-hidden border",
-        variant === "dark" ? "border-white/20" : "border-navy/20"
-      )}
-      role="group"
-      aria-label="Language selector"
-    >
-      {(["en", "es"] as Language[]).map((lang, i) => (
-        <button
-          key={lang}
-          type="button"
-          onClick={() => setLanguage(lang)}
-          aria-pressed={language === lang}
-          aria-label={lang === "en" ? "Switch to English" : "Cambiar a Español"}
-          className={cn(
-            "flex-1 text-center px-3 py-1 text-[11px] font-heading font-bold tracking-[0.05em] uppercase transition-colors duration-150",
-            variant === "dark"
-              ? i === 0 ? "border-r border-white/20" : ""
-              : i === 0 ? "border-r border-navy/20" : "",
-            variant === "dark"
-              ? language === lang ? "bg-white/15 text-white" : "text-white/45 hover:text-white/80"
-              : language === lang ? "bg-navy/10 text-navy" : "text-navy/40 hover:text-navy/70"
-          )}
-        >
-          {labels[lang]}
-        </button>
-      ))}
-    </div>
-  );
-}
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,7 +32,7 @@ export function Header() {
       label: t.nav.products,
       children: products.map((p) => ({
         href: p.href,
-        label: language === "es" && p.nameEs ? p.nameEs : p.name,
+        label: localizeProduct(p, language).name,
       })),
     },
     { href: "/financing", label: t.nav.financing },
@@ -320,7 +282,7 @@ export function Header() {
                 <p className="text-navy/35 text-[10px] uppercase tracking-widest mb-2 font-body">
                   {language === "en" ? "Language" : "Idioma"}
                 </p>
-                <LanguageToggle variant="light" />
+                <LanguageToggle />
               </div>
             </nav>
 

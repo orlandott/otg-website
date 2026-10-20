@@ -1,4 +1,5 @@
 import type { Product } from "@/types";
+import type { Language } from "@/lib/i18n/translations";
 
 export const products: Product[] = [
   {
@@ -106,3 +107,13 @@ export const products: Product[] = [
     href: "/products/impact-garage-doors",
   },
 ];
+
+/** A product's display text in the visitor's language (falls back to English). */
+export function localizeProduct(product: Product, language: Language) {
+  const es = language === "es";
+  return {
+    name: (es && product.nameEs) || product.name,
+    summary: (es && product.shortDescriptionEs) || product.shortDescription,
+    features: (es && product.featuresEs) || product.features,
+  };
+}

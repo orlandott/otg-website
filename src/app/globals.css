@@ -37,6 +37,12 @@ html {
   background-color: var(--background);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   color: var(--foreground);
   background-color: var(--background);
@@ -52,5 +58,14 @@ body {
   }
   .text-bright-green {
     color: var(--color-bright-green);
+  }
+}
+
+/* Phones: hide the floating chat launcher while a page form field has focus,
+   or it sits over the input above the keyboard. Fields inside the widget's own
+   shadow DOM don't match, so the open chat panel is unaffected. */
+@media (max-width: 767px) {
+  html:has(:is(input, textarea, select):focus) [data-datagran-agent] {
+    visibility: hidden;
   }
 }

@@ -23,22 +23,39 @@ const LanguageContext = createContext<LanguageContextType>({
   t: translations.en,
 });
 
+const STORAGE_KEY = "language";
+
+function parseLanguage(value: string | null): Language | null {
+  return value === "en" || value === "es" ? value : null;
+}
+
+/**
+ * The visitor's language before React state catches up: a `?lang=es|en` URL
+ * param (e.g. a Spanish ad linking to /landing?lang=es) wins over the saved
+ * preference. Null means "use the default".
+ */
+export function readPreferredLanguage(): Language | null {
+  try {
+    const fromUrl = new URLSearchParams(window.location.search).get("lang");
+    return parseLanguage(fromUrl) ?? parseLanguage(localStorage.getItem(STORAGE_KEY));
+  } catch {
+    return null;
+  }
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
 
-  useEffect(() => {
-    const stored = localStorage.getItem("language") as Language | null;
-    if (stored === "en" || stored === "es") {
-      setLanguageState(stored);
-      document.documentElement.lang = stored;
-    }
-  }, []);
-
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem("language", lang);
+    localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang;
   }, []);
+
+  useEffect(() => {
+    const preferred = readPreferredLanguage();
+    if (preferred) setLanguage(preferred);
+  }, [setLanguage]);
 
   const contextValue = useMemo(
     () => ({

@@ -1,4 +1,5 @@
 import generatedPostMetaJson from "@/lib/data/generated-post-meta.json";
+import { FINANCING_EXAMPLE } from "@/lib/data/financing";
 
 export type Language = "en" | "es";
 
@@ -127,7 +128,7 @@ export const translations = {
     homeFinancing: {
       eyebrow: "Flexible Financing",
       heading: "Protect Your Home Today.\nPay Over Time.",
-      body: "We partner with leading lenders to offer 100%, no-money-down financing — so nothing stands between your family and hurricane protection. Based on a $15,000 contract.",
+      body: `We partner with leading lenders to offer 100%, no-money-down financing — so nothing stands between your family and hurricane protection. Based on a ${FINANCING_EXAMPLE.contract} contract.`,
       perks: [
         "100% Financing, No Money Down",
         "No Payment For Up To A Year",
@@ -136,14 +137,15 @@ export const translations = {
         "Get Prequalified In Minutes",
       ],
       tableHeading: "Approximate Payment Summary",
-      tableCaption: "Based on $15,000 Contract",
+      tableCaption: `Based on ${FINANCING_EXAMPLE.contract} Contract`,
       tableTerms: "Terms",
       tablePayment: "Payment",
       tableRate: "Interest Rate",
-      rows: [
-        { term: "10 Years", payment: "$211/month", rate: "7.46%" },
-        { term: "20 Years", payment: "$143/month", rate: "7.51%" },
-      ],
+      rows: FINANCING_EXAMPLE.terms.map((term) => ({
+        term: `${term.years} Years`,
+        payment: `${term.monthly}/month`,
+        rate: term.rate,
+      })),
       cta: "Explore Financing Options",
       ctaSecondary: "Get a Free Estimate",
     },
@@ -551,7 +553,7 @@ export const translations = {
     homeFinancing: {
       eyebrow: "Financiamiento Flexible",
       heading: "Proteja Su Hogar Hoy.\nPague a Lo Largo del Tiempo.",
-      body: "Nos asociamos con prestamistas líderes para ofrecer financiamiento del 100%, sin pago inicial — para que nada se interponga entre su familia y la protección contra huracanes. Basado en un contrato de $15,000.",
+      body: `Nos asociamos con prestamistas líderes para ofrecer financiamiento del 100%, sin pago inicial — para que nada se interponga entre su familia y la protección contra huracanes. Basado en un contrato de ${FINANCING_EXAMPLE.contract}.`,
       perks: [
         "100% de Financiamiento, Sin Pago Inicial",
         "Sin Pago Por Hasta Un Año",
@@ -560,14 +562,15 @@ export const translations = {
         "Precalifíquese en Minutos",
       ],
       tableHeading: "Resumen Aproximado de Pagos",
-      tableCaption: "Basado en Contrato de $15,000",
+      tableCaption: `Basado en Contrato de ${FINANCING_EXAMPLE.contract}`,
       tableTerms: "Plazo",
       tablePayment: "Pago",
       tableRate: "Tasa de Interés",
-      rows: [
-        { term: "10 Años", payment: "$211/mes", rate: "7.46%" },
-        { term: "20 Años", payment: "$143/mes", rate: "7.51%" },
-      ],
+      rows: FINANCING_EXAMPLE.terms.map((term) => ({
+        term: `${term.years} Años`,
+        payment: `${term.monthly}/mes`,
+        rate: term.rate,
+      })),
       cta: "Explorar Opciones de Financiamiento",
       ctaSecondary: "Obtener Estimado Gratis",
     },

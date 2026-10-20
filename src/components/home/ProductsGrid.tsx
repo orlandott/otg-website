@@ -4,9 +4,10 @@ import Link from "next/link";
 import { ProductImage } from "@/components/ui/ProductImage";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { products } from "@/lib/data/products";
+import { localizeProduct, products } from "@/lib/data/products";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { Product } from "@/types";
+import type { Language } from "@/lib/i18n/translations";
 
 function ProductCard({
   product,
@@ -15,11 +16,9 @@ function ProductCard({
 }: {
   product: Product;
   index: number;
-  language: string;
+  language: Language;
 }) {
-  const name = language === "es" && product.nameEs ? product.nameEs : product.name;
-  const features =
-    language === "es" && product.featuresEs ? product.featuresEs : product.features;
+  const { name, features } = localizeProduct(product, language);
 
   return (
     <motion.article

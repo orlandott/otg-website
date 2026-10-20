@@ -4,7 +4,7 @@ Two weekly, multi-agent content automations for the Orlando T Group site.
 
 ## Stack facts that constrain the build
 - Next.js 14 App Router, deployed via **`@cloudflare/next-on-pages`** (NOT static export). Live edge API routes exist (`/api/contact` → SendGrid). Secrets already live in the Cloudflare env.
-- **Blog is data-driven:** posts are typed objects in `src/lib/data/blogPosts.ts` (`BlogPost` with `sections[]` of paragraph/h2/h3/list/callout). Rendered by `src/app/blog/page.tsx` and `src/app/blog/[slug]/page.tsx` via `generateStaticParams`. Adding a post = append one object.
+- **Blog is data-driven:** posts are typed objects in `src/lib/data/blogPosts.ts` (`BlogPost` with `sections[]` of paragraph/h2/h3/list/callout). Rendered by `src/app/(site)/blog/page.tsx` and `src/app/(site)/blog/[slug]/page.tsx` via `generateStaticParams`. Adding a post = append one object.
 - **Bilingual (en/es):** blog listing reads translated title/excerpt/date from `src/lib/i18n/translations.ts` → `postMeta[slug]` per language (falls back to the post's English). A new post should also get an `es` `postMeta` entry.
 - **Stale CI:** `.github/workflows/deploy.yml` targets GitHub Pages and uploads `./out` (never produced by next-on-pages). Prod deploy is almost certainly Cloudflare Pages Git integration (rebuild on push). **Confirm this first**, then fix/remove the stale workflow.
 - **SEO gaps:** no `sitemap.xml`, `robots.txt`, or RSS. Add all three.
