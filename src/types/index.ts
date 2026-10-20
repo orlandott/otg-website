@@ -38,3 +38,12 @@ export interface ContactFormData {
   phone: string;
   message: string;
 }
+
+export type TestimonialSource = "Google Reviews" | "Yelp Reviews";
+
+export interface Testimonial {
+  name: string;
+  source: TestimonialSource;
+  rating: number;
+  text: string;
+}
