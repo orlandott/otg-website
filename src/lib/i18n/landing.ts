@@ -28,9 +28,9 @@ const en = {
     regionLabel: "Chat with Orlando, our AI assistant",
     name: "Orlando",
     status: "AI assistant · online 24/7",
-    heading: "Ask me anything about protecting your home",
+    heading: "Let's chat and get your free visit scheduled",
     subtitle:
-      "Prices, products, financing or your free in-home estimate — in English or Spanish.",
+      "Book your free in-home estimate right here in the chat — no phone call needed. Questions about products, prices or financing? Ask away, in English or Spanish.",
     chat: "Chat with Orlando",
     voice: "Talk by voice",
     callPrompt: "Prefer a person?",
@@ -40,7 +40,7 @@ const en = {
     close: "Back",
     loading: "Connecting to Orlando…",
     failed: "Orlando couldn't load right now.",
-    dock: "Ask Orlando",
+    dock: "Book a free visit",
   },
   proof: {
     label: "Orlando T Group at a glance",
@@ -142,9 +142,9 @@ const es: LandingCopy = {
     regionLabel: "Chat con Orlando, nuestro asistente de IA",
     name: "Orlando",
     status: "Asistente de IA · disponible 24/7",
-    heading: "Pregúnteme lo que quiera sobre cómo proteger su hogar",
+    heading: "Chateemos y agendemos su visita gratis",
     subtitle:
-      "Precios, productos, financiamiento o su estimado gratis en casa — en español o inglés.",
+      "Agende su estimado gratis en casa aquí mismo en el chat, sin tener que llamar. ¿Preguntas sobre productos, precios o financiamiento? Pregunte con confianza, en español o inglés.",
     chat: "Chatear con Orlando",
     voice: "Hablar por voz",
     callPrompt: "¿Prefiere hablar con una persona?",
@@ -154,7 +154,7 @@ const es: LandingCopy = {
     close: "Volver",
     loading: "Conectando con Orlando…",
     failed: "Orlando no pudo cargar en este momento.",
-    dock: "Pregunte a Orlando",
+    dock: "Agende su visita gratis",
   },
   proof: {
     label: "Orlando T Group en cifras",
