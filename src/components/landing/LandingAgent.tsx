@@ -7,9 +7,11 @@ import { cn } from "@/lib/utils";
 import { LANDING_AGENT_ID, LANDING_PHONE_HREF } from "@/lib/data/landing";
 import { CHAT_WIDGET_AGENT, CHAT_WIDGET_LABEL, CHAT_WIDGET_SRC } from "@/lib/chatWidget";
 import type { Language } from "@/lib/i18n/translations";
-import { primaryCta, secondaryCta } from "@/components/ui/styles";
+import { primaryCta } from "@/components/ui/styles";
 import { useLandingAgent, type AgentMode } from "./LandingAgentContext";
 import { useLandingCopy } from "./useLandingCopy";
+
+const agentLink = "inline-flex min-h-[44px] items-center gap-1.5 rounded-[4px] hover:underline";
 
 /**
  * The page's centerpiece: the Orlando agent, embedded in the hero. A branded
@@ -100,28 +102,26 @@ function AgentStart() {
   const { start } = useLandingAgent();
 
   return (
-    <div className="px-5 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6">
-      <h2 className="font-heading font-bold uppercase text-navy text-[26px] leading-[1.05] sm:text-[30px]">
+    <div className="px-5 pb-5 pt-5 sm:px-8 sm:pb-6 sm:pt-6">
+      <h2 className="font-heading font-bold uppercase text-navy text-[28px] leading-[1.05] sm:text-[30px]">
         {a.heading}
       </h2>
-      <p className="mt-3 font-body text-[15px] leading-relaxed text-charcoal/80">{a.subtitle}</p>
-      <div className="mt-6 grid gap-3">
-        <button type="button" onClick={() => start("chat")} className={cn(primaryCta, "w-full")}>
-          <MessageCircle size={18} strokeWidth={1.5} aria-hidden />
-          {a.chat}
-        </button>
-        <button type="button" onClick={() => start("voice")} className={cn(secondaryCta, "w-full text-[15px]")}>
-          <Mic size={18} strokeWidth={1.5} aria-hidden />
+      <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/80">{a.subtitle}</p>
+      <button type="button" onClick={() => start("chat")} className={cn(primaryCta, "mt-6 w-full")}>
+        <MessageCircle size={18} strokeWidth={1.5} aria-hidden />
+        {a.chat}
+      </button>
+      {/* One primary action; voice and calling stay one tap away without competing. */}
+      <div className="mt-2 flex flex-wrap items-center justify-center gap-x-6 font-body text-[14px] font-medium text-blue">
+        <button type="button" onClick={() => start("voice")} className={agentLink}>
+          <Mic size={16} strokeWidth={1.5} aria-hidden />
           {a.voice}
         </button>
-      </div>
-      <p className="mt-5 text-center font-body text-[13px] text-charcoal/80">
-        {a.callPrompt}{" "}
-        <a href={LANDING_PHONE_HREF} className="inline-flex min-h-[44px] items-center gap-1 font-medium text-blue hover:underline">
-          <Phone size={14} strokeWidth={1.5} aria-hidden />
+        <a href={LANDING_PHONE_HREF} className={agentLink}>
+          <Phone size={16} strokeWidth={1.5} aria-hidden />
           {a.call}
         </a>
-      </p>
+      </div>
     </div>
   );
 }

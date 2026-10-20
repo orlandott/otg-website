@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckCircle2 } from "lucide-react";
 import { landingBrands } from "@/lib/data/landing";
 import { eyebrow } from "@/components/ui/styles";
 import { cn } from "@/lib/utils";
@@ -23,7 +24,16 @@ export function LandingProof() {
           ))}
         </dl>
 
-        <div className="mt-10 flex flex-col items-center gap-3 border-t border-border pt-8 md:flex-row md:justify-center md:gap-6">
+        <ul className="mt-10 grid gap-x-6 gap-y-3 border-t border-border pt-8 sm:grid-cols-2 lg:grid-cols-4">
+          {proof.perks.map((perk) => (
+            <li key={perk} className="flex items-start gap-2.5 font-body text-[15px] text-charcoal">
+              <CheckCircle2 size={20} strokeWidth={1.5} aria-hidden className="mt-px shrink-0 text-green" />
+              {perk}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-8 flex flex-col items-center gap-3 border-t border-border pt-8 md:flex-row md:justify-center md:gap-6">
           <p className={cn(eyebrow, "text-charcoal/80")}>
             {proof.brandsLabel}
           </p>
