@@ -1,12 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeScript } from "@/components/providers/ThemeScript";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import { MotionProvider } from "@/components/providers/MotionProvider";
 import { SITE_URL } from "@/lib/siteUrl";
 
 const barlowCondensed = Barlow_Condensed({
@@ -87,19 +85,14 @@ export default function RootLayout({
         className={`${barlowCondensed.variable} ${barlow.variable} font-body antialiased bg-white text-charcoal`}
       >
         <ThemeScript />
+        {/* Page chrome (header, footer, chat widget) lives in the (site) and
+            (landing) route-group layouts so ad landings can run without the
+            main-site navigation. */}
         <LanguageProvider>
           <ThemeProvider>
-            <Header />
-            <main className="min-h-screen bg-background">{children}</main>
-            <Footer />
+            <MotionProvider>{children}</MotionProvider>
           </ThemeProvider>
         </LanguageProvider>
-        <Script
-          src="https://datagran-agents-api.fly.dev/widget/v1.js"
-          data-agent="dga_bVSlodcrFjSaL_kY8-RJh88B"
-          data-label="Orlando"
-          strategy="lazyOnload"
-        />
       </body>
     </html>
   );
