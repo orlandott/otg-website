@@ -62,9 +62,15 @@ function HeroIntro({ hero, ratingLabel }: { hero: LandingCopy["hero"]; ratingLab
       >
         {hero.headline} <span className="block text-accent">{hero.headlineAccent}</span>
       </h1>
-      <p className="mt-5 max-w-md font-body text-[17px] leading-relaxed text-white/85 md:text-lg">
-        {hero.subtitle}
-      </p>
+      {/* A grid keeps each product whole: one per line on phones, 2 × 2 above. */}
+      <ul className="mt-5 grid max-w-xl gap-x-6 gap-y-1.5 font-body text-[17px] text-white/85 sm:grid-cols-2 md:text-lg">
+        {hero.products.map((product) => (
+          <li key={product} className="flex items-center gap-2">
+            <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            {product}
+          </li>
+        ))}
+      </ul>
       <p className="mt-5 flex items-center gap-3 font-body text-[15px] text-white/85">
         <StarRating rating={REVIEW_RATING} label={ratingLabel} />
         {hero.rating}

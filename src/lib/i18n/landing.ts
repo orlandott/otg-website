@@ -16,7 +16,7 @@ const en = {
   hero: {
     headline: "Protect your home",
     headlineAccent: "before the next storm",
-    subtitle: "Impact windows, doors and shutters for South Florida homes since 2006.",
+    products: ["Impact windows and doors", "Impact garage doors", "Awnings", "Blinds"],
     rating: `${RATING} ${REVIEW_SOURCES}`,
   },
   agent: {
@@ -126,7 +126,7 @@ const es: LandingCopy = {
   hero: {
     headline: "Proteja su hogar",
     headlineAccent: "antes de la próxima tormenta",
-    subtitle: "Ventanas, puertas y persianas de impacto para hogares del Sur de Florida desde 2006.",
+    products: ["Ventanas y puertas de impacto", "Puertas de garaje de impacto", "Toldos", "Persianas"],
     rating: `${RATING} ${REVIEW_SOURCES}`,
   },
   agent: {
