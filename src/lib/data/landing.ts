@@ -12,14 +12,7 @@ export const LANDING_AGENT_ID = "ask-orlando";
 export const LANDING_PHONE_DISPLAY = "(954) 914-7110";
 export const LANDING_PHONE_HREF = "tel:+19549147110";
 
-export const landingBrands = [
-  "ES Windows",
-  "PGT",
-  "CGI",
-  "Lawson",
-  "Bandalux",
-  "South Evolution",
-];
+export const landingBrands = ["ES Windows", "PGT", "ECO", "Mr. Glass"];
 
 /** Compressed thumbnails for ad traffic; the catalog PNGs are 1.5–2.6 MB each. */
 export function landingProductImage(productId: string): string {
