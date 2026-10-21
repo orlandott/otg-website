@@ -1,3 +1,3 @@
-// Google Ads account tag (gtag.js) for the paid-ads landings. The ID is
-// public: it ships in every page that loads the tag.
+// Google Ads account tag (gtag.js), loaded on every page. The ID is public:
+// it ships in each page's HTML.
 export const GOOGLE_ADS_ID = "AW-785107835";

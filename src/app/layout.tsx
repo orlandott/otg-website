@@ -3,6 +3,7 @@ import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeScript } from "@/components/providers/ThemeScript";
+import { GoogleAdsTag } from "@/components/layout/GoogleAdsTag";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { SITE_URL } from "@/lib/siteUrl";
@@ -81,6 +82,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* On every page, as Google Ads asks, so its tag check passes for
+            the domain and remarketing covers the whole site. */}
+        <GoogleAdsTag />
+      </head>
       <body
         className={`${barlowCondensed.variable} ${barlow.variable} font-body antialiased bg-white text-charcoal`}
       >
