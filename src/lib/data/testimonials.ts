@@ -1,5 +1,9 @@
 import type { Testimonial } from "@/types";
 
+/** Orlando T Group's star rating as its Google Business Profile shows it. The
+ * site claims only this verified number; update it when Google's changes. */
+export const GOOGLE_RATING = 4.8;
+
 /** Verbatim customer reviews from Google and Yelp (shown in English on every locale). */
 export const testimonials: Testimonial[] = [
   { name: "Gigi", source: "Google Reviews", rating: 5, text: "Excellent job. Professional and with affordable prices." },

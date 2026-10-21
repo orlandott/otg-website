@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useInView } from "framer-motion";
 import { AudioLines, Loader2, MessageCircle, Mic, Phone, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -203,11 +204,18 @@ function useAgentEmbed(
   return status;
 }
 
+/**
+ * Rendered on <body>: the hero is its own stacking context (`isolate`), so a
+ * dock inside it sat under later sections however high its z-index.
+ */
 function AgentDock({ visible }: { visible: boolean }) {
   const a = useLandingCopy().copy.agent;
   const { mode, start } = useLandingAgent();
+  const [host, setHost] = useState<HTMLElement | null>(null);
+  useEffect(() => setHost(document.body), []);
+  if (!host) return null;
 
-  return (
+  return createPortal(
     <div
       className={cn(
         "fixed inset-x-0 bottom-0 z-40 px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] transition-all duration-200 md:inset-x-auto md:bottom-6 md:right-6 md:p-0",
@@ -224,6 +232,7 @@ function AgentDock({ visible }: { visible: boolean }) {
         <AgentOrb className="h-9 w-9" />
         {a.dock}
       </button>
-    </div>
+    </div>,
+    host
   );
 }

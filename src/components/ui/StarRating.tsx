@@ -7,21 +7,26 @@ interface StarRatingProps {
   size?: number;
 }
 
+/** Each star fills by its share of the rating, so 4.8 shows a mostly filled fifth star. */
 export function StarRating({ rating, label, size = 16 }: StarRatingProps) {
   return (
     <span
       className="inline-flex gap-0.5"
       {...(label ? { role: "img", "aria-label": label } : { "aria-hidden": true })}
     >
-      {Array.from({ length: 5 }, (_, i) => (
-        <Star
-          key={i}
-          size={size}
-          strokeWidth={1.5}
-          aria-hidden
-          className={i < rating ? "fill-accent text-accent" : "text-border"}
-        />
-      ))}
+      {Array.from({ length: 5 }, (_, i) => {
+        const fill = Math.min(Math.max(rating - i, 0), 1);
+        return (
+          <span key={i} className="relative inline-flex" style={{ width: size, height: size }}>
+            <Star size={size} strokeWidth={1.5} aria-hidden className="text-border" />
+            {fill > 0 && (
+              <span className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${fill * 100}%` }}>
+                <Star size={size} strokeWidth={1.5} aria-hidden className="fill-accent text-accent" />
+              </span>
+            )}
+          </span>
+        );
+      })}
     </span>
   );
 }
