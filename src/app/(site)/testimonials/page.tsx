@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { CountUp } from "@/components/ui/CountUp";
 import { StarRating } from "@/components/ui/StarRating";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { testimonials } from "@/lib/data/testimonials";
+import { GOOGLE_RATING, testimonials } from "@/lib/data/testimonials";
 
 function GoogleIcon() {
   return (
@@ -65,8 +65,8 @@ export default function TestimonialsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-16 text-center">
             <div>
-              <div className="font-heading font-bold text-navy text-4xl mb-1">5.0</div>
-              <StarRating rating={5} size={13} />
+              <div className="font-heading font-bold text-navy text-4xl mb-1">{GOOGLE_RATING.toFixed(1)}</div>
+              <StarRating rating={GOOGLE_RATING} size={13} />
               <div className="font-body text-muted text-sm mt-1 uppercase tracking-wider">{p.averageRating}</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-[#E0E0E0]" />
