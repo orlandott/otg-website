@@ -1,12 +1,12 @@
 import type { Language } from "@/lib/i18n/translations";
 import { LANDING_PHONE_DISPLAY } from "@/lib/data/landing";
 import { FINANCING_EXAMPLE, LOWEST_FINANCING_TERM as LOWEST } from "@/lib/data/financing";
-import { GOOGLE_RATING } from "@/lib/data/testimonials";
+import { REVIEW_RATING, REVIEW_SOURCES } from "@/lib/data/testimonials";
 
 // Copy for the paid-ads landing page (/landing). Kept apart from the site-wide
 // translations so the Spanish copy is type-checked against the English one.
 
-const RATING = GOOGLE_RATING.toFixed(1);
+const RATING = REVIEW_RATING.toFixed(1);
 
 const en = {
   header: {
@@ -17,7 +17,7 @@ const en = {
     headline: "Protect your home",
     headlineAccent: "before the next storm",
     subtitle: "Impact windows, doors and shutters for South Florida homes since 2006.",
-    rating: `${RATING} on Google`,
+    rating: `${RATING} ${REVIEW_SOURCES}`,
   },
   agent: {
     regionLabel: "Chat with Orlando, our AI assistant",
@@ -41,7 +41,7 @@ const en = {
       { value: "2006", label: "Family-owned since" },
       { value: "1,600+", label: "Projects completed" },
       { value: "3", label: "Counties served" },
-      { value: RATING, label: "Google rating" },
+      { value: RATING, label: REVIEW_SOURCES },
     ],
     perks: [
       "Free in-home estimate, no obligation",
@@ -82,7 +82,7 @@ const en = {
   },
   reviews: {
     heading: "What homeowners say",
-    subtitle: `${RATING} average rating on Google`,
+    subtitle: `${RATING} average rating on Google, BBB and Yelp`,
     more: "Read more reviews",
     newTab: "(opens in a new tab)",
     starsAria: (rating: number) => `${rating} out of 5 stars`,
@@ -127,7 +127,7 @@ const es: LandingCopy = {
     headline: "Proteja su hogar",
     headlineAccent: "antes de la próxima tormenta",
     subtitle: "Ventanas, puertas y persianas de impacto para hogares del Sur de Florida desde 2006.",
-    rating: `${RATING} en Google`,
+    rating: `${RATING} ${REVIEW_SOURCES}`,
   },
   agent: {
     regionLabel: "Chat con Orlando, nuestro asistente de IA",
@@ -151,7 +151,7 @@ const es: LandingCopy = {
       { value: "2006", label: "Empresa familiar desde" },
       { value: "1,600+", label: "Proyectos completados" },
       { value: "3", label: "Condados atendidos" },
-      { value: RATING, label: "Calificación en Google" },
+      { value: RATING, label: REVIEW_SOURCES },
     ],
     perks: [
       "Estimado gratis en su hogar, sin compromiso",
@@ -192,7 +192,7 @@ const es: LandingCopy = {
   },
   reviews: {
     heading: "Lo que dicen nuestros clientes",
-    subtitle: `${RATING} de calificación promedio en Google`,
+    subtitle: `${RATING} de calificación promedio en Google, BBB y Yelp`,
     more: "Ver más reseñas",
     newTab: "(se abre en una pestaña nueva)",
     starsAria: (rating: number) => `${rating} de 5 estrellas`,
